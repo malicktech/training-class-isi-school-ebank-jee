@@ -3,17 +3,13 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Registration Form</title>
-<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<!-- <script src="/webjars/popper/popper.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-	integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-	crossorigin="anonymous"></script> -->
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registration Form</title>
+	<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/popper.js/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -24,9 +20,9 @@
 		<div class="container">
 			<h1 class="jumbotron-heading">Gestion banque</h1>
 			<p class="lead text-muted">Connectez vous</p>
-			<p><a href="#" class="btn btn-primary my-2">Main call to action</a>
-			
-			<a th:href="@{'/login'}" class=" btnbtn-primarymy-2">Login</a>
+			<p>
+				<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
+					th:href="@{'/login'}" class=" btnbtn-primarymy-2">Login</a>
 			</p>
 		</div>
 	</section>
@@ -95,6 +91,8 @@
 
 					<div th:if="${message}" class="alert alert-success" role="alert"
 						th:utext="${successMessage}"></div>
+
+				</form>
 			</div>
 		</div>
 	</div>

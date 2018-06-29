@@ -3,16 +3,14 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Liste des clients</title>
-
-<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
-<link rel="stylesheet" href="./webjars/css/fontawesome-all.css">
-
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Liste des clients</title>
+	<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+	<link rel="stylesheet" href="./webjars/fontawesome/css/fontawesome-all.css">
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/popper.js/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -28,19 +26,26 @@
 						<h1 class="jumbotron-heading">Gestion banque</h1>
 						<p class="lead text-muted">Connectez vous</p>
 						<form th:action="@{/login}" method="POST">
-							<h3 th:text="Welcome"></h3>
-							<br /> <input type="text" id="email" name="email"
-								th:placeholder="Email" class="form-control" /> <br /> <input
-								type="password" th:placeholder="Password" id="password"
-								name="password" class="form-control" /> <br />
 
-							<div align="center" th:if="${param.error}">
-								<p style="font-size: 20; color: #FF1C19;">Email or Password
-									invalid, please verify</p>
+
+							<div th:if="${param.error}" align="center"
+								class="alert alert-danger" role="alert">Email or Password
+								invalid, please verify</div>
+
+
+							<div class="form-group">
+								<input type="text" id="email" name="email"
+									th:placeholder="Email" class="form-control" />
 							</div>
-							<button class="btn btn-primary my-2" name="Submit" value="Login"
-								type="Submit" th:text="Login"></button>
-							<a th:href="@{/registration}" class="btn btn-primary my-2">Inscription</a>
+							<div class="form-group">
+								<input type="password" th:placeholder="Password" id="password"
+									name="password" class="form-control" />
+							</div>
+							<p>
+								<button class="btn btn-primary my-2" name="Submit" value="Login"
+									type="Submit" th:text="Login"></button>
+								<a th:href="@{/registration}" class="btn btn-secondary my-2">Inscription</a>
+							</p>
 						</form>
 					</div>
 					<div class="col">
@@ -49,10 +54,11 @@
 							alt="Logo" />
 					</div>
 				</div>
+			</div>
 		</section>
-		
+
 	</div>
-	
+
 	</main>
 
 </body>
