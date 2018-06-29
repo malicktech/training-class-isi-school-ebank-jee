@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Liste des clients</title>
+
+<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+<link rel="stylesheet" href="./webjars/css/fontawesome-all.css">
+
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<main role="main">
+
+	<div class="container">
+
+		<section class="jumbotron text-center">
+			<div class="container">
+
+				<div class="row">
+					<div class="col">
+						<h1 class="jumbotron-heading">Gestion banque</h1>
+						<p class="lead text-muted">Connectez vous</p>
+						<form th:action="@{/login}" method="POST">
+							<h3 th:text="Welcome"></h3>
+							<br /> <input type="text" id="email" name="email"
+								th:placeholder="Email" class="form-control" /> <br /> <input
+								type="password" th:placeholder="Password" id="password"
+								name="password" class="form-control" /> <br />
+
+							<div align="center" th:if="${param.error}">
+								<p style="font-size: 20; color: #FF1C19;">Email or Password
+									invalid, please verify</p>
+							</div>
+							<button class="btn btn-primary my-2" name="Submit" value="Login"
+								type="Submit" th:text="Login"></button>
+							<a th:href="@{/registration}" class="btn btn-primary my-2">Inscription</a>
+						</form>
+					</div>
+					<div class="col">
+						<img th:src="@{/images/login.jpg}"
+							class="img-responsive center-block" width="300" height="300"
+							alt="Logo" />
+					</div>
+				</div>
+		</section>
+		
+	</div>
+	
+	</main>
+
+</body>
+</html>

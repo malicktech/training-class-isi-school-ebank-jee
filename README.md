@@ -6,17 +6,28 @@ https://start.spring.io/
 
 # tech stack
 
-Java 8
-Spring Boot 2
-Spring Security
-Spring MVC
-JPA
-Thymeleaf
-MySQL
+* Java 8
+* Spring Boot 2
+* Spring Security 5
+* Spring MVC
+* Spring Data JPA
+* Thymeleaf
 
-Maven
+- MySQL (Database)
 
-Bootstrap (UI Presentation)
+- Maven
+
+- Bootstrap (UI Presentation)
+
+
+# Install
+
+* Create database
+
+```sql
+CREATE DATABASE `exam_jee_gestionbanque` COLLATE 'utf8_general_ci';
+```
+
 
 
 # links
