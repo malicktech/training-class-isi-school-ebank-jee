@@ -1,15 +1,23 @@
 # GestionBanque
 
-# TODO
+## TODO
 
-- Setup projet
+- spring security redirect after login based on role
+http://www.baeldung.com/spring_redirect_after_login
+
+- load role in app starting
+- Home page & template layout with boostrap
 - Properties validation with hibernate validators
+- Spring Security Logout
+- Set up 2scd level cache
+
+
+## DONE
+
+- Setup project
+
 - Set up Spring Security Roles and Privileges
 - Spring Security Login Form
-- Spring Security Logout
-- Home page & layout with boostrap
-- Set up 2scd level cache
-- load role in app start
 
 - include client side library : boostrap & jquery
 https://www.webjars.org/documentation#springboot
