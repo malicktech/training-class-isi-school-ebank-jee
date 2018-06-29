@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.config.service;
+package com.examen.GestionBanque.GestionBanque.service;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.config;
+package com.examen.GestionBanque.GestionBanque.configuration;
 
 import javax.annotation.PostConstruct;
 

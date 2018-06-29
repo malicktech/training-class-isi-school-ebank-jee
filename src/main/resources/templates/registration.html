@@ -23,13 +23,8 @@
 				<h1 class="jumbotron-heading">Gestion banque</h1>
 				<p class="lead text-muted">Créer un utilisateur</p>
 
-				<div th:if="${message}" class="alert alert-success" role="alert"
+				<div th:if="${successMessage}" class="alert alert-success" role="alert"
 					th:utext="${successMessage}"></div>
-
-				<!-- <p>
-				<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
-					th:href="@{'/login'}" class=" btnbtn-primarymy-2">Login</a>
-			</p> -->
 
 				<div class="row">
 					<div class="col-6 align-self-center">

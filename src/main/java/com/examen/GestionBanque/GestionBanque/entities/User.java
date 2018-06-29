@@ -27,17 +27,15 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	// @Column(name = "id")
 	private Long id;
 
 	@Email(message = "*Please provide a valid Email")
-	// @NotEmpty(message = "*Please provide an email")
+	@NotEmpty(message = "*Please provide an email")
 	@NotNull
 	@Size(min = 5, max = 254)
 	@Column(name = "email", length = 254, unique = true, nullable = false)
 	private String email;
 
-	// @Column(name = "password", nullable = false)
 	@Column(name = "password", length = 60, nullable = false)
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
@@ -45,23 +43,20 @@ public class User {
 	private String password;
 
 	@NotNull
-	// @NotEmpty(message = "*Please provide your name")
+	@NotEmpty(message = "*Please provide your first name")
 	@Size(max = 50)
 	@Column(name = "first_name", length = 50)
 	private String firstName;
 
-	// @NotEmpty(message = "*Please provide your last name")
+	@NotEmpty(message = "*Please provide your last name")
 	@Size(max = 50)
 	@Column(name = "last_name", length = 50)
 	private String lastName;
 
-	// @NotNull
 	@Column(nullable = false)
 	private boolean activated = false;
 
-	// @JsonIgnore
 	@ManyToMany
-	// @ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "role_name", referencedColumnName = "name") })
