@@ -3,99 +3,105 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Registration Form</title>
-	<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/popper.js/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registration Form</title>
+<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/popper.js/popper.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
 	<main role="main">
 
-	<section class="jumbotron text-center">
-		<div class="container">
-			<h1 class="jumbotron-heading">Gestion banque</h1>
-			<p class="lead text-muted">Connectez vous</p>
-			<p>
+	<div class="container">
+
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading">Gestion banque</h1>
+				<p class="lead text-muted">Créer un utilisateur</p>
+
+				<div th:if="${message}" class="alert alert-success" role="alert"
+					th:utext="${successMessage}"></div>
+
+				<!-- <p>
 				<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
 					th:href="@{'/login'}" class=" btnbtn-primarymy-2">Login</a>
-			</p>
-		</div>
-	</section>
+			</p> -->
 
+				<div class="row">
+					<div class="col-6 align-self-center">
+						<form autocomplete="off" action="#" th:action="@{/registration}"
+							th:object="${user}" method="post" class="form-horizontal"
+							role="form">
 
-	</main>
+							<!-- <h2>Registration Form</h2> -->
 
+							<div class="form-group">
+								<select class="custom-select">
+									<option selected>Type d'utilisateur</option>
+									<option value="1">Client</option>
+									<option value="2">Employee</option>
+									<option value="3">Caissier</option>
+								</select>
+							</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-6 col-md-offset-3">
+							<div class="form-group">
+								<div class="col-9">
+									<label th:if="${#fields.hasErrors('firstName')}"
+										th:errors="*{firstName}" class="validation-message"></label> <input
+										type="text" th:field="*{firstName}" placeholder="First Name"
+										class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-9">
+									<label th:if="${#fields.hasErrors('lastName')}"
+										th:errors="*{lastName}" class="validation-message"></label> <input
+										type="text" th:field="*{lastName}" placeholder="Last Name"
+										class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-9">
+									<input type="text" th:field="*{email}" placeholder="Email"
+										class="form-control" /> <label
+										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+										class="validation-message"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-9">
+									<input type="password" th:field="*{password}"
+										placeholder="Password" class="form-control" /> <label
+										th:if="${#fields.hasErrors('password')}"
+										th:errors="*{password}" class="validation-message"></label>
+								</div>
+							</div>
 
-				<form autocomplete="off" action="#" th:action="@{/registration}"
-					th:object="${user}" method="post" class="form-horizontal"
-					role="form">
-					<h2>Registration Form</h2>
-					<div class="form-group">
-						<div class="col-9">
-							<label th:if="${#fields.hasErrors('firstName')}"
-								th:errors="*{firstName}" class="validation-message"></label> <input
-								type="text" th:field="*{firstName}" placeholder="First Name"
-								class="form-control" />
-						</div>
+							<div class="form-group">
+								<div class="col-9">
+									<button type="submit" class="btn btn-primary btn-block">Register
+										User</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-9">
+									<a th:href="@{/login}" class="btn btn-secondary btn-block">Connectez
+										vous</a>
+								</div>
+							</div>
+						</form>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<div class="col-9">
-							<label th:if="${#fields.hasErrors('lastName')}"
-								th:errors="*{lastName}" class="validation-message"></label> <input
-								type="text" th:field="*{lastName}" placeholder="Last Name"
-								class="form-control" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-9">
-							<input type="text" th:field="*{email}" placeholder="Email"
-								class="form-control" /> <label
-								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-								class="validation-message"></label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-9">
-							<input type="password" th:field="*{password}"
-								placeholder="Password" class="form-control" /> <label
-								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-								class="validation-message"></label>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-9">
-							<button type="submit" class="btn btn-primary btn-block">Register
-								User</button>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-9">
-							<button type="submit" class="btn btn-primary btn-block">Register
-								User</button>
-							<a th:href="@{/login}">view</a>
-
-						</div>
-					</div>
-
-
-					<div th:if="${message}" class="alert alert-success" role="alert"
-						th:utext="${successMessage}"></div>
-
-				</form>
 			</div>
-		</div>
+		</section>
 	</div>
+	
+	</main>
 
 </body>
 </html>
