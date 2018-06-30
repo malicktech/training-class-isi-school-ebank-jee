@@ -7,7 +7,8 @@ http://www.baeldung.com/spring_redirect_after_login
 
 - load role in app starting
 - Home page & template layout with boostrap
-- Properties validation with hibernate validators
+
+
 - Spring Security Logout
 - Set up 2scd level cache
 
@@ -21,3 +22,7 @@ http://www.baeldung.com/spring_redirect_after_login
 
 - include client side library : boostrap & jquery
 https://www.webjars.org/documentation#springboot
+
+- Properties validation with hibernate validators
+https://stackoverflow.com/questions/17137307/in-hibernate-validator-4-1-what-is-the-difference-between-notnull-notempty
+
