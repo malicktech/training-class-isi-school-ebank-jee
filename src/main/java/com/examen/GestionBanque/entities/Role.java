@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.entities;
+package com.examen.GestionBanque.entities;
 
 import java.io.Serializable;
 

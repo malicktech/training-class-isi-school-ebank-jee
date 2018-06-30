@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque;
+package com.examen.GestionBanque;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
