@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.entities;
+package com.examen.GestionBanque.entities;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,7 +24,6 @@ import org.springframework.data.annotation.Transient;
 @Entity
 @Table(name = "user")
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

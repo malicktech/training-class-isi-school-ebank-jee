@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.configuration;
+package com.examen.GestionBanque.configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.examen.GestionBanque.GestionBanque.config.security.AuthoritiesConstants;
+import com.examen.GestionBanque.config.security.RolesConstants;
 
 @Configuration
 @EnableWebSecurity
@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-				.antMatchers("/admin/**").hasAuthority(AuthoritiesConstants.ADMIN).anyRequest()
+				.antMatchers("/admin/**").hasAuthority(RolesConstants.ADMIN).anyRequest()
 				.authenticated()
 			.and()
 				.csrf()

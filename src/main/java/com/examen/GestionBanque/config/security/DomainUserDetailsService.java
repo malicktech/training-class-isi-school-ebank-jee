@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.GestionBanque.config.security;
+package com.examen.GestionBanque.config.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.examen.GestionBanque.GestionBanque.dao.UserRepository;
-import com.examen.GestionBanque.GestionBanque.entities.Role;
-import com.examen.GestionBanque.GestionBanque.entities.User;
+import com.examen.GestionBanque.dao.UserRepository;
+import com.examen.GestionBanque.entities.Role;
+import com.examen.GestionBanque.entities.User;
 
 @Component("userDetailsService")
 public class DomainUserDetailsService implements UserDetailsService {
