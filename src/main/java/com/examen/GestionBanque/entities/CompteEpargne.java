@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @DiscriminatorValue("CE")
 public class CompteEpargne extends Compte {
+
+	private static final long serialVersionUID = 1L;
+	
 	private double fraisOuvEp;
 
 	public CompteEpargne() {

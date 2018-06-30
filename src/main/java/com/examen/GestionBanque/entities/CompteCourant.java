@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("CC")
 public class CompteCourant extends Compte {
 
+	private static final long serialVersionUID = 1L;
+
 	private double agios;
 
 	public CompteCourant() {

@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue("CB")
 public class CompteBloqué extends Compte {
 
+	private static final long serialVersionUID = 1L;
+
 	private double fraisOuvCB;
 
 	public CompteBloqué() {

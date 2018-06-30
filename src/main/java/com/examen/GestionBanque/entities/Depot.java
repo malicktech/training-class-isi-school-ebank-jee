@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("D")
 public class Depot extends Operation {
 
+	private static final long serialVersionUID = 1L;
+
 	public Depot() {
 		super();
 		// TODO Auto-generated constructor stub
