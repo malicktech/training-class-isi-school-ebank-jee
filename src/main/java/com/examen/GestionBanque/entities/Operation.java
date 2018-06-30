@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -43,6 +44,9 @@ public abstract class Operation implements Serializable {
 
 	@Column(name = "Taxe_Relevé")
 	private double taxeReleve;
+
+	@Column(name = "description")
+	private String description;
 
 	@ManyToOne
 	@JoinColumn(name = "Numero_Compte")
@@ -117,6 +121,14 @@ public abstract class Operation implements Serializable {
 
 	public void setTaxeReleve(double taxeReleve) {
 		this.taxeReleve = taxeReleve;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Compte getCompte() {

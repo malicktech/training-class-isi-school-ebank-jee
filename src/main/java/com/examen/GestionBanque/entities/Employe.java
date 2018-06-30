@@ -3,22 +3,21 @@ package com.examen.GestionBanque.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Employe implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idEmp;
 
 	@NotNull
@@ -40,12 +39,11 @@ public class Employe implements Serializable {
 	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
 
-	@OneToOne(mappedBy = "employe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@OneToOne
+	@MapsId
 	private User users;
 
 	public Employe() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Employe(@NotNull String codeEmp, @NotNull String prenomEmp, @NotNull String nomEmp,
