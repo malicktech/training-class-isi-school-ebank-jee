@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.config.security;
+package com.examen.GestionBanque.configuration.security;
 
 /**
  * Constants for Spring Security authorities roles.

@@ -29,6 +29,5 @@ public class CompteEpargne extends Compte {
 	public void setFraisOuvEp(double fraisOuvEp) {
 		this.fraisOuvEp = fraisOuvEp;
 	}
-	
 
 }

@@ -19,144 +19,139 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_CPTE",discriminatorType=DiscriminatorType.STRING,length=2)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_CPTE", discriminatorType = DiscriminatorType.STRING, length = 2)
 public abstract class Compte implements Serializable {
-	
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private int idCompte ;
 
-@NotNull
-@Column(name = "Numero_Compte", length = 20)
-private String numCompte ;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idCompte;
 
-@NotNull
-@Column(name = "Solde_Compte")
-private double solde;
+	@NotNull
+	@Column(name = "Numero_Compte", length = 20)
+	private String numCompte;
 
-@NotNull
-@Column(name = "Date_Ouverture")
-private Date dateCreation;
+	@NotNull
+	@Column(name = "Solde_Compte")
+	private double solde;
 
-@Column(nullable = false)
-private boolean etat = true;
+	@NotNull
+	@Column(name = "Date_Ouverture")
+	private Date dateCreation;
 
-@ManyToOne
-@JoinColumn(name="CODE_Employe")
-private Employe employe ;
+	@Column(nullable = false)
+	private boolean etat = true;
 
-@ManyToOne
-@JoinColumn(name="Numero_Agence")
-private Agence agence ;
+	@ManyToOne
+	@JoinColumn(name = "CODE_Employe")
+	private Employe employe;
 
-@ManyToOne
-@JoinColumn(name="CODE_CLIENT")
-private Client client ;
+	@ManyToOne
+	@JoinColumn(name = "Numero_Agence")
+	private Agence agence;
 
-@OneToMany(mappedBy="compte",fetch=FetchType.LAZY)
-private List<Operation> operations;
+	@ManyToOne
+	@JoinColumn(name = "CODE_CLIENT")
+	private Client client;
 
-@OneToMany(mappedBy="compte",fetch=FetchType.LAZY)
-private List<HistoriqueTaxe> historiques;
+	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
+	private List<Operation> operations;
 
-public Compte() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
+	private List<HistoriqueTaxe> historiques;
 
-public Compte(@NotNull String numCompte, @NotNull double solde, @NotNull Date dateCreation, boolean etat) {
-	super();
-	this.numCompte = numCompte;
-	this.solde = solde;
-	this.dateCreation = dateCreation;
-	this.etat = etat;
-}
+	public Compte() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-public int getIdCompte() {
-	return idCompte;
-}
+	public Compte(@NotNull String numCompte, @NotNull double solde, @NotNull Date dateCreation, boolean etat) {
+		super();
+		this.numCompte = numCompte;
+		this.solde = solde;
+		this.dateCreation = dateCreation;
+		this.etat = etat;
+	}
 
-public void setIdCompte(int idCompte) {
-	this.idCompte = idCompte;
-}
+	public int getIdCompte() {
+		return idCompte;
+	}
 
-public String getNumCompte() {
-	return numCompte;
-}
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
+	}
 
-public void setNumCompte(String numCompte) {
-	this.numCompte = numCompte;
-}
+	public String getNumCompte() {
+		return numCompte;
+	}
 
-public double getSolde() {
-	return solde;
-}
+	public void setNumCompte(String numCompte) {
+		this.numCompte = numCompte;
+	}
 
-public void setSolde(double solde) {
-	this.solde = solde;
-}
+	public double getSolde() {
+		return solde;
+	}
 
-public Date getDateCreation() {
-	return dateCreation;
-}
+	public void setSolde(double solde) {
+		this.solde = solde;
+	}
 
-public void setDateCreation(Date dateCreation) {
-	this.dateCreation = dateCreation;
-}
+	public Date getDateCreation() {
+		return dateCreation;
+	}
 
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
 
+	public boolean isEtat() {
+		return etat;
+	}
 
-public boolean isEtat() {
-	return etat;
-}
+	public void setEtat(boolean etat) {
+		this.etat = etat;
+	}
 
-public void setEtat(boolean etat) {
-	this.etat = etat;
-}
+	public Employe getEmployé() {
+		return employe;
+	}
 
-public Employe getEmployé() {
-	return employe;
-}
+	public void setEmploye(Employe employé) {
+		this.employe = employé;
+	}
 
-public void setEmploye(Employe employé) {
-	this.employe = employé;
-}
+	public Agence getAgence() {
+		return agence;
+	}
 
-public Agence getAgence() {
-	return agence;
-}
+	public void setAgence(Agence agence) {
+		this.agence = agence;
+	}
 
-public void setAgence(Agence agence) {
-	this.agence = agence;
-}
+	public Client getClient() {
+		return client;
+	}
 
-public Client getClient() {
-	return client;
-}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
-public void setClient(Client client) {
-	this.client = client;
-}
+	public List<Operation> getOperations() {
+		return operations;
+	}
 
-public List<Operation> getOperations() {
-	return operations;
-}
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
+	}
 
-public void setOperations(List<Operation> operations) {
-	this.operations = operations;
-}
+	public List<HistoriqueTaxe> getHistoriques() {
+		return historiques;
+	}
 
-public List<HistoriqueTaxe> getHistoriques() {
-	return historiques;
-}
-
-public void setHistoriques(List<HistoriqueTaxe> historiques) {
-	this.historiques = historiques;
-}
-
-
+	public void setHistoriques(List<HistoriqueTaxe> historiques) {
+		this.historiques = historiques;
+	}
 
 }

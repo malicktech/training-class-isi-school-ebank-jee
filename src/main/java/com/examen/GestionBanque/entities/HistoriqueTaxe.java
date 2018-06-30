@@ -13,20 +13,18 @@ import javax.validation.constraints.NotNull;
 public class HistoriqueTaxe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idHisto ;
-	
+	private int idHisto;
+
 	@NotNull
 	@Column(name = "Date", length = 20)
-	private Date dateHisto ;
-	
+	private Date dateHisto;
+
 	@NotNull
 	@Column(name = "Montant_Taxe", length = 20)
-	private Double MontantT ;
-	
+	private Double MontantT;
+
 	@ManyToOne
-	@JoinColumn(name="Numero_Compte")
-	private Compte compte ;
-	
-	
+	@JoinColumn(name = "Numero_Compte")
+	private Compte compte;
 
 }

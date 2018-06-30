@@ -13,33 +13,31 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 public class Employe {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idEmp ;
-	
+	private int idEmp;
+
 	@NotNull
 	@Column(name = "Code_Employe", length = 20)
-	private String CodeEmp ;
-	
+	private String CodeEmp;
+
 	@NotNull
 	@Column(name = "Prenom", length = 30)
 	private String prenomEmp;
-	
+
 	@NotNull
 	@Column(name = "nom", length = 30)
 	private String nomEmp;
-	
+
 	@NotNull
 	@Column(name = "Poste_Occuppé", length = 50)
 	private String postEmp;
-	
-	
-	@OneToMany(mappedBy="employe",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
-	
-	@OneToOne(mappedBy = "employe", cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY, optional = false)
+
+	@OneToOne(mappedBy = "employe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
 	private User users;
 
 	public Employe() {
@@ -112,5 +110,4 @@ public class Employe {
 		this.users = users;
 	}
 
-	
 }

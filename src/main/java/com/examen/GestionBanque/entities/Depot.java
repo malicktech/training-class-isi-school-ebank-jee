@@ -5,10 +5,9 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-
 @Entity
 @DiscriminatorValue("D")
-public class Depot extends Operation{
+public class Depot extends Operation {
 
 	public Depot() {
 		super();
@@ -19,6 +18,5 @@ public class Depot extends Operation{
 		super(numOp, dateOp, montantop, taxeOp, taxeSms, taxeReleve);
 		// TODO Auto-generated constructor stub
 	}
-	
 
 }

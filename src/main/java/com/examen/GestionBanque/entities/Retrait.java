@@ -3,10 +3,9 @@ package com.examen.GestionBanque.entities;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 
 @DiscriminatorValue("R")
-public class Retrait extends Operation{
+public class Retrait extends Operation {
 
 	public Retrait() {
 		super();
@@ -18,6 +17,4 @@ public class Retrait extends Operation{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-		
 }

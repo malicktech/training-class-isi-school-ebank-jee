@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.config.security;
+package com.examen.GestionBanque.configuration.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,11 +19,11 @@ import com.examen.GestionBanque.entities.Role;
 import com.examen.GestionBanque.entities.User;
 
 @Component("userDetailsService")
-public class DomainUserDetailsService implements UserDetailsService {
+public class SecurityUserDetailsService implements UserDetailsService {
 
 	private final UserRepository userRepository;
 
-	public DomainUserDetailsService(UserRepository userRepository) {
+	public SecurityUserDetailsService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 

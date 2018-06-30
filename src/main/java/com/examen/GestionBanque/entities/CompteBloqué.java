@@ -6,10 +6,10 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-	@Entity
-	@DiscriminatorValue("CB")
-	public class CompteBloqué extends Compte {
-		
+@Entity
+@DiscriminatorValue("CB")
+public class CompteBloqué extends Compte {
+
 	private double fraisOuvCB;
 
 	public CompteBloqué() {
@@ -30,7 +30,5 @@ import javax.validation.constraints.NotNull;
 	public void setFraisOuvCB(double fraisOuvCB) {
 		this.fraisOuvCB = fraisOuvCB;
 	}
-	
-	
 
 }

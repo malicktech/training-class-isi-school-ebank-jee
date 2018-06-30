@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.examen.GestionBanque.config.security.RolesConstants;
+import com.examen.GestionBanque.configuration.security.RolesConstants;
 import com.examen.GestionBanque.dao.RoleRepository;
 import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Role;

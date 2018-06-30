@@ -14,121 +14,115 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TYPE_OP",discriminatorType=DiscriminatorType.STRING,length=1)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_OP", discriminatorType = DiscriminatorType.STRING, length = 1)
 public abstract class Operation implements Serializable {
-	
-@Id 
-@GeneratedValue(strategy = GenerationType.AUTO)
-private int idOp ;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idOp;
 
-@Column(name = "Numero_Operation")
-private Long numOp ;
+	@Column(name = "Numero_Operation")
+	private Long numOp;
 
+	@Column(name = "Date_Operation")
+	private Date dateOp;
 
-@Column(name = "Date_Operation")
-private Date dateOp;
+	@Column(name = "Montant_Operation")
+	private double montantop;
 
+	@Column(name = "Taxe_Operation")
+	private double taxeOp;
 
-@Column(name = "Montant_Operation")
-private double montantop;
+	@Column(name = "Taxe_Sms")
+	private double taxeSms;
 
-@Column(name = "Taxe_Operation")
-private double taxeOp;
+	@Column(name = "Taxe_Relevé")
+	private double taxeReleve;
 
-@Column(name = "Taxe_Sms")
-private double taxeSms;
+	@ManyToOne
+	@JoinColumn(name = "Numero_Compte")
+	private Compte compte;
 
-@Column(name = "Taxe_Relevé")
-private double taxeReleve;
+	public Operation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-@ManyToOne
-@JoinColumn(name="Numero_Compte")
-private Compte compte;
+	public Operation(Long numOp, Date dateOp, double montantop, double taxeOp, double taxeSms, double taxeReleve) {
+		super();
+		this.numOp = numOp;
+		this.dateOp = dateOp;
+		this.montantop = montantop;
+		this.taxeOp = taxeOp;
+		this.taxeSms = taxeSms;
+		this.taxeReleve = taxeReleve;
+	}
 
-public Operation() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+	public int getIdOp() {
+		return idOp;
+	}
 
-public Operation(Long numOp, Date dateOp, double montantop, double taxeOp, double taxeSms, double taxeReleve) {
-	super();
-	this.numOp = numOp;
-	this.dateOp = dateOp;
-	this.montantop = montantop;
-	this.taxeOp = taxeOp;
-	this.taxeSms = taxeSms;
-	this.taxeReleve = taxeReleve;
-}
+	public void setIdOp(int idOp) {
+		this.idOp = idOp;
+	}
 
-public int getIdOp() {
-	return idOp;
-}
+	public Long getNumOp() {
+		return numOp;
+	}
 
-public void setIdOp(int idOp) {
-	this.idOp = idOp;
-}
+	public void setNumOp(Long numOp) {
+		this.numOp = numOp;
+	}
 
-public Long getNumOp() {
-	return numOp;
-}
+	public Date getDateOp() {
+		return dateOp;
+	}
 
-public void setNumOp(Long numOp) {
-	this.numOp = numOp;
-}
+	public void setDateOp(Date dateOp) {
+		this.dateOp = dateOp;
+	}
 
-public Date getDateOp() {
-	return dateOp;
-}
+	public double getMontantop() {
+		return montantop;
+	}
 
-public void setDateOp(Date dateOp) {
-	this.dateOp = dateOp;
-}
+	public void setMontantop(double montantop) {
+		this.montantop = montantop;
+	}
 
-public double getMontantop() {
-	return montantop;
-}
+	public double getTaxeOp() {
+		return taxeOp;
+	}
 
-public void setMontantop(double montantop) {
-	this.montantop = montantop;
-}
+	public void setTaxeOp(double taxeOp) {
+		this.taxeOp = taxeOp;
+	}
 
-public double getTaxeOp() {
-	return taxeOp;
-}
+	public double getTaxeSms() {
+		return taxeSms;
+	}
 
-public void setTaxeOp(double taxeOp) {
-	this.taxeOp = taxeOp;
-}
+	public void setTaxeSms(double taxeSms) {
+		this.taxeSms = taxeSms;
+	}
 
-public double getTaxeSms() {
-	return taxeSms;
-}
+	public double getTaxeReleve() {
+		return taxeReleve;
+	}
 
-public void setTaxeSms(double taxeSms) {
-	this.taxeSms = taxeSms;
-}
+	public void setTaxeReleve(double taxeReleve) {
+		this.taxeReleve = taxeReleve;
+	}
 
-public double getTaxeReleve() {
-	return taxeReleve;
-}
+	public Compte getCompte() {
+		return compte;
+	}
 
-public void setTaxeReleve(double taxeReleve) {
-	this.taxeReleve = taxeReleve;
-}
-
-public Compte getCompte() {
-	return compte;
-}
-
-public void setCompte(Compte compte) {
-	this.compte = compte;
-}
-
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
 
 }
