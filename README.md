@@ -39,3 +39,13 @@ CREATE DATABASE `exam_jee_gestionbanque` COLLATE 'utf8_general_ci';
 - sET UP SPRING 
 https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d
 
+- YOUSFI
+https://github.com/mohamedYoussfi/comptes-jpa-hibernate-spring
+
+https://github.com/diop-malick/EBank-Jhipster
+https://github.com/diop-malick/EBank-EJB-JSF/tree/master/EBank-V1-JEE-EJB3-core/src/main/java/metier
+
+- Thymeleaf layout
+https://progressive-code.com/post/14/Thymeleaf-Layout-Dialect-as-Decorator-Pattern-for-a-Spring-Boot-web-application
+https://github.com/kolorobot/spring-boot-thymeleaf/tree/master/src/main/resources/templates
+

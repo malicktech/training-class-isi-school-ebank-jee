@@ -7,32 +7,24 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,27 +33,24 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Email(message = "*Please provide a valid Email")
-	@NotEmpty(message = "*Please provide an email")
-	@NotNull
+	@Email
 	@Size(min = 5, max = 254)
 	@Column(name = "email", length = 254, unique = true, nullable = false)
 	private String email;
 
-	@Column(name = "password", length = 60, nullable = false)
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
-	@NotEmpty(message = "*Please provide your password")
+	@NotNull
+	@Size(min = 60, max = 60)
 	@Transient
+	@Column(name = "password", length = 60, nullable = false)
 	private String password;
 
 	@NotNull
-	@NotEmpty(message = "*Please provide your first name")
-	@Size(max = 50)
+	@Size(min = 2, max = 50)
 	@Column(name = "first_name", length = 50)
 	private String firstName;
 
-	@NotEmpty(message = "*Please provide your last name")
-	@Size(max = 50)
+	@NotNull
+	@Size(min = 2, max = 50)
 	@Column(name = "last_name", length = 50)
 	private String lastName;
 
