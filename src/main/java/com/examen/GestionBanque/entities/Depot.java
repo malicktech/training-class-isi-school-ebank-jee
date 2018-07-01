@@ -6,7 +6,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("D")
+@DiscriminatorValue("Depot")
 public class Depot extends Operation {
 
 	private static final long serialVersionUID = 1L;

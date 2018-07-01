@@ -16,17 +16,17 @@ public class Agence {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idAgence ;
-	
+	private Long id;
+
 	@NotNull
-	@Column(name = "Numero_Agence", length = 20)
-	private String numAgence ;
-	
+	@Column(name = "num_agence", length = 20)
+	private String numAgence;
+
 	@NotNull
-	@Column(name = "Region", length = 30)
+	@Column(name = "region", length = 30)
 	private String region;
-	
-	@OneToMany(mappedBy="agence",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
 
 	public Agence() {
@@ -39,6 +39,37 @@ public class Agence {
 		this.numAgence = numAgence;
 		this.region = region;
 	}
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNumAgence() {
+		return numAgence;
+	}
+
+	public void setNumAgence(String numAgence) {
+		this.numAgence = numAgence;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public Collection<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Collection<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
 }

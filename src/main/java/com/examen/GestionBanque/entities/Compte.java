@@ -28,7 +28,7 @@ public abstract class Compte implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idCompte;
+	private Long id;
 
 	@NotNull
 	@Column(name = "Numero_Compte", length = 20)
@@ -38,7 +38,6 @@ public abstract class Compte implements Serializable {
 	@Column(name = "Solde_Compte")
 	private double solde;
 
-	@NotNull
 	@Column(name = "Date_Ouverture")
 	private Date dateCreation;
 
@@ -55,7 +54,7 @@ public abstract class Compte implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "CODE_CLIENT")
-	private Client client;
+	private User client;
 
 	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
 	private List<Operation> operations;
@@ -76,12 +75,12 @@ public abstract class Compte implements Serializable {
 		this.etat = etat;
 	}
 
-	public int getIdCompte() {
-		return idCompte;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdCompte(int idCompte) {
-		this.idCompte = idCompte;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNumCompte() {
@@ -132,11 +131,11 @@ public abstract class Compte implements Serializable {
 		this.agence = agence;
 	}
 
-	public Client getClient() {
+	public User getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(User client) {
 		this.client = client;
 	}
 
@@ -156,4 +155,12 @@ public abstract class Compte implements Serializable {
 		this.historiques = historiques;
 	}
 
+	@Override
+	public String toString() {
+		return "Compte [id=" + id + ", numCompte=" + numCompte + ", solde=" + solde + ", dateCreation=" + dateCreation
+				+ ", etat=" + etat + ", employe=" + employe + ", agence=" + agence + ", client=" + client
+				+ ", operations=" + operations + ", historiques=" + historiques + "]";
+	}
+
+	
 }

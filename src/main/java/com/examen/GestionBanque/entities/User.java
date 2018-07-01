@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Email
@@ -39,7 +39,7 @@ public class User implements Serializable {
 	private String email;
 
 	@NotNull
-	@Size(min = 60, max = 60)
+	// @Size(min = 60, max = 60)
 	@Transient
 	@Column(name = "password", length = 60, nullable = false)
 	private String password;
@@ -63,11 +63,11 @@ public class User implements Serializable {
 					@JoinColumn(name = "role_name", referencedColumnName = "name") })
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(unique = true)
 	private Client client;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(unique = true)
 	private Employe employe;
 

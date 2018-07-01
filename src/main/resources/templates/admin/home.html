@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Page</title>
+<title>Admin Home</title>
+
 <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
 <link rel="stylesheet"
 	href="./webjars/fontawesome/css/fontawesome-all.css">
+
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/popper.js/popper.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
 </head>
+
 
 <body>
 	<div class="container">
@@ -37,6 +41,16 @@
 			</div>
 		</div>
 
+		<div>
+			<a th:href="@{/user/liste}" class="btn btn-secondary my-2">Liste
+				Clients</a>
+		</div>
+		<div>
+			<a th:href="@{/compte/liste}" class="btn btn-secondary my-2">Liste
+				Comptes </a>
+		<a th:href="@{/compte/ouverture?typeComte=CC}" class="btn btn-secondary my-2">Ouverture
+			Compte Courant</a>
+	</div>
 	</div>
 </body>
 </html>

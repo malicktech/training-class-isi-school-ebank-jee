@@ -18,23 +18,15 @@ public class Employe implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idEmp;
+	private int id;
 
 	@NotNull
-	@Column(name = "Code_Employe", length = 20)
-	private String CodeEmp;
+	@Column(name = "code", length = 20)
+	private String code;
 
 	@NotNull
-	@Column(name = "Prenom", length = 30)
-	private String prenomEmp;
-
-	@NotNull
-	@Column(name = "nom", length = 30)
-	private String nomEmp;
-
-	@NotNull
-	@Column(name = "Poste_Occuppé", length = 50)
-	private String postEmp;
+	@Column(name = "poste", length = 50)
+	private String poste;
 
 	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
@@ -46,53 +38,28 @@ public class Employe implements Serializable {
 	public Employe() {
 	}
 
-	public Employe(@NotNull String codeEmp, @NotNull String prenomEmp, @NotNull String nomEmp,
-			@NotNull String postEmp) {
-		super();
-		CodeEmp = codeEmp;
-		this.prenomEmp = prenomEmp;
-		this.nomEmp = nomEmp;
-		this.postEmp = postEmp;
+	public int getId() {
+		return id;
 	}
 
-	public int getIdEmp() {
-		return idEmp;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setIdEmp(int idEmp) {
-		this.idEmp = idEmp;
+	public String getCode() {
+		return code;
 	}
 
-	public String getCodeEmp() {
-		return CodeEmp;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public void setCodeEmp(String codeEmp) {
-		CodeEmp = codeEmp;
+	public String getPoste() {
+		return poste;
 	}
 
-	public String getPrenomEmp() {
-		return prenomEmp;
-	}
-
-	public void setPrenomEmp(String prenomEmp) {
-		this.prenomEmp = prenomEmp;
-	}
-
-	public String getNomEmp() {
-		return nomEmp;
-	}
-
-	public void setNomEmp(String nomEmp) {
-		this.nomEmp = nomEmp;
-	}
-
-	public String getPostEmp() {
-		return postEmp;
-	}
-
-	public void setPostEmp(String postEmp) {
-		this.postEmp = postEmp;
+	public void setPoste(String poste) {
+		this.poste = poste;
 	}
 
 	public Collection<Compte> getComptes() {

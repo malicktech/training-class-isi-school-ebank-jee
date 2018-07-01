@@ -6,8 +6,6 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
@@ -20,43 +18,30 @@ public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idClient;
+	private Long id;
 
 	@NotNull
-	@Column(name = "Code", length = 20)
-	private Long codeClient;
+	@Column(name = "adresse", length = 50)
+	private String adresse;
 
 	@NotNull
-	@Column(name = "Nom", length = 50)
-	private String nomClient;
+	@Column(name = "num_cin", length = 20)
+	private String numCin;
 
 	@NotNull
-	@Column(name = "Prenom", length = 50)
-	private String prenomClient;
+	@Column(name = "telephone", length = 20)
+	private String telephone;
 
-	@NotNull
-	@Column(name = "Adresse", length = 50)
-	private String adresseClient;
+	@Column(name = "salaire", length = 20)
+	private Double salaire;
 
-	@NotNull
-	@Column(name = "Num_CIN", length = 20)
-	private String cinClient;
+	@Column(name = "profession", length = 50)
+	private String profession;
 
-	@NotNull
-	@Column(name = "Tel", length = 20)
-	private String telClient;
-
-	@Column(name = "Salaire", length = 20)
-	private Double salClient;
-
-	@Column(name = "Profession", length = 50)
-	private String professionClient;
-
-	@Column(name = "Employeur", length = 20)
+	@Column(name = "employeur", length = 20)
 	private String employeur;
 
-	@Column(name = "Raison_Social_Employe", length = 20)
+	@Column(name = "raison_social_employe", length = 20)
 	private String rsEmp;
 
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
@@ -77,92 +62,52 @@ public class Client implements Serializable {
 	public Client() {
 	}
 
-	public Client(@NotNull Long codeClient, @NotNull String nomClient, @NotNull String prenomClient,
-			@NotNull String adresseClient, @NotNull String cinClient, @NotNull String telClient, Double salClient,
-			String professionClient, String employeur, String rsEmp) {
-		super();
-		this.codeClient = codeClient;
-		this.nomClient = nomClient;
-		this.prenomClient = prenomClient;
-		this.adresseClient = adresseClient;
-		this.cinClient = cinClient;
-		this.telClient = telClient;
-		this.salClient = salClient;
-		this.professionClient = professionClient;
-		this.employeur = employeur;
-		this.rsEmp = rsEmp;
+	public Long getId() {
+		return id;
 	}
 
-	public int getIdClient() {
-		return idClient;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public String getAdresse() {
+		return adresse;
 	}
 
-	public Long getCodeClient() {
-		return codeClient;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
-	public void setCodeClient(Long codeClient) {
-		this.codeClient = codeClient;
+	public String getNumCin() {
+		return numCin;
 	}
 
-	public String getNomClient() {
-		return nomClient;
+	public void setNumCin(String numCin) {
+		this.numCin = numCin;
 	}
 
-	public void setNomClient(String nomClient) {
-		this.nomClient = nomClient;
+	public String getTelephone() {
+		return telephone;
 	}
 
-	public String getPrenomClient() {
-		return prenomClient;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
-	public void setPrenomClient(String prenomClient) {
-		this.prenomClient = prenomClient;
+	public Double getSalaire() {
+		return salaire;
 	}
 
-	public String getAdresseClient() {
-		return adresseClient;
+	public void setSalaire(Double salaire) {
+		this.salaire = salaire;
 	}
 
-	public void setAdresseClient(String adresseClient) {
-		this.adresseClient = adresseClient;
+	public String getProfession() {
+		return profession;
 	}
 
-	public String getCinClient() {
-		return cinClient;
-	}
-
-	public void setCinClient(String cinClient) {
-		this.cinClient = cinClient;
-	}
-
-	public String getTelClient() {
-		return telClient;
-	}
-
-	public void setTelClient(String telClient) {
-		this.telClient = telClient;
-	}
-
-	public Double getSalClient() {
-		return salClient;
-	}
-
-	public void setSalClient(Double salClient) {
-		this.salClient = salClient;
-	}
-
-	public String getProfessionClient() {
-		return professionClient;
-	}
-
-	public void setProfessionClient(String professionClient) {
-		this.professionClient = professionClient;
+	public void setProfession(String profession) {
+		this.profession = profession;
 	}
 
 	public String getEmployeur() {

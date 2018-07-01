@@ -2,6 +2,9 @@
 
 ## TODO
 
+- Debug ouverture compte
+- Set layout
+
 - spring security redirect after login based on role
 http://www.baeldung.com/spring_redirect_after_login
 

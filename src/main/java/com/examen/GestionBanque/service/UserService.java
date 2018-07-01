@@ -1,6 +1,7 @@
 package com.examen.GestionBanque.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +24,33 @@ public class UserService {
 	private RoleRepository roleRepository;
 
 	@Autowired
-    private PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setActivated(true);
-		
+
 		Set<Role> roles = new HashSet<>();
 		roleRepository.findById(RolesConstants.ADMIN).ifPresent(roles::add);
 		user.setRoles(roles);
-		
-		userRepository.save(user);
+
+		System.out.println("Utilisateur à enregistrer = ");
+		System.out.println(user);
+
+		User registeredUser = userRepository.save(user);
+
+		System.out.println("Utilisateur enregistré = ");
+		System.out.println(registeredUser);
+
+		return registeredUser;
+	}
+
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 }
