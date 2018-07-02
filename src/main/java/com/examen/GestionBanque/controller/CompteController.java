@@ -2,6 +2,7 @@ package com.examen.GestionBanque.controller;
 
 import java.sql.ClientInfoStatus;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -12,8 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
+import com.examen.GestionBanque.dao.CompteRepository;
 import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Agence;
 import com.examen.GestionBanque.entities.Compte;
@@ -39,6 +42,17 @@ public class CompteController {
 
 	@Autowired
 	private AgenceRepository agenceRepository;
+	
+	@Autowired
+	private CompteRepository compteRepository;
+	
+	@RequestMapping(value="/compte/liste")
+	public ModelAndView liste() {
+		
+		List<Compte> compte = compteRepository.findAll();
+		return new ModelAndView("/compteur/liste","liste_compte",compte);
+		
+	}
 
 	@GetMapping("/ouverture")
 	public String registration(Model model, String typeComte) {
