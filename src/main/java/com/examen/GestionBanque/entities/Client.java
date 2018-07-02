@@ -21,6 +21,10 @@ public class Client implements Serializable {
 	private Long id;
 
 	@NotNull
+	@Column(name = "code", length = 20)
+	private String code;
+
+	@NotNull
 	@Column(name = "adresse", length = 50)
 	private String adresse;
 
@@ -51,16 +55,12 @@ public class Client implements Serializable {
 	@MapsId
 	private User users;
 
-	public User getUsers() {
-		return users;
-	}
-
-	public void setUsers(User users) {
-		this.users = users;
-	}
+	/* Contructeurs */
 
 	public Client() {
 	}
+
+	/* Getters & Setters */
 
 	public Long getId() {
 		return id;
@@ -68,6 +68,14 @@ public class Client implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getAdresse() {
@@ -132,6 +140,21 @@ public class Client implements Serializable {
 
 	public void setComptes(Collection<Compte> comptes) {
 		this.comptes = comptes;
+	}
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", code=" + code + ", adresse=" + adresse + ", numCin=" + numCin + ", telephone="
+				+ telephone + ", salaire=" + salaire + ", profession=" + profession + ", employeur=" + employeur
+				+ ", rsEmp=" + rsEmp + ", comptes=" + comptes + ", users=" + users + "]";
 	}
 
 }

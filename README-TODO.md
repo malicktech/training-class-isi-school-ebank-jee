@@ -2,18 +2,26 @@
 
 ## TODO
 
-- Debug ouverture compte
-- Set layout
+- Debug 'ouverture compte'
+
+- Simplify code =  Set thymeleaf layout
+
+- Admin and client menu
+
+- Add more role 
 
 - spring security redirect after login based on role
 http://www.baeldung.com/spring_redirect_after_login
 
 - load role in app starting
+
 - Home page & template layout with boostrap
 
-
 - Spring Security Logout
-- Set up 2scd level cache
+
+- Simplify code =  delete service layer
+
+- Set up 2scd level cache (optional)
 
 
 ## DONE

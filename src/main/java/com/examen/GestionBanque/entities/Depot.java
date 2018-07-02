@@ -6,19 +6,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("Depot")
+@DiscriminatorValue("depot")
 public class Depot extends Operation {
 
 	private static final long serialVersionUID = 1L;
 
 	public Depot() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Depot(Long numOp, Date dateOp, double montantop, double taxeOp, double taxeSms, double taxeReleve) {
 		super(numOp, dateOp, montantop, taxeOp, taxeSms, taxeReleve);
-		// TODO Auto-generated constructor stub
 	}
 
 }

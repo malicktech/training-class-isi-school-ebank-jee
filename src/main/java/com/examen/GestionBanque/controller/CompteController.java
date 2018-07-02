@@ -1,6 +1,5 @@
 package com.examen.GestionBanque.controller;
 
-import java.sql.ClientInfoStatus;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
 import com.examen.GestionBanque.dao.UserRepository;
-import com.examen.GestionBanque.entities.Agence;
 import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
@@ -42,16 +40,16 @@ public class CompteController {
 
 	@Autowired
 	private AgenceRepository agenceRepository;
-	
+
 	@Autowired
 	private CompteRepository compteRepository;
-	
-	@RequestMapping(value="/compte/liste")
+
+	@RequestMapping(value = "/compte/liste")
 	public ModelAndView liste() {
-		
+
 		List<Compte> compte = compteRepository.findAll();
-		return new ModelAndView("/compte/liste","liste_compte",compte);
-		
+		return new ModelAndView("/compte/liste", "liste_compte", compte);
+
 	}
 
 	@GetMapping("/ouverture")
@@ -59,18 +57,12 @@ public class CompteController {
 
 		if (typeComte.equals("CE")) {
 			CompteEpargne compte = new CompteEpargne();
-			compte.setAgence(new Agence());
-			compte.setClient(new User());
 			model.addAttribute("compte", compte);
 		} else if (typeComte.equals("CC")) {
 			CompteCourant compte = new CompteCourant();
-			compte.setAgence(new Agence());
-			compte.setClient(new User());
 			model.addAttribute("compte", compte);
 		} else {
 			CompteBloque compte = new CompteBloque();
-			compte.setAgence(new Agence());
-			compte.setClient(new User());
 			model.addAttribute("compte", compte);
 		}
 
@@ -87,13 +79,13 @@ public class CompteController {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(idAgence));
-			compte.setClient(userRepository.getOne(idClient));
+			compte.setClient(userRepository.getOne(idClient).getClient());
 
 			compte.setDateCreation(new Date());
-//			Compte regiteredAccount = 
-					compteService.saveCompte(compte);
+			Compte compteEnregistre = compteService.saveCompte(compte);
 
 			model.addAttribute("successMessage", "User has been registered successfully");
+			model.addAttribute("compte", compteEnregistre);
 			model.addAttribute("user", new User());
 		}
 		return "compte/consultation";

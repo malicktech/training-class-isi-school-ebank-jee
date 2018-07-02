@@ -49,3 +49,6 @@ https://github.com/diop-malick/EBank-EJB-JSF/tree/master/EBank-V1-JEE-EJB3-core/
 https://progressive-code.com/post/14/Thymeleaf-Layout-Dialect-as-Decorator-Pattern-for-a-Spring-Boot-web-application
 https://github.com/kolorobot/spring-boot-thymeleaf/tree/master/src/main/resources/templates
 
+- Basic Entity Relationship Diagram – Brilliant Entity Relationship Diagram for Banking
+http://www.hopescottcalligraphy.com/basic-entity-relationship-diagram/basic-entity-relationship-diagram-brilliant-entity-relationship-diagram-for-banking-elephanttube/
+

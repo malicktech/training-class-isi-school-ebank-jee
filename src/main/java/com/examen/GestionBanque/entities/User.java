@@ -39,23 +39,22 @@ public class User implements Serializable {
 	private String email;
 
 	@NotNull
-	// @Size(min = 60, max = 60)
 	@Transient
-	@Column(name = "password", length = 60, nullable = false)
-	private String password;
+	@Column(name = "mot_de_passe", length = 60, nullable = false)
+	private String motDePasse;
 
 	@NotNull
 	@Size(min = 2, max = 50)
-	@Column(name = "first_name", length = 50)
-	private String firstName;
+	@Column(name = "prenom", length = 50)
+	private String prenom;
 
 	@NotNull
 	@Size(min = 2, max = 50)
-	@Column(name = "last_name", length = 50)
-	private String lastName;
+	@Column(name = "nom", length = 50)
+	private String nom;
 
 	@Column(nullable = false)
-	private boolean activated = false;
+	private boolean actif = false;
 
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = {
@@ -71,6 +70,13 @@ public class User implements Serializable {
 	@JoinColumn(unique = true)
 	private Employe employe;
 
+	/* Contructeurs */
+
+	public User() {
+	}
+
+	/* Getters & Setters */
+
 	public Long getId() {
 		return id;
 	}
@@ -79,48 +85,60 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public boolean isActif() {
+		return actif;
+	}
+
+	public void setActif(boolean actif) {
+		this.actif = actif;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Employe getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public boolean getActivated() {
-		return activated;
-	}
-
-	public void setActivated(boolean activated) {
-		this.activated = activated;
-	}
-
-	public boolean isActivated() {
-		return activated;
 	}
 
 	public Set<Role> getRoles() {
@@ -151,9 +169,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", activated=" + activated + ", roles=" + roles + ", roles =" + roles
-				+ "]";
+		return "User [id=" + id + ", email=" + email + ", motDePasse=" + motDePasse + ", prenom=" + prenom + ", nom="
+				+ nom + ", actif=" + actif + ", roles=" + roles + ", client=" + client + ", employe=" + employe + "]";
 	}
-
 }

@@ -29,9 +29,9 @@ public class Agence {
 	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
 
+	/* Contructeurs */
+
 	public Agence() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Agence(@NotNull String numAgence, @NotNull String region) {
@@ -39,6 +39,8 @@ public class Agence {
 		this.numAgence = numAgence;
 		this.region = region;
 	}
+
+	/* Getters & Setters */
 
 	public Long getId() {
 		return id;

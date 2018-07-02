@@ -46,7 +46,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
 	}
 
 	private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-				user.getActivated(), true, true, true, authorities);
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getMotDePasse(),
+				user.isActif(), true, true, true, authorities);
 	}
 }

@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Liste utilisateurs Home</title>
+<title>Liste utilisateurs</title>
 
 <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
 <link rel="stylesheet"
@@ -22,8 +22,8 @@
 <body>
 	<div class="container">
 
-
-		<h1>Client list</h1>
+		<h1>Liste Utilisateurs</h1>
+		
 		<div class="row">
 			<table class="table table-striped table-bordered">
 				<thead>
@@ -38,10 +38,10 @@
 				<tbody>
 					<tr th:each="user : ${users}">
 						<td th:text="${user.id}"></td>
-						<td th:text="${user.firstName}"></td>
-						<td th:text="${user.lastName}"></td>
+						<td th:text="${user.prenom}"></td>
+						<td th:text="${user.nom}"></td>
 						<td th:text="${user.email}"></td>
-						<td th:text="${user.activated}">yes</td>
+						<td th:text="${user.actif}"></td>
 					</tr>
 				</tbody>
 			</table>

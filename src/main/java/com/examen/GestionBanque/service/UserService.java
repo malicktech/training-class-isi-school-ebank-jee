@@ -31,8 +31,8 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setActivated(true);
+		user.setMotDePasse(passwordEncoder.encode(user.getMotDePasse()));
+		user.setActif(true);
 
 		Set<Role> roles = new HashSet<>();
 		roleRepository.findById(RolesConstants.ADMIN).ifPresent(roles::add);

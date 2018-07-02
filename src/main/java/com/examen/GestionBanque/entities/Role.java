@@ -20,6 +20,13 @@ public class Role implements Serializable {
 	@NotNull
 	private String name;
 
+	/* Contructeurs */
+	
+
+
+	public Role() {
+	}
+	
 	public String getName() {
 		return name;
 	}

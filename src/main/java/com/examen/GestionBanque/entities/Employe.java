@@ -35,8 +35,12 @@ public class Employe implements Serializable {
 	@MapsId
 	private User users;
 
+	/* Contructeurs */
+
 	public Employe() {
 	}
+
+	/* Getters & Setters */
 
 	public int getId() {
 		return id;
@@ -76,6 +80,12 @@ public class Employe implements Serializable {
 
 	public void setUsers(User users) {
 		this.users = users;
+	}
+
+	@Override
+	public String toString() {
+		return "Employe [id=" + id + ", code=" + code + ", poste=" + poste + ", comptes=" + comptes + ", users=" + users
+				+ "]";
 	}
 
 }

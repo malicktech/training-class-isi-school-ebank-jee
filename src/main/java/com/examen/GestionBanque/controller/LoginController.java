@@ -37,13 +37,13 @@ public class LoginController {
 		User userExists = userService.findUserByEmail(user.getEmail());
 		if (userExists != null) {
 			bindingResult.rejectValue("email", "error.user",
-					"There is already a user registered with the email provided");
+					"Un utilisateur est déja enregistré avec cette adresse mail. Utiliser un autre !");
 		}
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		} else {
 			userService.saveUser(user);
-			model.addAttribute("successMessage", "User has been registered successfully");
+			model.addAttribute("successMessage", "L'utilisateur a été enregistré avec succé");
 			model.addAttribute("user", new User());
 		}
 		return "registration";
@@ -53,9 +53,7 @@ public class LoginController {
 	public String home(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		model.addAttribute("userName",
-				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-		model.addAttribute("adminMessage", "Content Available Only for Users with Admin Role");
+		model.addAttribute("user", user);
 		return "admin/home";
 	}
 

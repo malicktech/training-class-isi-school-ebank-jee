@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE_CPTE", discriminatorType = DiscriminatorType.STRING, length = 30)
+@DiscriminatorColumn(name = "type_cpte", discriminatorType = DiscriminatorType.STRING, length = 30)
 public abstract class Compte implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -31,30 +31,30 @@ public abstract class Compte implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(name = "Numero_Compte", length = 20)
+	@Column(name = "numero_compte", length = 20)
 	private String numCompte;
 
 	@NotNull
-	@Column(name = "Solde_Compte")
+	@Column(name = "solde_compte")
 	private double solde;
 
-	@Column(name = "Date_Ouverture")
+	@Column(name = "date_ouverture")
 	private Date dateCreation;
 
 	@Column(nullable = false)
 	private boolean etat = true;
 
 	@ManyToOne
-	@JoinColumn(name = "CODE_Employe")
+	@JoinColumn(name = "code_employe")
 	private Employe employe;
 
 	@ManyToOne
-	@JoinColumn(name = "Numero_Agence")
+	@JoinColumn(name = "numero_agence")
 	private Agence agence;
 
 	@ManyToOne
-	@JoinColumn(name = "CODE_CLIENT")
-	private User client;
+	@JoinColumn(name = "code")
+	private Client client;
 
 	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
 	private List<Operation> operations;
@@ -62,9 +62,9 @@ public abstract class Compte implements Serializable {
 	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
 	private List<HistoriqueTaxe> historiques;
 
+	/* Contructeurs */
+	
 	public Compte() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Compte(@NotNull String numCompte, @NotNull double solde, @NotNull Date dateCreation, boolean etat) {
@@ -74,6 +74,8 @@ public abstract class Compte implements Serializable {
 		this.dateCreation = dateCreation;
 		this.etat = etat;
 	}
+
+	/* Getters & Setters */
 
 	public Long getId() {
 		return id;
@@ -131,11 +133,11 @@ public abstract class Compte implements Serializable {
 		this.agence = agence;
 	}
 
-	public User getClient() {
+	public Client getClient() {
 		return client;
 	}
 
-	public void setClient(User client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 
@@ -162,5 +164,4 @@ public abstract class Compte implements Serializable {
 				+ ", operations=" + operations + ", historiques=" + historiques + "]";
 	}
 
-	
 }

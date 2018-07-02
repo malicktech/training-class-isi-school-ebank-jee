@@ -17,43 +17,43 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE_OP", discriminatorType = DiscriminatorType.STRING, length = 1)
+@DiscriminatorColumn(name = "type_op", discriminatorType = DiscriminatorType.STRING, length = 1)
 public abstract class Operation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idOp;
+	private int id;
 
-	@Column(name = "Numero_Operation")
+	@Column(name = "numero_operation")
 	private Long numOp;
 
-	@Column(name = "Date_Operation")
+	@Column(name = "date_operation")
 	private Date dateOp;
 
-	@Column(name = "Montant_Operation")
+	@Column(name = "montant_operation")
 	private double montantop;
 
-	@Column(name = "Taxe_Operation")
+	@Column(name = "taxe_operation")
 	private double taxeOp;
 
-	@Column(name = "Taxe_Sms")
+	@Column(name = "taxe_sms")
 	private double taxeSms;
 
-	@Column(name = "Taxe_Relevé")
+	@Column(name = "raxe_releve")
 	private double taxeReleve;
 
 	@Column(name = "description")
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(name = "Numero_Compte")
+	@JoinColumn(name = "numero_compte")
 	private Compte compte;
 
+	/* Contructeurs */
+
 	public Operation() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Operation(Long numOp, Date dateOp, double montantop, double taxeOp, double taxeSms, double taxeReleve) {
@@ -66,12 +66,14 @@ public abstract class Operation implements Serializable {
 		this.taxeReleve = taxeReleve;
 	}
 
-	public int getIdOp() {
-		return idOp;
+	/* Getters & Setters */
+
+	public int getId() {
+		return id;
 	}
 
-	public void setIdOp(int idOp) {
-		this.idOp = idOp;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Long getNumOp() {
