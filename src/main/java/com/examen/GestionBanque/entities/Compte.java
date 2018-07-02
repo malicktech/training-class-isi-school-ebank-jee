@@ -117,12 +117,12 @@ public abstract class Compte implements Serializable {
 		this.etat = etat;
 	}
 
-	public Employe getEmployé() {
+	public Employe getEmploye() {
 		return employe;
 	}
 
-	public void setEmploye(Employe employé) {
-		this.employe = employé;
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
 	}
 
 	public Agence getAgence() {

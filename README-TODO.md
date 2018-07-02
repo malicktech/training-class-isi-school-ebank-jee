@@ -2,6 +2,8 @@
 
 ## TODO
 
+- Debug affichage liste compte
+
 - Debug 'ouverture compte'
 
 - Simplify code =  Set thymeleaf layout
@@ -29,6 +31,8 @@ http://www.baeldung.com/spring_redirect_after_login
 
 
 ## DONE
+
+
 
 - Setup project
 

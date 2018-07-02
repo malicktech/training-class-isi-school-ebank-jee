@@ -44,12 +44,11 @@ public class CompteController {
 	@Autowired
 	private CompteRepository compteRepository;
 
-	@RequestMapping(value = "/compte/liste")
-	public ModelAndView liste() {
-
-		List<Compte> compte = compteRepository.findAll();
-		return new ModelAndView("/compte/liste", "liste_compte", compte);
-
+	@RequestMapping(value = "/liste")
+	public String liste(Model model) {
+		List<Compte> comptes = compteRepository.findAll();
+		model.addAttribute("comptes", comptes);
+		return "compte/liste";
 	}
 
 	@GetMapping("/ouverture")
