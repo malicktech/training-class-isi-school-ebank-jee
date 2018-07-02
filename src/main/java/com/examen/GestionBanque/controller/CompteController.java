@@ -50,7 +50,7 @@ public class CompteController {
 	public ModelAndView liste() {
 		
 		List<Compte> compte = compteRepository.findAll();
-		return new ModelAndView("/compteur/liste","liste_compte",compte);
+		return new ModelAndView("/compte/liste","liste_compte",compte);
 		
 	}
 
