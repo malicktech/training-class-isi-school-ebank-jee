@@ -13,7 +13,7 @@ public class CompteBloque extends Compte {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "frais_ouverture_cbe")
+	@Column(name = "frais_ouverture_cb")
 	private double fraisOuvCB;
 
 	/* Contructeurs */

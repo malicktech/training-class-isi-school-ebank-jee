@@ -21,7 +21,7 @@ public class Employe implements Serializable {
 	private int id;
 
 	@NotNull
-	@Column(name = "code", length = 20)
+	@Column(name = "code", length = 20, unique=true)
 	private String code;
 
 	@NotNull

@@ -35,7 +35,7 @@ public abstract class Compte implements Serializable {
 	private String numCompte;
 
 	@NotNull
-	@Column(name = "solde_compte")
+	@Column(name = "solde")
 	private double solde;
 
 	@Column(name = "date_ouverture")
@@ -49,11 +49,11 @@ public abstract class Compte implements Serializable {
 	private Employe employe;
 
 	@ManyToOne
-	@JoinColumn(name = "numero_agence")
+	@JoinColumn(name = "code_agence")
 	private Agence agence;
 
 	@ManyToOne
-	@JoinColumn(name = "code")
+	@JoinColumn(name = "code_client")
 	private Client client;
 
 	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
@@ -63,7 +63,7 @@ public abstract class Compte implements Serializable {
 	private List<HistoriqueTaxe> historiques;
 
 	/* Contructeurs */
-	
+
 	public Compte() {
 	}
 

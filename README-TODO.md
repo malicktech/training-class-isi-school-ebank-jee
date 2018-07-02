@@ -17,6 +17,10 @@ http://www.baeldung.com/spring_redirect_after_login
 
 - Home page & template layout with boostrap
 
+- Delete console error
+
+- Disable console log 
+
 - Spring Security Logout
 
 - Simplify code =  delete service layer
