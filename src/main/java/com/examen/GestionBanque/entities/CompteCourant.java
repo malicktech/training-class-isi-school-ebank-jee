@@ -38,4 +38,9 @@ public class CompteCourant extends Compte {
 		this.agios = agios;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + "CompteCourant [agios=" + agios + "]";
+	}
+
 }

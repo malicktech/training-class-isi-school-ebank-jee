@@ -45,7 +45,7 @@
 
 					<div class="form-group">
 						<label class="control-label">L'Agence</label> <select
-							class="form-control" type="text" th:name="idAgence">
+							class="form-control" type="text" th:name="codeAgence">
 							<option value="">Choisir un agence</option>
 							<option th:each="a:${agences}" th:text="${a.code}"
 								th:value="${a.code}"></option>

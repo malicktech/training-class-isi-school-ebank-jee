@@ -160,8 +160,7 @@ public abstract class Compte implements Serializable {
 	@Override
 	public String toString() {
 		return "Compte [id=" + id + ", numCompte=" + numCompte + ", solde=" + solde + ", dateCreation=" + dateCreation
-				+ ", etat=" + etat + ", employe=" + employe + ", agence=" + agence + ", client=" + client
-				+ ", operations=" + operations + ", historiques=" + historiques + "]";
+				+ ", etat=" + etat + ", operations=" + operations + ", historiques=" + historiques + "]";
 	}
 
 }

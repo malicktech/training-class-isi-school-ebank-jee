@@ -73,12 +73,16 @@ public class CompteController {
 	public String createNewUser(@Valid CompteCourant compte, Long idClient, String codeAgence, BindingResult bindingResult,
 			Model model) {
 
+		System.out.println("codeAgence =" + codeAgence);
+		System.out.println("idClient =" + idClient);
+		System.out.println(compte);
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(codeAgence));
 			compte.setClient(userRepository.getOne(idClient).getClient());
-
+			System.out.println(compte.getAgence());
+			System.out.println(compte.getClient());
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
