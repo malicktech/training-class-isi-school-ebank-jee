@@ -70,13 +70,13 @@ public class CompteController {
 	}
 
 	@PostMapping("/ouverture")
-	public String createNewUser(@Valid CompteCourant compte, Long idClient, Long idAgence, BindingResult bindingResult,
+	public String createNewUser(@Valid CompteCourant compte, Long idClient, String codeAgence, BindingResult bindingResult,
 			Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
-			compte.setAgence(agenceRepository.getOne(idAgence));
+			compte.setAgence(agenceRepository.getOne(codeAgence));
 			compte.setClient(userRepository.getOne(idClient).getClient());
 
 			compte.setDateCreation(new Date());

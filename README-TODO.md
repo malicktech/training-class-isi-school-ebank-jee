@@ -4,18 +4,10 @@
 
 - Debug 'ouverture compte'
 
-- Simplify code =  Set thymeleaf layout
-
-- Admin and client menu
-
 - Add more role 
 
 - spring security redirect after login based on role
 http://www.baeldung.com/spring_redirect_after_login
-
-- load role in app starting
-
-- Home page & template layout with boostrap
 
 - Thymelaf encodage UTF8 
 
@@ -32,10 +24,18 @@ http://www.baeldung.com/spring_redirect_after_login
 
 ## DONE 02/06
 
+- Home page & template layout with boostrap
+
+- Simplify code =  Set thymeleaf layout
+
+- Admin and client menu
+
 - Debug affichage liste utilisateurs
 
 - Debug user_client relationship
 https://www.thoughts-on-java.org/hibernate-tips-same-primary-key-one-to-one-association/
+
+- load role in app starting
 
 ## DONE 01/06
 

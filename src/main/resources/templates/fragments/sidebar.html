@@ -15,7 +15,7 @@
 			th:fragment="sidebar">
 			<div class="sidebar-sticky">
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link active" href="#">
+					<li class="nav-item"><a class="nav-link active" th:href="@{/admin/home}">
 							<span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -26,13 +26,13 @@
 						th:href="@{/compte/liste}"> <span data-feather="shopping-cart"></span>
 							Comptes
 					</a></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#">
-							<span data-feather="users">Users</span>
+					<li class="nav-item"><a class="nav-link btn disabled" href="#">
+							<span data-feather="users">Users</span> Employe
 					</a></li>
-					<li class="nav-item"><a class="nav-link disabled " href="#">
+					<li class="nav-item"><a class="nav-link btn disabled " href="#">
 							<span data-feather="bar-chart-2"></span> Opérations
 					</a></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#">
+					<li class="nav-item"><a class="nav-link btn disabled" href="#">
 							<span data-feather="layers"></span> Agences
 					</a></li>
 				</ul>
@@ -45,10 +45,10 @@
 					</a>
 				</h6>
 				<ul class="nav flex-column mb-2">
-					<li class="nav-item"><a class="nav-link" href="#"> <span
+					<li class="nav-item"><a class="nav-link btn disabled" href="#"> <span
 							data-feather="file-text"></span> Employés
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <span
+					<li class="nav-item"><a class="nav-link btn disabled" href="#"> <span
 							data-feather="file-text"></span> Roles
 					</a></li>
 				</ul>

@@ -52,3 +52,6 @@ https://github.com/kolorobot/spring-boot-thymeleaf/tree/master/src/main/resource
 - Basic Entity Relationship Diagram – Brilliant Entity Relationship Diagram for Banking
 http://www.hopescottcalligraphy.com/basic-entity-relationship-diagram/basic-entity-relationship-diagram-brilliant-entity-relationship-diagram-for-banking-elephanttube/
 
+- boostrap template
+https://getbootstrap.com/docs/4.1/examples/dashboard/
+
