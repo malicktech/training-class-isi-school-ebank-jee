@@ -58,8 +58,7 @@ public class CompteController {
 			CompteEpargne compte = new CompteEpargne();
 			model.addAttribute("compte", compte);
 		} else if (typeComte.equals("CC")) {
-			CompteCourant compte = new CompteCourant();
-			model.addAttribute("compte", compte);
+			model.addAttribute("compte", new CompteCourant());
 		} else {
 			CompteBloque compte = new CompteBloque();
 			model.addAttribute("compte", compte);

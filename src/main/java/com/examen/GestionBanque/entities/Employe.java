@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -18,7 +19,7 @@ public class Employe implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
+	private Long id;
 
 	@NotNull
 	@Column(name = "code", length = 20, unique=true)
@@ -32,8 +33,9 @@ public class Employe implements Serializable {
 	private Collection<Compte> comptes;
 
 	@OneToOne
+	@JoinColumn(name = "id")
 	@MapsId
-	private User users;
+	private User user;
 
 	/* Contructeurs */
 
@@ -42,11 +44,11 @@ public class Employe implements Serializable {
 
 	/* Getters & Setters */
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -74,17 +76,17 @@ public class Employe implements Serializable {
 		this.comptes = comptes;
 	}
 
-	public User getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(User users) {
-		this.users = users;
+	public void setUser(User users) {
+		this.user = users;
 	}
 
 	@Override
 	public String toString() {
-		return "Employe [id=" + id + ", code=" + code + ", poste=" + poste + ", comptes=" + comptes + ", users=" + users
+		return "Employe [id=" + id + ", code=" + code + ", poste=" + poste + ", comptes=" + comptes + ", user=" + user
 				+ "]";
 	}
 

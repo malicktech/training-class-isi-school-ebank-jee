@@ -62,11 +62,11 @@ public class User implements Serializable {
 					@JoinColumn(name = "role_name", referencedColumnName = "name") })
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, optional = true )
 	@JoinColumn(unique = true)
 	private Client client;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, optional = true )
 	@JoinColumn(unique = true)
 	private Employe employe;
 

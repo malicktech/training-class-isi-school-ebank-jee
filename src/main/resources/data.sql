@@ -29,16 +29,16 @@ INSERT INTO agence(code, region)
   ('A2', 'St Louis'),
   ('A3', 'Thies');
     
-INSERT INTO client(code, adresse, employeur, num_cin, profession, raison_social_employe, salaire, telephone, users_id)
+INSERT INTO client(id, code, adresse, employeur, num_cin, profession, raison_social_employe, salaire, telephone)
   VALUES 
-  	('C1', 'Cité des enseignants', 'Dia S', 'CIN0000001',' Dev/CQ', 'DG Commercial', 800000,'776256295' , 2),
-  	('C2', 'Liberté 6', 'Snecommerce', 'CIN0000002','Avocat', 'RSE C1', 100000,'776149662' , 3);
+  	(2, 'C1', 'Cité des enseignants', 'Dia S', 'CIN0000001',' Dev/CQ', 'DG Commercial', 800000,'776256295'),
+  	(3, 'C2', 'Liberté 6', 'Snecommerce', 'CIN0000002','Avocat', 'RSE C1', 100000,'776149662' );
     
-INSERT INTO employe(code, poste, users_id) 
+INSERT INTO employe(id, code, poste) 
   VALUES 
-    ('E01', 'Responsable compte 1', 4),
-    ('E02', 'Responsable compte 2', 5),
-    ('E03', 'Caissière 1', 6);
+    (4, 'E01', 'Responsable compte 1'),
+    (5, 'E02', 'Responsable compte 2'),
+    (6, 'E03', 'Caissière 1');
 
     
 INSERT INTO compte( id, type_cpte, date_ouverture, etat, numero_compte, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)

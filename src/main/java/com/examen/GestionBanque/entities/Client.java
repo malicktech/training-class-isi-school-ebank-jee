@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -52,8 +53,9 @@ public class Client implements Serializable {
 	private Collection<Compte> comptes;
 
 	@OneToOne
+	@JoinColumn(name = "id")
 	@MapsId
-	private User users;
+	private User user;
 
 	/* Contructeurs */
 
@@ -142,19 +144,19 @@ public class Client implements Serializable {
 		this.comptes = comptes;
 	}
 
-	public User getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(User users) {
-		this.users = users;
+	public void setUser(User users) {
+		this.user = users;
 	}
 
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", code=" + code + ", adresse=" + adresse + ", numCin=" + numCin + ", telephone="
 				+ telephone + ", salaire=" + salaire + ", profession=" + profession + ", employeur=" + employeur
-				+ ", rsEmp=" + rsEmp + ", comptes=" + comptes + ", users=" + users + "]";
+				+ ", rsEmp=" + rsEmp + ", comptes=" + comptes + ", users=" + user + "]";
 	}
 
 }

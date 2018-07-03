@@ -30,9 +30,12 @@ http://www.baeldung.com/spring_redirect_after_login
 - Set up 2scd level cache (optional)
 
 
-## DONE
+## DONE 02/06
 
+- Debug user_client relationship
+https://www.thoughts-on-java.org/hibernate-tips-same-primary-key-one-to-one-association/
 
+## DONE 01/06
 
 - Setup project
 

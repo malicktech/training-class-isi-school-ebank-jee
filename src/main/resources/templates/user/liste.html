@@ -33,6 +33,7 @@
 						<th>Nom</th>
 						<th>@Mail</th>
 						<th>Code Client</th>
+						<th>Code Employe</th>
 						<th>Actif</th>
 					</tr>
 				</thead>
@@ -42,7 +43,8 @@
 						<td th:text="${user.prenom}"></td>
 						<td th:text="${user.nom}"></td>
 						<td th:text="${user.email}"></td>
-						<td th:text="${user.client.code}"></td>
+						<td th:text="${user.client?.code}"></td>
+						<td th:text="${user.employe?.code}"></td>
 						<td th:text="${user.actif}"></td>
 					</tr>
 				</tbody>
