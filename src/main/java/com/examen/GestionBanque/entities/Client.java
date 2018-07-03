@@ -52,7 +52,7 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id")
 	@MapsId
 	private User user;
@@ -156,7 +156,7 @@ public class Client implements Serializable {
 	public String toString() {
 		return "Client [id=" + id + ", code=" + code + ", adresse=" + adresse + ", numCin=" + numCin + ", telephone="
 				+ telephone + ", salaire=" + salaire + ", profession=" + profession + ", employeur=" + employeur
-				+ ", rsEmp=" + rsEmp + ", comptes=" + comptes + ", users=" + user + "]";
+				+ ", rsEmp=" + rsEmp;
 	}
 
 }

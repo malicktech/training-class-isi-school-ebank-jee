@@ -25,14 +25,14 @@ public class LoginController {
 		return "login";
 	}
 
-	@GetMapping("/registration")
+	@GetMapping("/user/ajout")
 	public String registration(Model model) {
 		User user = new User();
 		model.addAttribute("user", user);
-		return "registration";
+		return "user/ajout";
 	}
 
-	@PostMapping("/registration")
+	@PostMapping("/user/ajout")
 	public String createNewUser(@Valid User user, BindingResult bindingResult, Model model) {
 		User userExists = userService.findUserByEmail(user.getEmail());
 		if (userExists != null) {
@@ -40,13 +40,13 @@ public class LoginController {
 					"Un utilisateur est déja enregistré avec cette adresse mail. Utiliser un autre !");
 		}
 		if (bindingResult.hasErrors()) {
-			return "registration";
+			return "user/ajout";
 		} else {
 			userService.saveUser(user);
 			model.addAttribute("successMessage", "L'utilisateur a été enregistré avec succé");
 			model.addAttribute("user", new User());
 		}
-		return "registration";
+		return "user/ajout";
 	}
 
 	@GetMapping("/admin/home")
