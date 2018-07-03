@@ -2,25 +2,33 @@
 
 ## TODO
 
-- Debug 'ouverture compte'
+- create/list opération
 
 - Add more role 
 
 - spring security redirect after login based on role
 http://www.baeldung.com/spring_redirect_after_login
 
+- SECURITY current user
+http://www.baeldung.com/get-user-in-spring-security
+ 
 - Thymelaf encodage UTF8 
 
 - Delete console error
 
 - Disable console log 
 
-- Spring Security Logout
 
 - Simplify code =  delete service layer
 
 - Set up 2scd level cache (optional)
 
+
+## DONE 03/06
+
+- Debug 'ouverture compte'
+
+- Spring Security Logout
 
 ## DONE 02/06
 
