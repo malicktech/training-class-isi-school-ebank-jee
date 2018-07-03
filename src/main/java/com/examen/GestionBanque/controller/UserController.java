@@ -21,7 +21,6 @@ public class UserController {
 	@GetMapping({ "/liste" })
 	public String getUserList(Model model) {
 		List<User> users = userService.findAll();
-//		System.out.println(users.get(1).toString());
 		model.addAttribute("users", users);
 		return "user/liste";
 	}

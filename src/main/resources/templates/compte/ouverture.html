@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ouvrir un compte</title>
-<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/popper.js/popper.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<title>Layout</title>
 </head>
 
 <body>
 
-	<main role="main">
+	<div layout:fragment="content" class="container">
 
-	<div class="container">
 
 		<section class="jumbotron text-center">
 			<div class="container">
@@ -28,9 +21,9 @@
 
 				<div class="row">
 					<div class="col-6 align-self-center">
-						<form autocomplete="off" action="#" th:action="@{/compte/ouverture}"
-							th:object="${compte}" method="post" class="form-horizontal"
-							role="form">
+						<form autocomplete="off" action="#"
+							th:action="@{/compte/ouverture}" th:object="${compte}"
+							method="post" class="form-horizontal" role="form">
 
 							<!-- <h2>Registration Form</h2> -->
 
@@ -53,14 +46,14 @@
 										th:value="${u.id}"></option>
 									<select />
 							</div>
- 
+
 							<div class="form-group">
 								<label class="control-label">L'Agence</label> <select
 									class="form-control" type="text" th:name="idAgence">
 									<option value="">Choisir un agence</option>
 									<option th:each="a:${agences}" th:text="${a.numAgence}"
 										th:value="${a.id}"></option>
-									<select/>
+									<select />
 							</div>
 							<div class="form-group">
 								<div class="col-9">
@@ -91,9 +84,9 @@
 				</div>
 			</div>
 		</section>
+
 	</div>
 
-	</main>
 
 </body>
 </html>

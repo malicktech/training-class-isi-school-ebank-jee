@@ -2,8 +2,6 @@
 
 ## TODO
 
-- Debug affichage liste compte
-
 - Debug 'ouverture compte'
 
 - Simplify code =  Set thymeleaf layout
@@ -19,6 +17,8 @@ http://www.baeldung.com/spring_redirect_after_login
 
 - Home page & template layout with boostrap
 
+- Thymelaf encodage UTF8 
+
 - Delete console error
 
 - Disable console log 
@@ -31,6 +31,8 @@ http://www.baeldung.com/spring_redirect_after_login
 
 
 ## DONE 02/06
+
+- Debug affichage liste utilisateurs
 
 - Debug user_client relationship
 https://www.thoughts-on-java.org/hibernate-tips-same-primary-key-one-to-one-association/

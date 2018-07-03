@@ -1,56 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Home</title>
-
-<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
-<link rel="stylesheet"
-	href="./webjars/fontawesome/css/fontawesome-all.css">
-
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/popper.js/popper.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-
+<title>Home</title>
 </head>
 
-
 <body>
-	<div class="container">
 
-		<form th:action="@{/logout}" method="get">
-			<button class="btn btn-md btn-danger btn-block" name="registration"
-				type="Submit">Logout</button>
-		</form>
+	<div layout:fragment="content" class="container">
 
 		<div class="panel-group" style="margin-top: 40px">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<span th:utext="${userName}"></span>
 				</div>
-				<div class="panel-body">
-					<img th:src="@{/images/beer.jpg}"
-						class="img-responsive center-block" width="400" height="400"
-						alt="Beer" />
-				</div>
+				<div class="panel-body"></div>
 				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
 			</div>
 		</div>
+		<a th:href="@{/compte/ouverture?typeComte=CC}"
+			class="btn btn-secondary my-2">Ouverture Compte Courant</a>
+	</div>
 
-		<div>
-			<a th:href="@{/user/liste}" class="btn btn-secondary my-2">Liste
-				Clients</a>
-		</div>
-		<div>
-			<a th:href="@{/compte/liste}" class="btn btn-secondary my-2">Liste
-				Comptes </a>
-		<a th:href="@{/compte/ouverture?typeComte=CC}" class="btn btn-secondary my-2">Ouverture
-			Compte Courant</a>
-	</div>
-	</div>
 </body>
 </html>
