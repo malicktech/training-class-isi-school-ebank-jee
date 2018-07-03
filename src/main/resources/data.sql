@@ -41,7 +41,7 @@ INSERT INTO employe(id, code, poste)
     (6, 'E03', 'Caissière 1');
 
     
-INSERT INTO compte( id, type_cpte, date_ouverture, etat, numero_compte, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)
+INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)
   VALUES 
-    (1, 'CC', '2018-07-02 00:00:00', 1, 'CC1', 10, 0, 0, 0, 'A1', 2, 4),
-    (2, 'CC', '2018-07-01 00:00:00', 1, 'CC1', 500, 0, 0, 0, 'A2', 3, 5);
+    ('CC1', 'CC', '2018-07-02 00:00:00', 1,  10, 0, 0, 0, 'A1', 2, 4),
+    ('CC2', 'CC', '2018-07-01 00:00:00', 1, 500, 0, 0, 0, 'A2', 3, 5);

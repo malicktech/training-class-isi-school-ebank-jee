@@ -36,7 +36,7 @@
 						<td th:text="${compte.etat}"></td>
 						<td th:text="${compte.client?.code}"></td>
 						<td th:text="${compte.employe?.code}"></td>
-						<td><a th:href="@{/compte/detail/(id=${compte.id})}">Details</a></td>
+						<td><a th:href="@{'/compte/detail/' + ${compte.numCompte}}">Details</a></td>
 					</tr>
 				</tbody>
 			</table>

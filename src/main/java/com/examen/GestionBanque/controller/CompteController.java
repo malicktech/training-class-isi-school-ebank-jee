@@ -2,17 +2,20 @@ package com.examen.GestionBanque.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
@@ -28,6 +31,8 @@ import com.examen.GestionBanque.service.UserService;
 @Controller
 @RequestMapping("/compte")
 public class CompteController {
+
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private CompteService compteService;
@@ -51,6 +56,18 @@ public class CompteController {
 		return "compte/liste";
 	}
 
+	@RequestMapping(value = "/detail/{num}")
+	public String detail(@PathVariable String num, Model model) {
+		Optional<Compte> compte = compteRepository.findById(num);
+		
+		if (compte.isPresent()) {
+			log.info(compte.toString());
+			model.addAttribute("compte", compte.get());
+		}
+
+		return "compte/detail";
+	}
+
 	@GetMapping("/ouverture")
 	public String registration(Model model, String typeComte) {
 
@@ -70,27 +87,25 @@ public class CompteController {
 	}
 
 	@PostMapping("/ouverture")
-	public String createNewUser(@Valid CompteCourant compte, Long idClient, String codeAgence, BindingResult bindingResult,
-			Model model) {
+	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence,
+			BindingResult bindingResult, Model model) {
 
-		System.out.println("codeAgence =" + codeAgence);
-		System.out.println("idClient =" + idClient);
-		System.out.println(compte);
+		log.debug("Controller Service save Compte");
+		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient);
+		log.debug(compte.toString());
+
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(codeAgence));
 			compte.setClient(userRepository.getOne(idClient).getClient());
-			System.out.println(compte.getAgence());
-			System.out.println(compte.getClient());
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
-			model.addAttribute("successMessage", "User has been registered successfully");
+			model.addAttribute("successMessage", "le compte a été créer avec succés");
 			model.addAttribute("compte", compteEnregistre);
-			model.addAttribute("user", new User());
 		}
-		return "compte/consultation";
+		return "compte/detail";
 	}
 
 }
