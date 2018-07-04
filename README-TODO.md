@@ -3,7 +3,10 @@
 ## TODO
 
 - create opération
-- virement operation
+
+- virement operation second account
+
+- Apply taxe
 
 - Add more role 
 
@@ -18,7 +21,6 @@ http://www.baeldung.com/get-user-in-spring-security
 - Delete console error
 
 - Disable console log 
-
 
 - Simplify code =  delete service layer
 

@@ -38,14 +38,7 @@ public class UserService {
 		roleRepository.findById(role).ifPresent(roles::add);
 		user.setRoles(roles);
 
-		System.out.println("Utilisateur à enregistrer = ");
-		System.out.println(user);
-
 		User registeredUser = userRepository.save(user);
-
-		System.out.println("Utilisateur enregistré = ");
-		System.out.println(registeredUser);
-
 		
 		return registeredUser;
 	}
