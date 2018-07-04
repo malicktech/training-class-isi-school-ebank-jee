@@ -30,12 +30,12 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 
-	public User saveUser(User user) {
+	public User saveUser(User user, String role) {
 		user.setMotDePasse(passwordEncoder.encode(user.getMotDePasse()));
 		user.setActif(true);
 
 		Set<Role> roles = new HashSet<>();
-		roleRepository.findById(RolesConstants.ADMIN).ifPresent(roles::add);
+		roleRepository.findById(role).ifPresent(roles::add);
 		user.setRoles(roles);
 
 		System.out.println("Utilisateur à enregistrer = ");

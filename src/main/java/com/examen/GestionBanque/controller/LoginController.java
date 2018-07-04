@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.examen.GestionBanque.configuration.security.RolesConstants;
 import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.service.UserService;
 
@@ -42,7 +43,7 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return "user/ajout";
 		} else {
-			userService.saveUser(user);
+			userService.saveUser(user, RolesConstants.ADMIN);
 			model.addAttribute("successMessage", "L'utilisateur a été enregistré avec succé");
 			model.addAttribute("user", new User());
 		}

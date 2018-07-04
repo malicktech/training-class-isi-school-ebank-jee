@@ -2,12 +2,19 @@ package com.examen.GestionBanque.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.examen.GestionBanque.configuration.security.RolesConstants;
 import com.examen.GestionBanque.dao.ClientRepository;
 import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.entities.Client;
@@ -19,6 +26,9 @@ import com.examen.GestionBanque.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	
 	@Autowired
 	private UserService userService;
 	
@@ -47,6 +57,35 @@ public class UserController {
 		List<Employe> employes = employeRepository.findAll();
 		model.addAttribute("employes", employes);
 		return "employe/liste";
+	}
+	
+	@GetMapping("/client/ajout")
+	public String getAjoutClient(Model model) {
+		User user = new User();
+		user.setClient(new Client());
+		model.addAttribute("user", user);
+		return "client/ajout";
+	}
+
+	@PostMapping("/client/ajout")
+	public String postAjoutClient(@Valid User user, BindingResult bindingResult, Model model) {
+		User userExists = userService.findUserByEmail(user.getEmail());
+		
+		log.info("POST /client/ajout");
+		
+		if (userExists != null) {
+			bindingResult.rejectValue("email", "error.user",
+					"Un utilisateur est déja enregistré avec cette adresse mail. Utiliser un autre !");
+		}
+		if (bindingResult.hasErrors()) {
+			return "client/ajout";
+		} else {
+			log.info(user.toString());
+			log.info(user.getClient().toString());
+			userService.saveUser(user, RolesConstants.CLIENT);
+			model.addAttribute("successMessage", "L'utilisateur a été enregistré avec succé");
+		}
+		return "client/liste";
 	}
 
 }

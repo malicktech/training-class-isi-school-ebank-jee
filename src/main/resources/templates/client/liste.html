@@ -12,7 +12,11 @@
 
 		<h1 class="h2">Liste Clients</h1>
 
-		<a th:href="@{ajout}" class="btn btn-secondary my-2">Ajouter
+		<div th:if="${successMessage}" class="alert alert-success"
+			role="alert" th:utext="${successMessage}"></div>
+
+
+		<a th:href="@{/user/client/ajout}" class="btn btn-secondary my-2">Ajouter
 			utilisateur</a>
 
 		<div class="row">

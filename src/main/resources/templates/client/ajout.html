@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Layout</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content" class="container">
+
+		<p class="lead text-muted">Créer un nouveau client</p>
+
+		<div th:if="${successMessage}" class="alert alert-success"
+			role="alert" th:utext="${successMessage}"></div>
+
+		<div class="row">
+			<div class="col-6 align-self-center">
+				<form autocomplete="off" th:action="@{/user/client/ajout}"
+					th:object="${user}" method="post" class="form-horizontal"
+					role="form">
+
+					<div class="form-group">
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('prenom')}"
+								th:errors="*{prenom}" class="validation-message"></label> <input
+								type="text" th:field="*{prenom}" placeholder="Prénom"
+								class="form-control" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
+								class="validation-message"></label> <input type="text"
+								th:field="*{nom}" placeholder="Nom" class="form-control"
+								required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-9">
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" required> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-9">
+							<input type="text" th:field="*{client.code}"
+								placeholder="Code client" class="form-control" required>
+							<label th:if="${#fields.hasErrors('client.code')}"
+								th:errors="*{client.code}" class="validation-message"></label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-9">
+							<input type="text" th:field="*{client.adresse}"
+								placeholder="Adresse" class="form-control" required> <label
+								th:if="${#fields.hasErrors('client.adresse')}"
+								th:errors="*{client.adresse}" class="validation-message"></label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-9">
+							<input type="text" th:field="*{client.telephone}"
+								placeholder="Telepehone" class="form-control" required>
+							<label th:if="${#fields.hasErrors('client.telephone')}"
+								th:errors="*{client.telephone}" class="validation-message"></label>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-9">
+							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+
+
+</body>
+</html>
