@@ -2,7 +2,6 @@ package com.examen.GestionBanque.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.enums.TransactionType;
 
@@ -59,6 +59,10 @@ public class Operation implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type_transaction")
 	private TransactionType typeTransaction;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status_operation")
+	private OperationStatus statusOperation;
 
 	@ManyToOne
 	@JoinColumn(name = "numero_compte")
@@ -169,6 +173,14 @@ public class Operation implements Serializable {
 
 	public void setTypeTransaction(TransactionType typeTransaction) {
 		this.typeTransaction = typeTransaction;
+	}
+
+	public OperationStatus getStatusOperation() {
+		return statusOperation;
+	}
+
+	public void setStatusOperation(OperationStatus statusOperation) {
+		this.statusOperation = statusOperation;
 	}
 
 	@Override
