@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import com.examen.GestionBanque.enumeration.EmployeType;
+import com.examen.GestionBanque.enums.EmployeType;
 
 @Entity
 public class Employe implements Serializable {

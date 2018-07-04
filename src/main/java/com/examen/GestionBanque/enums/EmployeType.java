@@ -1,4 +1,4 @@
-package com.examen.GestionBanque.enumeration;
+package com.examen.GestionBanque.enums;
 
 public enum EmployeType {
 	
