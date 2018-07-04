@@ -106,26 +106,20 @@
 									required min=1>
 								<div class="invalid-feedback">Entrez un montant</div>
 							</div>
-							<div class="col-md-3 mb-3" th:if="${day == T(com.examen.GestionBanque.enums.OperationType).VIREMENT}">
-							<div class="custom-control custom-radio">
-								<input id="credit" name="paymentMethod" type="radio"
-									class="custom-control-input" checked required> <label
-									class="custom-control-label" for="credit">Credit card</label>
-							</div>
-							<div class="custom-control custom-radio">
-								<input id="debit" name="paymentMethod" type="radio"
-									class="custom-control-input" required> <label
-									class="custom-control-label" for="debit">Debit card</label>
-							</div>
+							<div class="custom-control custom-checkbox">
+								<label for="sms">Options</label> <input type="checkbox"
+									class="custom-control-input" th:name="sms"> <label
+									class="custom-control-label" for="same-address">SMS</label>
 							</div>
 						</div>
-						<hr class="mb-4">
-						<button class="btn btn-primary btn-lg btn-block" type="submit">Continue
-							to checkout</button>
-					</form>
 				</div>
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Continue
+					to checkout</button>
+				</form>
 			</div>
 		</div>
+	</div>
 
 
 	</div>
