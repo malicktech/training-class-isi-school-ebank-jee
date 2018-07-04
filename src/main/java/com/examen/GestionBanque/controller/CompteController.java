@@ -1,5 +1,6 @@
 package com.examen.GestionBanque.controller;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,7 @@ import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.entities.User;
+import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.service.CompteService;
 import com.examen.GestionBanque.service.UserService;
 
@@ -78,6 +80,8 @@ public class CompteController {
 			Operation operation = new Operation();
 			operation.setCompte(compte.get());
 			model.addAttribute("operation", operation);
+			
+			model.addAttribute("typeOperations", Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 		}
 
 		return "compte/detail";
