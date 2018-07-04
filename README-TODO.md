@@ -23,6 +23,14 @@ http://www.baeldung.com/get-user-in-spring-security
 
 - Set up 2scd level cache (optional)
 
+# TODO features
+
+- Connexion/Consultation client
+- Relevé de compte 
+- Taxe ouverture
+- Taxe opération
+- Reçu opération
+- RIB
 
 ## DONE 03/06
 

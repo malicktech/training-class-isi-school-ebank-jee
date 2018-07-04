@@ -1,24 +1,27 @@
 package com.examen.GestionBanque.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.examen.GestionBanque.enumeration.OperationType;
+import com.examen.GestionBanque.enumeration.TransactionType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_op", discriminatorType = DiscriminatorType.STRING, length = 1)
-public abstract class Operation implements Serializable {
+@Table(name = "operation")
+public class Operation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,17 +29,22 @@ public abstract class Operation implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "numero_operation")
-	private Long numOp;
+	@Column(name = "description")
+	private String description;
 
-	@Column(name = "date_operation")
-	private Date dateOp;
+	@Column(name = "date")
+	private Instant date;
 
-	@Column(name = "montant_operation")
-	private double montantop;
+	@NotNull
+	@Column(name = "montant_ht")
+	private double montantHT;
+
+	@NotNull
+	@Column(name = "montant_ttc")
+	private double montantTTC;
 
 	@Column(name = "taxe_operation")
-	private double taxeOp;
+	private double taxeOperation;
 
 	@Column(name = "taxe_sms")
 	private double taxeSms;
@@ -44,26 +52,25 @@ public abstract class Operation implements Serializable {
 	@Column(name = "raxe_releve")
 	private double taxeReleve;
 
-	@Column(name = "description")
-	private String description;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type_operation")
+	private OperationType typeOperation;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type_transaction")
+	private TransactionType typeTransaction;
 
 	@ManyToOne
 	@JoinColumn(name = "numero_compte")
 	private Compte compte;
 
+	@ManyToOne
+	@JoinColumn(name = "code_employe")
+	private Employe employe;
+
 	/* Contructeurs */
 
 	public Operation() {
-	}
-
-	public Operation(Long numOp, Date dateOp, double montantop, double taxeOp, double taxeSms, double taxeReleve) {
-		super();
-		this.numOp = numOp;
-		this.dateOp = dateOp;
-		this.montantop = montantop;
-		this.taxeOp = taxeOp;
-		this.taxeSms = taxeSms;
-		this.taxeReleve = taxeReleve;
 	}
 
 	/* Getters & Setters */
@@ -76,36 +83,28 @@ public abstract class Operation implements Serializable {
 		this.id = id;
 	}
 
-	public Long getNumOp() {
-		return numOp;
+	public Instant getDate() {
+		return date;
 	}
 
-	public void setNumOp(Long numOp) {
-		this.numOp = numOp;
+	public void setDate(Instant date) {
+		this.date = date;
 	}
 
-	public Date getDateOp() {
-		return dateOp;
+	public double getMontantHT() {
+		return montantHT;
 	}
 
-	public void setDateOp(Date dateOp) {
-		this.dateOp = dateOp;
+	public void setMontantHT(double montantHT) {
+		this.montantHT = montantHT;
 	}
 
-	public double getMontantop() {
-		return montantop;
+	public double getMontantTTC() {
+		return montantTTC;
 	}
 
-	public void setMontantop(double montantop) {
-		this.montantop = montantop;
-	}
-
-	public double getTaxeOp() {
-		return taxeOp;
-	}
-
-	public void setTaxeOp(double taxeOp) {
-		this.taxeOp = taxeOp;
+	public void setMontantTTC(double montantTTC) {
+		this.montantTTC = montantTTC;
 	}
 
 	public double getTaxeSms() {
@@ -138,6 +137,46 @@ public abstract class Operation implements Serializable {
 
 	public void setCompte(Compte compte) {
 		this.compte = compte;
+	}
+
+	public Employe getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employe employe) {
+		this.employe = employe;
+	}
+
+	public double getTaxeOperation() {
+		return taxeOperation;
+	}
+
+	public void setTaxeOperation(double taxeOperation) {
+		this.taxeOperation = taxeOperation;
+	}
+
+	public OperationType getTypeOperation() {
+		return typeOperation;
+	}
+
+	public void setTypeOperation(OperationType typeOperation) {
+		this.typeOperation = typeOperation;
+	}
+
+	public TransactionType getTypeTransaction() {
+		return typeTransaction;
+	}
+
+	public void setTypeTransaction(TransactionType typeTransaction) {
+		this.typeTransaction = typeTransaction;
+	}
+
+	@Override
+	public String toString() {
+		return "Operation [id=" + id + ", description=" + description + ", date=" + date + ", montantHT=" + montantHT
+				+ ", montanTTC=" + montantTTC + ", taxeOperation=" + taxeOperation + ", taxeSms=" + taxeSms
+				+ ", taxeReleve=" + taxeReleve + ", typeOperation=" + typeOperation + ", typeTransaction="
+				+ typeTransaction + "]";
 	}
 
 }

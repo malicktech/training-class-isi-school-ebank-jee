@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,6 +14,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import com.examen.GestionBanque.enumeration.EmployeType;
 
 @Entity
 public class Employe implements Serializable {
@@ -22,12 +26,16 @@ public class Employe implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(name = "code", length = 20, unique=true)
+	@Column(name = "code", length = 20, unique = true)
 	private String code;
 
 	@NotNull
 	@Column(name = "poste", length = 50)
 	private String poste;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type")
+	private EmployeType type;
 
 	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
@@ -66,6 +74,14 @@ public class Employe implements Serializable {
 
 	public void setPoste(String poste) {
 		this.poste = poste;
+	}
+
+	public EmployeType getType() {
+		return type;
+	}
+
+	public void setType(EmployeType type) {
+		this.type = type;
 	}
 
 	public Collection<Compte> getComptes() {

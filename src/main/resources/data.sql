@@ -45,3 +45,12 @@ INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, frais
   VALUES 
     ('CC1', 'CC', '2018-07-02 00:00:00', 1,  10, 0, 0, 0, 'A1', 2, 4),
     ('CC2', 'CC', '2018-07-01 00:00:00', 1, 500, 0, 0, 0, 'A2', 3, 5);
+    
+    INSERT INTO operation(id, date, description, montant_ht, montant_ttc, taxe_operation, raxe_releve, taxe_sms, type_operation, type_transaction, numero_compte, code_employe)
+    VALUES
+    (1, '2018-07-02 00:00:00', 'operation 1', 10, 11, 1, 0, 0, 'DEPOT', 'CREDIT', 'CC1', 6),
+    (2, '2018-07-03 00:00:00', 'operation 2', 10, 10, 0, 0, 0, 'RETRAIT', 'DEBIT', 'CC1', 6),
+    (3, '2018-07-03 00:00:00', 'operation 3', 10, 17, 2, 0, 5, 'VIREMENT', 'CREDIT', 'CC2', 5);
+    
+    
+    
