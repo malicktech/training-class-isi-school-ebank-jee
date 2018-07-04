@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.examen.GestionBanque.configuration.security.RolesConstants;
 import com.examen.GestionBanque.dao.ClientRepository;
@@ -45,13 +46,22 @@ public class UserController {
 		return "user/liste";
 	}
 	
-	@GetMapping({ "/client/liste" })
+	/*@GetMapping({ "/client/liste" })
 	public String getClientsList(Model model) {
 		List<Client> clients = clientRepository.findAll();
 		model.addAttribute("clients", clients);
 		return "client/liste";
-	}
+	}*/
 	
+	@RequestMapping(value="/Client/liste")
+	public ModelAndView liste() {
+		
+		List<Client> client = clientRepository.findAll();
+		return new ModelAndView("/client/liste","liste_client",client
+				);
+		
+	}
+
 	@GetMapping({ "/employe/liste" })
 	public String getEmployesList(Model model) {
 		List<Employe> employes = employeRepository.findAll();
@@ -83,7 +93,7 @@ public class UserController {
 			log.info(user.toString());
 			log.info(user.getClient().toString());
 			userService.saveUser(user, RolesConstants.CLIENT);
-			model.addAttribute("successMessage", "L'utilisateur a été enregistré avec succé");
+			model.addAttribute("successMessage", "Le client a été enregistré avec succé");
 		}
 		return "client/liste";
 	}
