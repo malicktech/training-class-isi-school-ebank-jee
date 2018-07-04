@@ -74,6 +74,10 @@ public class CompteController {
 			Page<Operation> operations = operationRepository
 					.findByCompteNumCompteOrderByDateAsc(compte.get().getNumCompte(), pageable);
 			model.addAttribute("operations", operations);
+			
+			Operation operation = new Operation();
+			operation.setCompte(compte.get());
+			model.addAttribute("operation", operation);
 		}
 
 		return "compte/detail";

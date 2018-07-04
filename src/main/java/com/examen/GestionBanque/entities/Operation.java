@@ -16,8 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.examen.GestionBanque.enumeration.OperationType;
-import com.examen.GestionBanque.enumeration.TransactionType;
+import com.examen.GestionBanque.enums.OperationType;
+import com.examen.GestionBanque.enums.TransactionType;
 
 @Entity
 @Table(name = "operation")
