@@ -10,7 +10,7 @@
 
 	<div layout:fragment="content" class="container">
 
-		<h1>Liste Comptes</h1>
+		<h1 class="h2">Liste Comptes</h1>
 		
 		<a th:href="@{/compte/ouverture?typeComte=CC}"
 			class="btn btn-secondary my-2">Ouverture Compte Courant</a>
@@ -36,7 +36,7 @@
 						<td th:text="${compte.etat}"></td>
 						<td th:text="${compte.client?.code}"></td>
 						<td th:text="${compte.employe?.code}"></td>
-						<td><a th:href="@{'/compte/detail/' + ${compte.numCompte}}">Details</a></td>
+						<td><a th:href="@{'/compte/detail/' + ${compte.numCompte}}"><span data-feather="eye"></span></a></td>
 					</tr>
 				</tbody>
 			</table>

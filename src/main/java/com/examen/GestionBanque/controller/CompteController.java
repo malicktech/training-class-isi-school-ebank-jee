@@ -9,6 +9,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
+import com.examen.GestionBanque.dao.OperationRepository;
 import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
+import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.service.CompteService;
 import com.examen.GestionBanque.service.UserService;
@@ -49,6 +53,9 @@ public class CompteController {
 	@Autowired
 	private CompteRepository compteRepository;
 
+	@Autowired
+	private OperationRepository operationRepository;
+
 	@RequestMapping(value = "/liste")
 	public String liste(Model model) {
 		List<Compte> comptes = compteRepository.findAll();
@@ -57,12 +64,16 @@ public class CompteController {
 	}
 
 	@RequestMapping(value = "/detail/{num}")
-	public String detail(@PathVariable String num, Model model) {
+	public String detail(@PathVariable String num, Model model, Pageable pageable) {
 		Optional<Compte> compte = compteRepository.findById(num);
-		
+
 		if (compte.isPresent()) {
 			log.info(compte.toString());
 			model.addAttribute("compte", compte.get());
+
+			Page<Operation> operations = operationRepository
+					.findByCompteNumCompteOrderByDateAsc(compte.get().getNumCompte(), pageable);
+			model.addAttribute("operations", operations);
 		}
 
 		return "compte/detail";
