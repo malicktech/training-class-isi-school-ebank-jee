@@ -2,46 +2,53 @@ package com.examen.GestionBanque.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.entities.Agence;
-import com.examen.GestionBanque.service.AgenceService;
 
 @Controller
 public class AgenceController {
-	
-	@Autowired
-	private AgenceService agenceService;
-	
+
 	@Autowired
 	private AgenceRepository agenceRepository;
-	
-	@RequestMapping(value="/Agence/liste")
-	public ModelAndView liste() {
+
+	@RequestMapping(value = "/agence/liste")
+	public String liste(Model model) {
 		List<Agence> agences = agenceRepository.findAll();
-		
-		return new ModelAndView("agence/liste", "liste_agences", agences);
+		model.addAttribute("agences", agences);
+		return "agence/liste";
 	}
-	
-	@RequestMapping(value="/Agence/ajout")
-	public String add() {
-		return "agence/add";//pour le chargement du formulaire d'ajout : add.html
+
+	@RequestMapping(value = "/agence/ajout")
+	public String getAjout(Model model) {
+		model.addAttribute("agence", new Agence());
+		// pour le chargement du formulaire d'ajout : add.html
+		return "agence/ajout";
 	}
-	
-	@RequestMapping(value="/Agence/add")
-	public String add(String nom, String region) {
-		//insertion dans la base des données venant du formulaire
-		Agence agence = new Agence();
-		agence.setNom(nom);
-		agence.setRegion(region);
-		agenceRepository.save(agence);
-		//Redirection vers la page d'affichage : liste.html
-		return "redirect:/Agence/liste";
+
+	@PostMapping(value = "/agence/ajout")
+	public String postAjout(@Valid Agence agence, BindingResult bindingResult, Model model,
+			RedirectAttributes attributes) {
+
+		if (bindingResult.hasErrors()) {
+			return "agence/ajout";
+		} else {
+			// insertion dans la base des données venant du formulaire
+			Agence agenceEnregsitre = agenceRepository.save(agence);
+			attributes.addFlashAttribute("successMessage",
+					"l'agence " + agenceEnregsitre.getCode() + " a été ajoutée avec succés");
+		}
+		// Redirection vers la page d'affichage : liste.html
+		return "redirect:" + "/agence/liste";
 	}
-	
 
 }
