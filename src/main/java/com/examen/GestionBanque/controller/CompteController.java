@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
@@ -29,7 +30,6 @@ import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
 import com.examen.GestionBanque.entities.Operation;
-import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.service.CompteService;
 import com.examen.GestionBanque.service.UserService;
@@ -76,12 +76,12 @@ public class CompteController {
 			Page<Operation> operations = operationRepository
 					.findByCompteNumCompteOrderByDateAsc(compte.get().getNumCompte(), pageable);
 			model.addAttribute("operations", operations);
-			
-			Operation operation = new Operation();
-			operation.setCompte(compte.get());
-			model.addAttribute("operation", operation);
-			
-			model.addAttribute("typeOperations", Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
+
+			// Initialiser formulaire Enregsitrement Opération
+			model.addAttribute("operation", new Operation(compte.get()));
+
+			model.addAttribute("typeOperations",
+					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 		}
 
 		return "compte/detail";
@@ -107,7 +107,7 @@ public class CompteController {
 
 	@PostMapping("/ouverture")
 	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		log.debug("Controller Service save Compte");
 		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient);
@@ -123,6 +123,9 @@ public class CompteController {
 
 			model.addAttribute("successMessage", "le compte a été créer avec succés");
 			model.addAttribute("compte", compteEnregistre);
+
+			// Initialiser formulaire Enregsitrement Opération
+			model.addAttribute("operation", new Operation(compteEnregistre));
 		}
 		return "compte/detail";
 	}

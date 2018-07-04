@@ -2,7 +2,8 @@
 
 ## TODO
 
-- create/list opération
+- create opération
+- virement operation
 
 - Add more role 
 
@@ -31,6 +32,11 @@ http://www.baeldung.com/get-user-in-spring-security
 - Taxe opération
 - Reçu opération
 - RIB
+
+## DONE 04/06
+
+- list operation
+- list/create agence
 
 ## DONE 03/06
 

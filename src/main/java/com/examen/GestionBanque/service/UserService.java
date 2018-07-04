@@ -46,6 +46,7 @@ public class UserService {
 		System.out.println("Utilisateur enregistré = ");
 		System.out.println(registeredUser);
 
+		
 		return registeredUser;
 	}
 

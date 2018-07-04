@@ -76,6 +76,10 @@ public class Operation implements Serializable {
 
 	public Operation() {
 	}
+	
+	public Operation(Compte compte) {
+		this.compte = compte;
+	}
 
 	/* Getters & Setters */
 

@@ -47,7 +47,7 @@ public class AgenceController {
 			attributes.addFlashAttribute("successMessage",
 					"l'agence " + agenceEnregsitre.getCode() + " a été ajoutée avec succés");
 		}
-		// Redirection vers la page d'affichage : liste.html
+		// Redirection vers la page d'affichage agences
 		return "redirect:" + "/agence/liste";
 	}
 

@@ -122,6 +122,7 @@ public class User implements Serializable {
 	}
 
 	public void setClient(Client client) {
+		client.setUser(this);
 		this.client = client;
 	}
 
@@ -130,6 +131,7 @@ public class User implements Serializable {
 	}
 
 	public void setEmploye(Employe employe) {
+		employe.setUser(this);
 		this.employe = employe;
 	}
 
