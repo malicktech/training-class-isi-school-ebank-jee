@@ -133,7 +133,7 @@
 						<table class="table table-striped table-sm">
 							<thead>
 								<tr>
-									<th>Numero</th>
+									<th>Num</th>
 									<th>Date</th>
 									<th>Operation</th>
 									<th>Transaction</th>
@@ -148,7 +148,7 @@
 							<tbody>
 								<tr th:each="op : ${operations}">
 									<td th:text="${op.id}"></td>
-									<td th:text="${#dates.formatISO(op.date)}"></td>
+									<td th:text="${#dates.format(op.date , 'dd-MM-yyyy')}"></td>
 									<td th:text="${op.typeOperation}"></td>
 									<td th:text="${op.typeTransaction}"></td>
 									<td th:text="${op.montantHT}"></td>
