@@ -12,13 +12,14 @@
 		class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow"
 		th:fragment="navbar">
 
-		<a class="navbar-brand" th:href="@{/}"> 
-		</a> <a class="navbar-brand col-sm-3 col-md-1 mr-0" href="../admin/home" style="background-color:grey;"><img
-			th:src="@{/images/logo2.png}" width="100" height="30" alt="Gestion Banque logo" /></a> <input class="form-control form-control-dark w-100"
-			type="text" placeholder="GESTION DES COMPTES BANCAIRES" aria-label="Search" style="background-color:#dcac40;">
+		<a class="navbar-brand" th:href="@{/}"> <img
+			th:src="@{/images/logo2.png}" width="50" height="30" alt="Gestion Banque logo" />
+		</a> <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Gestion
+			Banque</a> <input class="form-control form-control-dark w-100"
+			type="text" placeholder="" aria-label="Search">
 		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap" ><a class="nav-link"
-				th:href="@{/logout}" style="background-color:#c32323;">  DECONNEXION  </a></li>
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				th:href="@{/logout}">D&eacute;connexion</a></li>
 		</ul>
 	</nav>
 

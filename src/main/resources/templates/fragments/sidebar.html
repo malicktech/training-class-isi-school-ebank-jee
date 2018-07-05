@@ -18,10 +18,10 @@
 
 					<li class="nav-item"><a class="nav-link active"
 						th:href="@{/admin/home}"> <span data-feather="home"></span>
-							Dashboard <span class="sr-only">(current)</span>
+							Accueil <span class="sr-only">(current)</span>
 					</a></li>
 
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_CAISSIERE', 'ROLE_RESPONSABLE_COMPTE' )"><a class="nav-link"
 						th:href="@{/user/client/liste}"> <span data-feather="users"></span>
 							CLIENTS
 					</a></li>
@@ -34,13 +34,13 @@
 				</ul>
 
 				<h6
-					class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" sec:authorize="hasRole('ROLE_ADMIN')">
 					<span>Administration</span> <a
 						class="d-flex align-items-center text-muted" href="#"> <span
 						data-feather="plus-circle"></span>
 					</a>
 				</h6>
-				<ul class="nav flex-column mb-2">
+				<ul class="nav flex-column mb-2" sec:authorize="hasRole('ROLE_ADMIN')">
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/user/liste}"> <span data-feather="file"></span>
 							UTILISATEURS
@@ -57,17 +57,6 @@
 							AGENCE
 					</a></li>
 				</ul>
-
-				<h6
-					class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-					<span>Info connexion</span> </a>
-				</h6>
-				<div sec:authorize="isAuthenticated()">Text visible only to
-					authenticated users.</div>
-				Authenticated username:
-				<div sec:authentication="name"></div>
-				Authenticated user roles:
-				<div sec:authentication="principal.authorities"></div>
 			</div>
 		</nav>
 </body>

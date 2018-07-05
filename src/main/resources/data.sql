@@ -12,7 +12,7 @@ INSERT INTO user(id, actif, email, prenom, nom, mot_de_passe)
   (2, 1, 'mounasdiop@gmail.com', 'MAIMOUNA', 'DIOP', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
   (3, 1, 'diop-malick@hotmail.fr', 'Client', 'DEUX', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
   (4, 1, 'mdiop.sne@gmail.com', 'Malick', 'DIOP', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
-  (5, 1, 'citizenddiop@gmail.com', 'Citizen', 'FOUR', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
+  (5, 1, 'responsable_compte@test.com', 'Citizen', 'FOUR', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
   (6, 1, 'caissier1@test.com', 'Awa', 'NDIAYE', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe');
   
 INSERT INTO user_role(user_id, role_name) 

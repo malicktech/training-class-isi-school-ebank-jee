@@ -16,7 +16,7 @@
 			role="alert" th:utext="${successMessage}"></div>
 
 
-		<a th:href="@{/user/client/ajout}" class="btn btn-secondary my-2">Ajouter
+		<a th:href="@{/user/client/ajout}" class="btn btn-secondary my-2" sec:authorize="hasAnyRole('ROLE_CAISSIERE', 'ROLE_RESPONSABLE_COMPTE' )">Ajouter
 			utilisateur</a>
 
 		<div class="row">
@@ -24,11 +24,11 @@
 				<thead>
 					<tr>
 						<th>id</th>
-						<th>Prénom</th>
+						<th>Pr&eacute;nom</th>
 						<th>Nom</th>
 						<th>@Mail</th>
 						<th>Code Client</th>
-						<th>Code Employe</th>
+						<th>Code Employ&eacute;</th>
 						<th>Actif</th>
 						<th></th>
 					</tr>

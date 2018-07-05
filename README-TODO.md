@@ -2,11 +2,33 @@
 
 ## TODO
 
-- create opération
-
 - virement operation second account
 
 - Apply taxe
+
+- Thymeleaf data format view
+
+- Delete console error
+
+- Disable console log 
+
+- Simplify code =  delete service layer
+
+- Set up 2scd level cache (optional)
+
+- Thymeleaf 3 & native thymeleaf layout
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#template-engines
+
+* TODO features
+
+- Connexion/Consultation client
+- Relevé de compte 
+- Taxe ouverture
+- Taxe opération
+- Reçu opération
+- RIB
+
+## DONE 05/07
 
 - Add more role 
 
@@ -23,40 +45,19 @@ http://www.baeldung.com/get-user-in-spring-security
  
 - Thymelaf encodage UTF8 
 
-- Thymeleaf data format view
 
-- Delete console error
-
-- Disable console log 
-
-- Simplify code =  delete service layer
-
-- Set up 2scd level cache (optional)
-
-- Thymeleaf 3 & native thymeleaf layout
-https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#template-engines
-
-# TODO features
-
-- Connexion/Consultation client
-- Relevé de compte 
-- Taxe ouverture
-- Taxe opération
-- Reçu opération
-- RIB
-
-## DONE 04/06
+## DONE 04/07
 
 - list operation
 - list/create agence
-
-## DONE 03/06
+- create opération
+## DONE 03/07
 
 - Debug 'ouverture compte'
 
 - Spring Security Logout
 
-## DONE 02/06
+## DONE 02/07
 
 - Home page & template layout with boostrap
 
@@ -71,7 +72,7 @@ https://www.thoughts-on-java.org/hibernate-tips-same-primary-key-one-to-one-asso
 
 - load role in app starting
 
-## DONE 01/06
+## DONE 01/07
 
 - Setup project
 
