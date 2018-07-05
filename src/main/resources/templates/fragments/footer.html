@@ -6,14 +6,14 @@
 
 		<footer>
 			<div class="container">
-				<p>
-					&copy; Memorynotfound.com <span sec:authorize="isAuthenticated()"
-						style="display: inline-block;"> | Logged user: <span
-						sec:authentication="name"></span> | Roles: <span
+				<div>
+					&copy; bankmega.com <span sec:authorize="isAuthenticated()"
+						style="display: inline-block;"> | Utilisateur connect&eacute; : <span
+						sec:authentication="name"></span> | Roles : <span
 						sec:authentication="principal.authorities"></span> | <a
-						th:href="@{/logout}">Sign Out</a>
+						th:href="@{/logout}">D&eacute;connexion</a>
 					</span>
-				</p>
+				</div>
 			</div>
 		</footer>
 
