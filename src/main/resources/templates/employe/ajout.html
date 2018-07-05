@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Layout</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content" class="container">
+
+		<p class="lead text-muted">Créer un nouveau Employe</p>
+
+		<div th:if="${successMessage}" class="alert alert-success"
+			role="alert" th:utext="${successMessage}"></div>
+
+		<div class="row">
+			<div class="col-6 align-self-center">
+				<form autocomplete="off" th:action="@{/user/employe/ajout}"
+					th:object="${user}" method="post" class="form-horizontal"
+					role="form">
+					<div>Info personelles</div>
+					<div class="form-group">
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('code')}"
+								th:errors="*{code}" class="validation-message"></label> <input
+								type="text" th:field="*{code}" placeholder="code"
+								class="form-control" required>
+						</div>
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('poste')}" th:errors="*{poste}"
+								class="validation-message"></label> <input type="text"
+								th:field="*{poste}" placeholder="Nom" class="form-control"
+								required>
+						</div>
+					</div>
+
+					<div>Identifiant de connexion</div>
+					<div class="form-group">
+						<div class="col-9">
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" required> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+						</div>
+						<div class="col-9">
+							<input type="password" th:field="*{motDePasse}"
+								placeholder="Mot de passe" class="form-control" required>
+							<label th:if="${#fields.hasErrors('motDePasse')}"
+								th:errors="*{password}" class="validation-message"></label>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-9">
+							<button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+
+
+</body>
+</html>

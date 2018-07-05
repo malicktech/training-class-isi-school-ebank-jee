@@ -104,5 +104,40 @@ public class UserController {
 		}
 		return "redirect:" + "/user/client/liste";
 	}
+	
+	@GetMapping("/employe/ajout")
+	public String getAjoutEmployet(Model model) {
+		User user = new User();
+		user.setEmploye(new Employe());
+		model.addAttribute("user", user);
+		return "employe/ajout";
+	}
+
+	/**
+	 * Enregistre un nouveau employe
+	 */
+	@PostMapping("/employe/ajout")
+	public String postAjoutEmploye(@Valid User user, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+		User userExists = userService.findUserByEmail(user.getEmail());
+
+		log.info("POST /employe/ajout");
+
+		if (userExists != null) {
+			bindingResult.rejectValue("email", "error.user",
+					"Un utilisateur est déja enregistré avec cette adresse mail. Utiliser un autre !");
+		}
+		if (bindingResult.hasErrors()) {
+			log.info(bindingResult.toString());
+			return "employe/ajout";
+		} else {
+			log.info(user.toString());
+			log.info(user.getClient().toString());
+			User employeEnregsitre = userService.saveUser(user, RolesConstants.EMPLOYEE);
+			attributes.addFlashAttribute("successMessage",
+					"l'employe " + employeEnregsitre.getEmploye().getCode() + " a été enregistré avec succés");
+		}
+		return "redirect:" + "/user/employe/liste";
+	}
+
 
 }
