@@ -159,16 +159,6 @@ public class CompteController {
 	}
 
 	/*
-	 * model.addAttribute("users", userService.findAll());
-	 * model.addAttribute("employes", employeRepository.findAll()); return
-	 * "compte/ouverture";
-	 */
-	// public ModelAndView liste() {
-	// List<Employe> employes = employeRepository.findAll();
-	// return new ModelAndView("/compte/ouverture", "employes", employes);
-	// }
-
-	/*
 	 * Enregistre les données renvoyées par le formulaire d'ouverture de compte
 	 */
 	@PostMapping("/ouverture/CC")
