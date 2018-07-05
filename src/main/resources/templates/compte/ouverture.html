@@ -17,7 +17,7 @@
 
 		<div class="row">
 			<div class="col-6 align-self-center">
-				<form autocomplete="off" action="#" th:action="@{/compte/ouverture}"
+				<form autocomplete="off" th:action="@{'/compte/ouverture/' + ${typeCompte}}"
 					th:object="${compte}" method="post" class="form-horizontal"
 					role="form">
 
@@ -56,7 +56,7 @@
 						<label class="control-label">Responsable de compte</label> <select
 							class="form-control" type="text" th:name="idEmploye">
 							<option value="">Choisir un employe</option>
-							<option th:each="e:${employes}" th:text="${e.id}"
+							<option th:each="e:${employes}" th:text="${e.code}"
 								th:value="${e.id}"></option>
 							<select />
 					</div>

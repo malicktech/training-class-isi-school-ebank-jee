@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.configuration.security.RolesConstants;
@@ -37,7 +36,6 @@ import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
-import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.enums.OperationStatus;
@@ -97,7 +95,7 @@ public class CompteController {
 		return "compte/liste";
 	}
 
-	/*
+	/**
 	 * Afficher détail d'un compte à partir de son numéro
 	 */
 	@RequestMapping(value = "/detail/{num}")
@@ -105,11 +103,27 @@ public class CompteController {
 		Optional<Compte> compte = compteRepository.findById(num);
 
 		if (compte.isPresent()) {
-			log.info(compte.toString());
+
 			model.addAttribute("compte", compte.get());
+
+			// Type de comtpe
+
+			String typeComte;
+
+			if (compte.get() instanceof CompteEpargne)
+				typeComte = "CE";
+			else if (compte.get() instanceof CompteCourant)
+				typeComte = "CC";
+			else
+				typeComte = "CB";
+
+			model.addAttribute("typeComte", typeComte);
+
+			// Récupération opératiosn du comptes
 
 			Page<Operation> operations = operationRepository
 					.findByCompteNumCompteOrderByDateAsc(compte.get().getNumCompte(), pageable);
+
 			model.addAttribute("operations", operations);
 
 			// Initialiser formulaire Enregsitrement Opération
@@ -122,7 +136,7 @@ public class CompteController {
 		return "compte/detail";
 	}
 
-	/*
+	/**
 	 * Affiche le formulaire d'ouverture de compte
 	 */
 	@GetMapping("/ouverture")
@@ -137,7 +151,8 @@ public class CompteController {
 			CompteBloque compte = new CompteBloque();
 			model.addAttribute("compte", compte);
 		}
-
+		model.addAttribute("typeCompte", typeComte);
+		model.addAttribute("employes", employeRepository.findAll());
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
@@ -148,51 +163,99 @@ public class CompteController {
 	 * model.addAttribute("employes", employeRepository.findAll()); return
 	 * "compte/ouverture";
 	 */
-	public ModelAndView liste() {
-		List<Employe> employes = employeRepository.findAll();
-		return new ModelAndView("/compte/ouverture", "employes", employes);
-	}
+	// public ModelAndView liste() {
+	// List<Employe> employes = employeRepository.findAll();
+	// return new ModelAndView("/compte/ouverture", "employes", employes);
+	// }
 
 	/*
 	 * Enregistre les données renvoyées par le formulaire d'ouverture de compte
 	 */
-	@PostMapping("/ouverture")
-	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence, Long idEmploye,
-			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
-
-		log.debug("Controller Service save Compte");
-		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient + "idEmploye=" + idEmploye);
-		log.debug(compte.toString());
+	@PostMapping("/ouverture/CC")
+	public String ajoutNouveauCompteCourant(@Valid CompteCourant compte, Long idClient, String codeAgence,
+			Long idEmploye, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(codeAgence));
-			/*
-			 * Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
-			 */
-			compte.setEmploye(employeRepository.getOne(idEmploye));
+
+			// Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
+			compte.setEmploye(userRepository.getOne(idEmploye).getEmploye());
 			compte.setClient(userRepository.getOne(idClient).getClient());
+
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
 			model.addAttribute("successMessage", "le compte a été créer avec succés");
 			model.addAttribute("compte", compteEnregistre);
 
-			// Initialiser formulaire Enregsitrement Opération
+			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
 		}
 		return "compte/detail";
 	}
 
-	/*
+	@PostMapping("/ouverture/CE")
+	public String ajoutNouveauCompteEpargne(@Valid CompteEpargne compte, Long idClient, String codeAgence,
+			Long idEmploye, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "compte/ouverture";
+		} else {
+			compte.setAgence(agenceRepository.getOne(codeAgence));
+
+			// Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
+			compte.setEmploye(userRepository.getOne(idEmploye).getEmploye());
+			compte.setClient(userRepository.getOne(idClient).getClient());
+
+			compte.setDateCreation(new Date());
+			Compte compteEnregistre = compteService.saveCompte(compte);
+
+			model.addAttribute("successMessage", "le compte a été créer avec succés");
+			model.addAttribute("compte", compteEnregistre);
+
+			// Initialiser formulaire Enregistrement Opération
+			model.addAttribute("operation", new Operation(compteEnregistre));
+		}
+		return "compte/detail";
+	}
+
+	@PostMapping("/ouverture/CB")
+	public String ajoutNouveauCompteBloque(@Valid CompteBloque compte, Long idClient, String codeAgence, Long idEmploye,
+			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "compte/ouverture";
+		} else {
+			compte.setAgence(agenceRepository.getOne(codeAgence));
+
+			// Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
+			compte.setEmploye(userRepository.getOne(idEmploye).getEmploye());
+			compte.setClient(userRepository.getOne(idClient).getClient());
+
+			compte.setEtat(false);
+
+			compte.setDateCreation(new Date());
+			Compte compteEnregistre = compteService.saveCompte(compte);
+
+			model.addAttribute("successMessage", "le compte a été créer avec succés");
+			model.addAttribute("compte", compteEnregistre);
+
+			// Initialiser formulaire Enregistrement Opération
+			model.addAttribute("operation", new Operation(compteEnregistre));
+		}
+		return "compte/detail";
+	}
+
+	/**
 	 * Enregistre les données envoyéess pour une nouvelle opération
 	 */
 	@PostMapping("/operation")
 	@Transactional
 	public String ajoutNouvelleOperation(@Valid Operation operation, boolean sms, String numCompte,
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
-		
+
 		if (bindingResult.hasErrors()) {
 			return "compte/detail";
 		} else {
@@ -261,14 +324,14 @@ public class CompteController {
 		return "redirect:" + "/compte/detail/" + operation.getCompte().getNumCompte();
 	}
 
-	/*
+	/**
 	 * Retourne le montant de la taxe si l'option sms est choisie
 	 */
 	private double getMontantTaxeSms() {
 		return 5;
 	}
 
-	/*
+	/**
 	 * Retourne le montant taxé pour chaque opération
 	 */
 	private double getTaxeOperation() {
