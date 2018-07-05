@@ -22,7 +22,7 @@ INSERT INTO user_role(user_id, role_name)
   (3, 'ROLE_USER'),
   (4, 'ROLE_EMPLOYE'),
   (5, 'ROLE_RESPONSABLE_COMPTE'),
-  (6, 'ROLE_CAISSIERE'); 
+  (6, 'ROLE_CAISSIERE');
   
 INSERT INTO agence(code, nom, region) 
   VALUES
