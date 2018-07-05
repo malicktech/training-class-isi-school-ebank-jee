@@ -1,10 +1,12 @@
 package com.examen.GestionBanque.controller;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -30,7 +32,9 @@ import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
 import com.examen.GestionBanque.entities.Operation;
+import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
+import com.examen.GestionBanque.enums.TransactionType;
 import com.examen.GestionBanque.service.CompteService;
 import com.examen.GestionBanque.service.UserService;
 
@@ -58,6 +62,9 @@ public class CompteController {
 	@Autowired
 	private OperationRepository operationRepository;
 
+	/**
+	 * Affiche la liste des comptes
+	 */
 	@RequestMapping(value = "/liste")
 	public String liste(Model model) {
 		List<Compte> comptes = compteRepository.findAll();
@@ -65,6 +72,9 @@ public class CompteController {
 		return "compte/liste";
 	}
 
+	/*
+	 * Afficher détail d'un compte à partir de son numéro
+	 */
 	@RequestMapping(value = "/detail/{num}")
 	public String detail(@PathVariable String num, Model model, Pageable pageable) {
 		Optional<Compte> compte = compteRepository.findById(num);
@@ -87,6 +97,9 @@ public class CompteController {
 		return "compte/detail";
 	}
 
+	/*
+	 * Affiche le formulaire d'ouverture de compte
+	 */
 	@GetMapping("/ouverture")
 	public String registration(Model model, String typeComte) {
 
@@ -105,6 +118,9 @@ public class CompteController {
 		return "compte/ouverture";
 	}
 
+	/*
+	 * Enregistre les données renvoyées par le formulaire d'ouverture de compte
+	 */
 	@PostMapping("/ouverture")
 	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence,
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
@@ -128,6 +144,101 @@ public class CompteController {
 			model.addAttribute("operation", new Operation(compteEnregistre));
 		}
 		return "compte/detail";
+	}
+
+	/*
+	 * Enregistre les données envoyéess pour une nouvelle opération
+	 */
+	@PostMapping("/operation")
+	@Transactional
+	public String ajoutNouvelleOperation(@Valid Operation operation, boolean sms, String numCompte,
+			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+
+		log.info("Controller - Service Ajout nouvelle Opération");
+		log.info("OPERATION : " + operation.toString());
+		log.info("sms : " + sms);
+		log.info("numCompte : " + numCompte);
+
+		if (bindingResult.hasErrors()) {
+
+			log.info(bindingResult.toString());
+			return "compte/detail";
+
+		} else {
+
+			// Récupération du compte
+			Compte compte = compteRepository.findById(numCompte).get();
+			operation.setCompte(compte);
+
+			// date d'ajout
+			operation.setDate(Instant.now());
+			operation.setStatusOperation(OperationStatus.EXECUTEE);
+
+			// Type transaction
+			if (operation.getTypeOperation().equals(OperationType.DEPOT)) {
+				operation.setTypeTransaction(TransactionType.CREDIT);
+			} else {
+				// Retrait, virement
+				operation.setTypeTransaction(TransactionType.DEBIT);
+			}
+
+			// Taxes opération automatique
+			operation.setTaxeOperation(getTaxeOperation());
+
+			// Taxes sms Si l'option sms est choisi
+			if (sms == true) {
+				operation.setTaxeSms(getMontantTaxeSms());
+			}
+
+			// Total TTC selon que c'est un crédit ou un débit
+			if ((operation.getTypeTransaction().equals(TransactionType.CREDIT))) {
+				operation.setMontantTTC(
+						operation.getMontantHT() - operation.getTaxeSms() - operation.getTaxeOperation());
+			} else {
+				operation.setMontantTTC(
+						operation.getMontantHT() + operation.getTaxeSms() + operation.getTaxeOperation());
+			}
+
+			// Enregsitrement de l'opération
+			Operation operationEnregsitree = operationRepository.save(operation);
+
+			// Mise à jour solde compte
+			if ((operation.getTypeTransaction().equals(TransactionType.CREDIT))) {
+				compte.setSolde(compte.getSolde() + operation.getMontantTTC());
+			} else {
+				if (compte.getSolde() >= operation.getMontantTTC()) {
+					compte.setSolde(compte.getSolde() - operation.getMontantTTC());
+				} else {
+					attributes.addFlashAttribute("errorMessage",
+							"L'opération n'a pas été exécuté !<br /> Solde Insuffisant");
+				}
+			}
+
+			Compte compteEnregistre = compteService.saveCompte(compte);
+			model.addAttribute("compte", compteEnregistre);
+
+			if (operationEnregsitree != null && compteEnregistre != null) {
+				attributes.addFlashAttribute("successMessage",
+						"L'opération " + operation.getTypeOperation() + " numéro " + operationEnregsitree.getId()
+								+ " a été exécutée <br /> le solde du compte mis à jour avec succés");
+			}
+		}
+		return "redirect:" + "/compte/detail/" + operation.getCompte().getNumCompte();
+
+	}
+
+	/*
+	 * Retourne le montant de la taxe si l'option sms est choisie
+	 */
+	private double getMontantTaxeSms() {
+		return 5;
+	}
+
+	/*
+	 * Retourne le montant taxé pour chaque opération
+	 */
+	private double getTaxeOperation() {
+		return 10;
 	}
 
 }

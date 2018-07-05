@@ -18,6 +18,8 @@ http://www.baeldung.com/get-user-in-spring-security
  
 - Thymelaf encodage UTF8 
 
+- Thymeleaf data format view
+
 - Delete console error
 
 - Disable console log 
@@ -25,6 +27,9 @@ http://www.baeldung.com/get-user-in-spring-security
 - Simplify code =  delete service layer
 
 - Set up 2scd level cache (optional)
+
+- Thymeleaf 3 & native thymeleaf layout
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#template-engines
 
 # TODO features
 

@@ -12,7 +12,22 @@
 
 		<h1 class="h2">Detail Compte</h1>
 
+		<div th:if="${successMessage}" class="alert alert-success"
+			role="alert" th:utext="${successMessage}">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div th:if="${errorMessage}" class="alert alert-danger"
+			role="alert" th:utext="${successMessage}">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 
+		<!-- --------------------------------------------------------------------------------------------- -->
+		<!-- -----------------------------   FORM OPERATION    ------------------------------------------- -->
+		<!-- --------------------------------------------------------------------------------------------- -->
 		<div class="row">
 			<div class="col-md-8 order-md-2 mb-4" th:if="${compte}">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -23,20 +38,14 @@
 					th:object="${operation}" method="post"
 					class="needs-validation form-inline" novalidate>
 					<div class="row">
-						<!-- <div class="col-md-4 mb-3"> -->
-						<!-- <label for="typeOperation">Type</label>  -->
+
 						<select class="custom-select mb-2 mr-sm-2"
 							th:field="*{typeOperation}" required>
 							<option value="">Type d'operation...</option>
 							<option th:each="op : ${typeOperations}" th:value="${op}"
 								th:text="${op}"></option>
 						</select>
-						<!-- </div> -->
 
-						<!-- <div class="col-md-4 mb-3"> -->
-						<!-- 							<label for="montantHT">Montant</label> <input type="number"
-								class="form-control" placeholder="" th:field="*{montantHT}"
-								required min=1> -->
 						<div class="input-group mb-2 mr-sm-2">
 							<div class="input-group-prepend">
 								<div class="input-group-text">&euro;</div>
@@ -46,21 +55,27 @@
 								required min=1>
 						</div>
 
-						<!-- </div> -->
-						<!-- <div class="col-md-4 mb-3"> -->
 						<div class="form-check mb-2 mr-sm-2">
 							<input class="form-check-input" type="checkbox" th:name="sms">
 							<label class="form-check-label" for="sms"> SMS </label>
 						</div>
+
+						<input hidden=true class="form-check-input" th:name="numCompte"
+							th:value="${compte.numCompte}">
+
+
 						<button type="submit" class="btn btn-primary mb-2">Enregistrer</button>
-						<!-- </div> -->
 					</div>
 				</form>
 			</div>
 		</div>
 		<hr class="mb-4">
 
+
 		<div class="row">
+			<!-- --------------------------------------------------------------------------------------------- -->
+			<!-- -----------------------------   BOX INFO GENERALE    ------------------------------------ -->
+			<!-- --------------------------------------------------------------------------------------------- -->
 			<div class="col-md-4 order-md-2 mb-4" th:if="${compte}">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-muted">Informations generales</span>
@@ -99,39 +114,55 @@
 				</ul>
 			</div>
 
+			<!-- --------------------------------------------------------------------------------------------- -->
+			<!-- -----------------------------   LISTE OPERATIONS    ------------------------------------ -->
+			<!-- --------------------------------------------------------------------------------------------- -->
 			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">Liste des operations</h4>
+
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<span class="text-muted">Liste des operations</span>
+				</h4>
 				<div class="row">
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>Numero</th>
-								<th>Date</th>
-								<th>Type Operation</th>
-								<th>Type transaction</th>
-								<th>Montant TTC</th>
-								<th>Status</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="op : ${operations}">
-								<td th:text="${op.id}"></td>
-								<td th:text="${op.date}"></td>
-								<td th:text="${op.typeOperation}"></td>
-								<td th:text="${op.typeTransaction}"></td>
-								<td th:text="${op.montantTTC}"></td>
-								<td th:text="${op.statusOperation}"></td>
-								<td><a th:href="@{#}" class="btn"><span
-										data-feather="eye"></span></a></td>
-							</tr>
-						</tbody>
-					</table>
+
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>Numero</th>
+									<th>Date</th>
+									<th>Operation</th>
+									<th>Transaction</th>
+									<th>Montant HT</th>
+									<th>Taxe Opération</th>
+									<th>Taxe SMS</th>
+									<th>Montant TTC</th>
+									<th>Status</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="op : ${operations}">
+									<td th:text="${op.id}"></td>
+									<td th:text="${op.date}"></td>
+									<td th:text="${op.typeOperation}"></td>
+									<td th:text="${op.typeTransaction}"></td>
+									<td th:text="${op.montantHT}"></td>
+									<td th:text="${op.taxeOperation}"></td>
+									<td th:text="${op.taxeSms}"></td>
+									<td th:text="${op.montantTTC}"></td>
+									<td th:text="${op.statusOperation}"></td>
+									<td><a th:href="@{#}" class="btn"><span
+											data-feather="eye"></span></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
 				</div>
 
 			</div>
-		</div>
 
+		</div>
 
 	</div>
 </body>

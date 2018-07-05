@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Operation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "description")
@@ -39,18 +40,14 @@ public class Operation implements Serializable {
 	@Column(name = "montant_ht")
 	private double montantHT;
 
-	@NotNull
 	@Column(name = "montant_ttc")
 	private double montantTTC;
 
 	@Column(name = "taxe_operation")
-	private double taxeOperation;
+	private double taxeOperation = 0;
 
 	@Column(name = "taxe_sms")
-	private double taxeSms;
-
-	@Column(name = "raxe_releve")
-	private double taxeReleve;
+	private double taxeSms = 0;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type_operation")
@@ -64,7 +61,7 @@ public class Operation implements Serializable {
 	@Column(name = "status_operation")
 	private OperationStatus statusOperation;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "numero_compte")
 	private Compte compte;
 
@@ -121,14 +118,6 @@ public class Operation implements Serializable {
 
 	public void setTaxeSms(double taxeSms) {
 		this.taxeSms = taxeSms;
-	}
-
-	public double getTaxeReleve() {
-		return taxeReleve;
-	}
-
-	public void setTaxeReleve(double taxeReleve) {
-		this.taxeReleve = taxeReleve;
 	}
 
 	public String getDescription() {
@@ -191,7 +180,7 @@ public class Operation implements Serializable {
 	public String toString() {
 		return "Operation [id=" + id + ", description=" + description + ", date=" + date + ", montantHT=" + montantHT
 				+ ", montanTTC=" + montantTTC + ", taxeOperation=" + taxeOperation + ", taxeSms=" + taxeSms
-				+ ", taxeReleve=" + taxeReleve + ", typeOperation=" + typeOperation + ", typeTransaction="
+				+ ", typeOperation=" + typeOperation + ", typeTransaction="
 				+ typeTransaction + "]";
 	}
 
