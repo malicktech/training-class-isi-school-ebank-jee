@@ -21,6 +21,7 @@ import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.entities.Client;
 import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.User;
+import com.examen.GestionBanque.enums.EmployeType;
 import com.examen.GestionBanque.service.UserService;
 
 @Controller
@@ -135,8 +136,13 @@ public class UserController {
 			return "employe/ajout";
 		} else {
 			log.info(user.toString());
-			log.info(user.getClient().toString());
-			User employeEnregsitre = userService.saveUser(user, RolesConstants.EMPLOYEE);
+			log.info(user.getEmploye().toString());
+			User employeEnregsitre;
+			if (user.getEmploye().getType().equals(EmployeType.CAISSIERE)) {
+				employeEnregsitre = userService.saveUser(user, RolesConstants.CAISSIERE);
+			} else {
+				employeEnregsitre = userService.saveUser(user, RolesConstants.RESPONSABLE_COMPTE);
+			}
 			attributes.addFlashAttribute("successMessage",
 					"l'employe " + employeEnregsitre.getEmploye().getCode() + " a été enregistré avec succés");
 		}

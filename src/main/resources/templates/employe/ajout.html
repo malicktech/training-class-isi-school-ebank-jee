@@ -37,17 +37,27 @@
 					</div>
 					<div class="form-group">
 						<div class="col-9">
-							<label th:if="${#fields.hasErrors('employe.code')}" 
-								th:errors="*{employe.code}" class="validation-message"></label> <input
-								type="text" th:field="*{employe.code}" placeholder="Code"
+							<label th:if="${#fields.hasErrors('employe.code')}"
+								th:errors="*{employe.code}" class="validation-message"></label>
+							<input type="text" th:field="*{employe.code}" placeholder="Code"
 								class="form-control" required>
 						</div>
 						<div class="col-9">
-							<label th:if="${#fields.hasErrors('employe.poste')}" th:errors="*{employe.poste}"
-								class="validation-message"></label> <input type="text"
-								th:field="*{employe.poste}" placeholder="Poste" class="form-control"
-								required>
+							<label th:if="${#fields.hasErrors('employe.poste')}"
+								th:errors="*{employe.poste}" class="validation-message"></label>
+							<input type="text" th:field="*{employe.poste}"
+								placeholder="Poste" class="form-control" required>
 						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Type d'employé</label> <select
+							id="segmentoSel" class="form-control" th:field="*{employe.type}"
+							required>
+							<option
+								th:each="e : ${T(com.examen.GestionBanque.enums.EmployeType).values()}"
+								th:value="${e}" th:text="${e}"></option>
+						</select>
 					</div>
 
 					<div>Identifiant de connexion</div>
