@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
+import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.dao.OperationRepository;
 import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Compte;
@@ -58,6 +59,9 @@ public class CompteController {
 
 	@Autowired
 	private CompteRepository compteRepository;
+	
+	@Autowired
+	private EmployeRepository employeRepository;
 
 	@Autowired
 	private OperationRepository operationRepository;
@@ -122,17 +126,21 @@ public class CompteController {
 	 * Enregistre les données renvoyées par le formulaire d'ouverture de compte
 	 */
 	@PostMapping("/ouverture")
-	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence,
+	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence, Long idEmploye,
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		log.debug("Controller Service save Compte");
-		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient);
+		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient + "idEmploye="  + idEmploye);
 		log.debug(compte.toString());
 
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(codeAgence));
+			/*
+			 * Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
+			 */
+			compte.setEmploye(employeRepository.getOne(idEmploye));
 			compte.setClient(userRepository.getOne(idClient).getClient());
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);

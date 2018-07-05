@@ -51,6 +51,15 @@
 								th:value="${a.code}"></option>
 							<select />
 					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Responsable de compte</label> <select
+							class="form-control" type="text" th:name="idEmploye">
+							<option value="">Choisir un employe</option>
+							<option th:each="e:${employes}" th:text="${e.id}"
+								th:value="${e.id}"></option>
+							<select />
+					</div>
 					<div class="form-group">
 						<div class="col-9">
 							<label>Numero Compte</label> <input type="text"
