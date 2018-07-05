@@ -67,7 +67,6 @@
 								class="form-control" required>
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-9">
 							<label>Solde du Compte</label> <input type="text"
@@ -78,13 +77,13 @@
 				<!--ajout frais d'ouverture et agios en foction du type de compte-->
 				
 				
-					<div th:if="${compte.typeComte=='CE'}">
+					<div th:if="${typeCompte=='CE'}">
 						<label class="control-label">Agios :</label> <label
-							class="control-label" th:text="${compte.operation.agios}"></label>
+							class="control-label" th:text="${compte.agios}"></label>
 					</div>
-					<div th:if="${compte.typeComte=='CB'}">
+					<div th:if="${typeComte=='CB'}">
 						<label class="control-label">Frais d'ouverture :</label> <label
-							class="control-label" th:text="${compte.operations.frais-ouverture}"></label>
+							class="control-label" th:text="${compte.frais-ouverture}"></label>
 					</div>
 
 
