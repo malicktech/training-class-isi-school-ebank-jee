@@ -184,6 +184,8 @@ public class CompteController {
 			model.addAttribute("operation", new Operation(compteEnregistre));
 			
 			model.addAttribute("typeComPte", "Compte Courant");
+			model.addAttribute("typeOperations",
+					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 
 		}
 		return "compte/detail";
