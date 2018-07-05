@@ -39,7 +39,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="card">
+			<div class="card" sec:authorize="hasAnyRole('ROLE_CAISSIERE', 'ROLE_RESPONSABLE_COMPTE')">
 				<p class="lead text-muted">OUVRIR UN COMPTE DE TYPE :</p>
 				<h4 class="card-title">
 					<a th:href="@{/compte/ouverture?typeComte=CE}"

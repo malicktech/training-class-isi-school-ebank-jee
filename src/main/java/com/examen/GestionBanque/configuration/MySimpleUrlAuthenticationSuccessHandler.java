@@ -1,6 +1,7 @@
 package com.examen.GestionBanque.configuration;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +58,8 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
 			if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
 				isUser = true;
 				break;
-			} else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+			} else if (Arrays.asList("ROLE_ADMIN", "ROLE_CAISSIERE", "ROLE_RESPONSABLE_COMPTE")
+					.contains(grantedAuthority.getAuthority())) {
 				isAdmin = true;
 				break;
 			}

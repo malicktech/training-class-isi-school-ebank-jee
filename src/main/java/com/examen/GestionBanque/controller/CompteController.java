@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.examen.GestionBanque.configuration.security.RolesConstants;
+import com.examen.GestionBanque.configuration.security.SecurityUtils;
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
 import com.examen.GestionBanque.dao.EmployeRepository;
@@ -35,6 +39,7 @@ import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
 import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.Operation;
+import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.enums.TransactionType;
@@ -61,7 +66,7 @@ public class CompteController {
 
 	@Autowired
 	private CompteRepository compteRepository;
-	
+
 	@Autowired
 	private EmployeRepository employeRepository;
 
@@ -73,7 +78,21 @@ public class CompteController {
 	 */
 	@RequestMapping(value = "/liste")
 	public String liste(Model model) {
-		List<Compte> comptes = compteRepository.findAll();
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		log.error(auth.getAuthorities().toString());
+
+		List<Compte> comptes;
+		// Si le c'est le client qui est connecté, Récupèrer la liste des comptes du
+		// client
+		if (SecurityUtils.isCurrentUserInRole(RolesConstants.CLIENT)) {
+			comptes = compteRepository.findByClientId(user.getClient().getId());
+		} else {
+			// Recupérer la liste de tous les comptes
+			comptes = compteRepository.findAll();
+		}
+
 		model.addAttribute("comptes", comptes);
 		return "compte/liste";
 	}
@@ -122,14 +141,16 @@ public class CompteController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
-		}
-		
-		/*model.addAttribute("users", userService.findAll());
-		model.addAttribute("employes", employeRepository.findAll());
-		return "compte/ouverture"; */
-		public ModelAndView liste() {
+	}
+
+	/*
+	 * model.addAttribute("users", userService.findAll());
+	 * model.addAttribute("employes", employeRepository.findAll()); return
+	 * "compte/ouverture";
+	 */
+	public ModelAndView liste() {
 		List<Employe> employes = employeRepository.findAll();
-		return new ModelAndView("/compte/ouverture","employes",employes);
+		return new ModelAndView("/compte/ouverture", "employes", employes);
 	}
 
 	/*
@@ -140,7 +161,7 @@ public class CompteController {
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		log.debug("Controller Service save Compte");
-		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient + "idEmploye="  + idEmploye);
+		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient + "idEmploye=" + idEmploye);
 		log.debug(compte.toString());
 
 		if (bindingResult.hasErrors()) {
@@ -171,17 +192,9 @@ public class CompteController {
 	@Transactional
 	public String ajoutNouvelleOperation(@Valid Operation operation, boolean sms, String numCompte,
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
-
-		log.info("Controller - Service Ajout nouvelle Opération");
-		log.info("OPERATION : " + operation.toString());
-		log.info("sms : " + sms);
-		log.info("numCompte : " + numCompte);
-
+		
 		if (bindingResult.hasErrors()) {
-
-			log.info(bindingResult.toString());
 			return "compte/detail";
-
 		} else {
 
 			// Récupération du compte
@@ -246,7 +259,6 @@ public class CompteController {
 
 		}
 		return "redirect:" + "/compte/detail/" + operation.getCompte().getNumCompte();
-
 	}
 
 	/*

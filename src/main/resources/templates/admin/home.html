@@ -10,17 +10,17 @@
 
 	<div layout:fragment="content" class="container">
 
-		<div class="panel-group" style="margin-top: 40px">
+		<h1 class="h2">Accueil Admin</h1>
+
+		<div class="card">
 			<div class="panel panel-primary">
-				<div class="panel-heading">
+				<div class="card-header">
 					<span th:utext="${userName}"></span>
 				</div>
-				<div class="panel-body"></div>
+				<div class="card-body"></div>
 				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
 			</div>
 		</div>
-		<a th:href="@{/compte/ouverture?typeComte=CC}"
-			class="btn btn-secondary my-2">Ouverture Compte Courant</a>
 	</div>
 
 </body>
