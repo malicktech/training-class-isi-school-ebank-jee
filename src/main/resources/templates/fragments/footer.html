@@ -5,8 +5,10 @@
 	<th:block th:fragment="footer">
 
 		<footer>
-			<div class="container">
+			<div class="container" align=center style="background-color:#dcac40;" >
+			
 				<p>
+				<th:src="@{/images/logo2.png}" width="100" height="30" alt="Gestion Banque logo" />
 					&copy; Memorynotfound.com <span sec:authorize="isAuthenticated()"
 						style="display: inline-block;"> | Logged user: <span
 						sec:authentication="name"></span> | Roles: <span
