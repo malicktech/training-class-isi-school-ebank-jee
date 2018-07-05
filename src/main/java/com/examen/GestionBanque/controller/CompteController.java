@@ -199,9 +199,6 @@ public class CompteController {
 						operation.getMontantHT() + operation.getTaxeSms() + operation.getTaxeOperation());
 			}
 
-			// Enregsitrement de l'opération
-			Operation operationEnregsitree = operationRepository.save(operation);
-
 			// Mise à jour solde compte
 			if ((operation.getTypeTransaction().equals(TransactionType.CREDIT))) {
 				compte.setSolde(compte.getSolde() + operation.getMontantTTC());
@@ -214,14 +211,21 @@ public class CompteController {
 				}
 			}
 
-			Compte compteEnregistre = compteService.saveCompte(compte);
-			model.addAttribute("compte", compteEnregistre);
+			if ((operation.getTypeTransaction().equals(TransactionType.CREDIT)
+					|| compte.getSolde() >= operation.getMontantTTC())) {
+				// Enregsitrement de l'opération
+				Operation operationEnregsitree = operationRepository.save(operation);
+				// Enregsitrement compte mis à jour
+				Compte compteEnregistre = compteService.saveCompte(compte);
+				model.addAttribute("compte", compteEnregistre);
 
-			if (operationEnregsitree != null && compteEnregistre != null) {
-				attributes.addFlashAttribute("successMessage",
-						"L'opération " + operation.getTypeOperation() + " numéro " + operationEnregsitree.getId()
-								+ " a été exécutée <br /> le solde du compte mis à jour avec succés");
+				if (operationEnregsitree != null && compteEnregistre != null) {
+					attributes.addFlashAttribute("successMessage",
+							"L'opération " + operation.getTypeOperation() + " numéro " + operationEnregsitree.getId()
+									+ " a été exécutée <br /> le solde du compte mis à jour avec succés");
+				}
 			}
+
 		}
 		return "redirect:" + "/compte/detail/" + operation.getCompte().getNumCompte();
 
