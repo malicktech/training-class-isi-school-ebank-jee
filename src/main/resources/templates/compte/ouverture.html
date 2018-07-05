@@ -51,6 +51,15 @@
 								th:value="${a.code}"></option>
 							<select />
 					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Responsable de compte</label> <select
+							class="form-control" type="text" th:name="idEmploye">
+							<option value="">Choisir un employe</option>
+							<option th:each="e:${employes}" th:text="${e.id}"
+								th:value="${e.id}"></option>
+							<select />
+					</div>
 					<div class="form-group">
 						<div class="col-9">
 							<label>Numero Compte</label> <input type="text"
@@ -58,13 +67,23 @@
 								class="form-control" required>
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-9">
 							<label>Solde du Compte</label> <input type="text"
 								th:field="*{solde}" placeholder="Solde du Compte"
 								class="form-control" required>
 						</div>
+					</div>
+				<!--ajout frais d'ouverture et agios en foction du type de compte-->
+				
+				
+					<div th:if="${comptes=='CE'}">
+						<label class="control-label">Agios :</label> <label
+							class="control-label" th:text="${compte.agios}"></label>
+					</div>
+					<div th:if="${compte=='CB'}">
+						<label class="control-label">Frais d'ouverture :</label> <label
+							class="control-label" th:text="${compte.frais-ouverture}"></label>
 					</div>
 
 

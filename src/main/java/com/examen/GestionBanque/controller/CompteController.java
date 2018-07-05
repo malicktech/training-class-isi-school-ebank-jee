@@ -21,16 +21,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
+import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.dao.OperationRepository;
 import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
+import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
@@ -58,6 +61,9 @@ public class CompteController {
 
 	@Autowired
 	private CompteRepository compteRepository;
+	
+	@Autowired
+	private EmployeRepository employeRepository;
 
 	@Autowired
 	private OperationRepository operationRepository;
@@ -116,23 +122,35 @@ public class CompteController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
+		}
+		
+		/*model.addAttribute("users", userService.findAll());
+		model.addAttribute("employes", employeRepository.findAll());
+		return "compte/ouverture"; */
+		public ModelAndView liste() {
+		List<Employe> employes = employeRepository.findAll();
+		return new ModelAndView("/compte/ouverture","employes",employes);
 	}
 
 	/*
 	 * Enregistre les données renvoyées par le formulaire d'ouverture de compte
 	 */
 	@PostMapping("/ouverture")
-	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence,
+	public String ajoutNouveauCompte(@Valid CompteCourant compte, Long idClient, String codeAgence, Long idEmploye,
 			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		log.debug("Controller Service save Compte");
-		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient);
+		log.debug("codeAgence =" + codeAgence + "/ idClient =" + idClient + "idEmploye="  + idEmploye);
 		log.debug(compte.toString());
 
 		if (bindingResult.hasErrors()) {
 			return "compte/ouverture";
 		} else {
 			compte.setAgence(agenceRepository.getOne(codeAgence));
+			/*
+			 * Ajout d'un responsable de compte dans le formulaire d'ouverture de compte
+			 */
+			compte.setEmploye(employeRepository.getOne(idEmploye));
 			compte.setClient(userRepository.getOne(idClient).getClient());
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
