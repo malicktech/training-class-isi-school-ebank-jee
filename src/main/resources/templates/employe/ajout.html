@@ -23,15 +23,29 @@
 					<div>Info personelles</div>
 					<div class="form-group">
 						<div class="col-9">
-							<label th:if="${#fields.hasErrors('code')}"
-								th:errors="*{code}" class="validation-message"></label> <input
-								type="text" th:field="*{code}" placeholder="code"
+							<label th:if="${#fields.hasErrors('prenom')}"
+								th:errors="*{prenom}" class="validation-message"></label> <input
+								type="text" th:field="*{prenom}" placeholder="Prénom"
 								class="form-control" required>
 						</div>
 						<div class="col-9">
-							<label th:if="${#fields.hasErrors('poste')}" th:errors="*{poste}"
+							<label th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
 								class="validation-message"></label> <input type="text"
-								th:field="*{poste}" placeholder="Nom" class="form-control"
+								th:field="*{nom}" placeholder="Nom" class="form-control"
+								required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('employe.code')}" 
+								th:errors="*{employe.code}" class="validation-message"></label> <input
+								type="text" th:field="*{employe.code}" placeholder="Code"
+								class="form-control" required>
+						</div>
+						<div class="col-9">
+							<label th:if="${#fields.hasErrors('employe.poste')}" th:errors="*{employe.poste}"
+								class="validation-message"></label> <input type="text"
+								th:field="*{employe.poste}" placeholder="Poste" class="form-control"
 								required>
 						</div>
 					</div>

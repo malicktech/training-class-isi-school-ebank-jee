@@ -105,6 +105,10 @@ public class UserController {
 		return "redirect:" + "/user/client/liste";
 	}
 	
+	
+	/**
+	 * Affiche le formulaire d'ajout d'un nouveau employe
+	 */
 	@GetMapping("/employe/ajout")
 	public String getAjoutEmployet(Model model) {
 		User user = new User();

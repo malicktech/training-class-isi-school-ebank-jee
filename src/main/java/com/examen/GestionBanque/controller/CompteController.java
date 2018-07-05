@@ -183,7 +183,7 @@ public class CompteController {
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
 			
-			model.addAttribute("typeComPte", "CC");
+			model.addAttribute("typeComPte", "Compte Courant");
 
 		}
 		return "compte/detail";
@@ -211,7 +211,7 @@ public class CompteController {
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
 
-			model.addAttribute("typeComPte", "CE");
+			model.addAttribute("typeComPte", "Compte Epargne");
 
 		}
 		return "compte/detail";
@@ -241,7 +241,7 @@ public class CompteController {
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
 			
-			model.addAttribute("typeComPte", "CB");
+			model.addAttribute("typeComPte", "Comtpe Bloqué");
 
 		}
 		return "compte/detail";
