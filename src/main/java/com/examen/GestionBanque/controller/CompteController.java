@@ -117,7 +117,7 @@ public class CompteController {
 			else
 				typeComte = "CB";
 
-			model.addAttribute("typeComte", typeComte);
+			model.addAttribute("typeComPte", typeComte);
 
 			// Récupération opératiosn du comptes
 
@@ -182,6 +182,9 @@ public class CompteController {
 
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
+			
+			model.addAttribute("typeComPte", "CC");
+
 		}
 		return "compte/detail";
 	}
@@ -207,6 +210,9 @@ public class CompteController {
 
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
+
+			model.addAttribute("typeComPte", "CE");
+
 		}
 		return "compte/detail";
 	}
@@ -234,6 +240,9 @@ public class CompteController {
 
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
+			
+			model.addAttribute("typeComPte", "CB");
+
 		}
 		return "compte/detail";
 	}
