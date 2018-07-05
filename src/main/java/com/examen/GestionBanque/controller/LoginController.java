@@ -24,7 +24,12 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	@GetMapping("/access-denied")
+    public String accessDenied() {
+        return "/error/access-denied";
+    }
+	
 	@GetMapping({ "/", "/login" })
 	public String login() {
 		return "login";

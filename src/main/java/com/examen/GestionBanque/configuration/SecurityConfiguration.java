@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.examen.GestionBanque.configuration.security.LoggingAccessDeniedHandler;
 import com.examen.GestionBanque.configuration.security.RolesConstants;
 
 @Configuration
@@ -26,27 +27,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
+	@Autowired
+	private LoggingAccessDeniedHandler accessDeniedHandler;
+
 	@PostConstruct
-    public void init() {
-        try {
-            authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-        } catch (Exception e) {
-            throw new BeanInitializationException("Security configuration failed", e);
-        }
-    }
-	
+	public void init() {
+		try {
+			authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		} catch (Exception e) {
+			throw new BeanInitializationException("Security configuration failed", e);
+		}
+	}
+
 	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 	@Bean
 	public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
 		return new MySimpleUrlAuthenticationSuccessHandler();
@@ -54,43 +56,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/login").permitAll()
-				.antMatchers("/registration").permitAll()
-				.antMatchers("/admin/**").hasAuthority(RolesConstants.ADMIN).anyRequest()
-				.authenticated()
-			.and()
-				.csrf()
-				.disable()
-			.formLogin()
-				.loginPage("/login").failureUrl("/?error=true")
-				.successHandler(myAuthenticationSuccessHandler())
-				.usernameParameter("email")
-				.passwordParameter("password")
-			.and()
-				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/")
-			.and()
-				.exceptionHandling()
-				.accessDeniedPage("/access-denied");
+		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
+				.antMatchers("/registration").permitAll().antMatchers("/admin/**").hasAuthority(RolesConstants.ADMIN)
+				.anyRequest().authenticated().and().csrf().disable().formLogin().loginPage("/login")
+				.failureUrl("/?error=true").successHandler(myAuthenticationSuccessHandler()).usernameParameter("email")
+				.passwordParameter("password").and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/").and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 	}
 
-	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web.ignoring()
-	       .antMatchers("/resources/**")
-	       .antMatchers("/webjars/**")
-	       .antMatchers("/css/**")
-	       .antMatchers("/static/**")
-	       .antMatchers("/js/**")
-	       .antMatchers("/images/**");
+		web.ignoring().antMatchers("/resources/**").antMatchers("/webjars/**").antMatchers("/css/**")
+				.antMatchers("/static/**").antMatchers("/js/**").antMatchers("/images/**");
 	}
-	
+
 	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
