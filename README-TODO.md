@@ -13,6 +13,11 @@
 - spring security redirect after login based on role
 http://www.baeldung.com/spring_redirect_after_login
 
+- Active thymeleaf 3
+
+- SECURITY IN TEMPLATE
+https://memorynotfound.com/spring-boot-spring-security-thymeleaf-form-login-example/
+
 - SECURITY current user
 http://www.baeldung.com/get-user-in-spring-security
  

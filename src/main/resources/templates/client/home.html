@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+
+<head>
+<title>Home</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content" class="container">
+
+		<div class="panel-group" style="margin-top: 40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span th:utext="${userName}"></span>
+				</div>
+				<div class="panel-body"></div>
+				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

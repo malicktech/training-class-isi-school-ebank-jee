@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 
 <head th:replace="fragments/header :: header">
@@ -18,10 +19,36 @@
 
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 			<div layout:fragment="content"></div>
+
+			<div>
+				<!-- <a sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/compte/ouverture?typeComte=CC}"
+					class="btn btn-secondary my-2">Ouverture Compte Courant</a>
+
+				<div sec:authorize="isAuthenticated()">
+
+					<div th:text="${#authentication?.name}">The value of the
+						"name" property of the authentication object should appear here.</div>
+
+					<br /> Text visible only to authenticated users. <br />Authenticated
+					username:
+					<div sec:authentication="name"></div>
+					Authenticated user roles:
+					<div sec:authentication="principal.authorities"></div>
+				</div>
+
+				<div
+					th:if="${#authorization?.expression('hasRole(''ROLE_ADMIN'')')}">
+					This will only be displayed if authenticated user has role
+					ROLE_ADMIN.</div> -->
+			</div>
+
 			</main>
 
 		</div>
 	</div>
+
+
 
 	<script>
 		feather.replace()

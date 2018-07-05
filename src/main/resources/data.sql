@@ -3,7 +3,8 @@ INSERT INTO role(name)
   ('ROLE_ADMIN'),
   ('ROLE_USER'),
   ('ROLE_EMPLOYE'),
-  ('ROLE_CAISSIER');
+  ('ROLE_CAISSIERE'),
+  ('ROLE_RESPONSABLE_COMPTE');
   
 INSERT INTO user(id, actif, email, prenom, nom, mot_de_passe) 
   VALUES
@@ -20,8 +21,8 @@ INSERT INTO user_role(user_id, role_name)
   (2, 'ROLE_USER'),
   (3, 'ROLE_USER'),
   (4, 'ROLE_EMPLOYE'),
-  (5, 'ROLE_EMPLOYE'),
-  (6, 'ROLE_EMPLOYE'); 
+  (5, 'ROLE_RESPONSABLE_COMPTE'),
+  (6, 'ROLE_CAISSIERE'); 
   
 INSERT INTO agence(code, nom, region) 
   VALUES

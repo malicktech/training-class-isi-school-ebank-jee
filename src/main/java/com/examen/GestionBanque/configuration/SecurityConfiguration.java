@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.examen.GestionBanque.configuration.security.RolesConstants;
@@ -45,6 +46,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+	
+	@Bean
+	public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+		return new MySimpleUrlAuthenticationSuccessHandler();
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -59,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.disable()
 			.formLogin()
 				.loginPage("/login").failureUrl("/?error=true")
-				.defaultSuccessUrl("/admin/home")
+				.successHandler(myAuthenticationSuccessHandler())
 				.usernameParameter("email")
 				.passwordParameter("password")
 			.and()
