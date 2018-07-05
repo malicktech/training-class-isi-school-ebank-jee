@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.examen.GestionBanque.dao.AgenceRepository;
@@ -32,6 +33,7 @@ import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.CompteBloque;
 import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
+import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
@@ -120,6 +122,14 @@ public class CompteController {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
+		}
+		
+		/*model.addAttribute("users", userService.findAll());
+		model.addAttribute("employes", employeRepository.findAll());
+		return "compte/ouverture"; */
+		public ModelAndView liste() {
+		List<Employe> employes = employeRepository.findAll();
+		return new ModelAndView("/compte/ouverture","employes",employes);
 	}
 
 	/*
