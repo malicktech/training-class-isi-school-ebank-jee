@@ -19,10 +19,10 @@ INSERT INTO user_role(user_id, role_name)
   VALUES
   (1, 'ROLE_ADMIN'),
   (2, 'ROLE_USER'),
-  (3, 'ROLE_USER'),
+  (3, 'ROLE_EMPLOYE'),
   (4, 'ROLE_EMPLOYE'),
   (5, 'ROLE_RESPONSABLE_COMPTE'),
-  (6, 'ROLE_CAISSIERE'); 
+  (6, 'ROLE_CAISSIERE');
   
 INSERT INTO agence(code, nom, region) 
   VALUES
