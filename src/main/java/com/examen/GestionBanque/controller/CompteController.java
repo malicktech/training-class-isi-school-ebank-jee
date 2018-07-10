@@ -82,8 +82,7 @@ public class CompteController {
 		log.error(auth.getAuthorities().toString());
 
 		List<Compte> comptes;
-		// Si le c'est le client qui est connecté, Récupèrer la liste des comptes du
-		// client
+		// Si le c'est le client qui est connecté, Récupèrer la liste des comptes du client
 		if (SecurityUtils.isCurrentUserInRole(RolesConstants.CLIENT)) {
 			comptes = compteRepository.findByClientId(user.getClient().getId());
 		} else {
@@ -188,7 +187,7 @@ public class CompteController {
 					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 
 		}
-		return "compte/detail";
+		return "compte/liste";
 	}
 
 	@PostMapping("/ouverture/CE")
@@ -216,7 +215,7 @@ public class CompteController {
 			model.addAttribute("typeComPte", "Compte Epargne");
 
 		}
-		return "compte/detail";
+		return "compte/liste";
 	}
 
 	@PostMapping("/ouverture/CB")
@@ -246,7 +245,7 @@ public class CompteController {
 			model.addAttribute("typeComPte", "Comtpe Bloqué");
 
 		}
-		return "compte/detail";
+		return "compte/liste";
 	}
 
 	/**
