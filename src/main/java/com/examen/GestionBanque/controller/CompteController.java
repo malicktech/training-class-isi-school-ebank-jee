@@ -82,7 +82,8 @@ public class CompteController {
 		log.error(auth.getAuthorities().toString());
 
 		List<Compte> comptes;
-		// Si le c'est le client qui est connecté, Récupèrer la liste des comptes du client
+		// Si le c'est le client qui est connecté, Récupèrer la liste des comptes du
+		// client
 		if (SecurityUtils.isCurrentUserInRole(RolesConstants.CLIENT)) {
 			comptes = compteRepository.findByClientId(user.getClient().getId());
 		} else {
@@ -127,10 +128,10 @@ public class CompteController {
 
 			// Initialiser formulaire Enregsitrement Opération
 			model.addAttribute("operation", new Operation(compte.get()));
-			// liste des compte pour virement 
-			log.error("comptesDestinataires = " + compteRepository.findByNumCompteIsNot(compte.get().getNumCompte()).get(0).toString());
-			model.addAttribute("comptesDestinataires", compteRepository.findByNumCompteIsNot(compte.get().getNumCompte()));
-			
+			// liste des compte pour virement
+			model.addAttribute("comptesDestinataires",
+					compteRepository.findByNumCompteIsNot(compte.get().getNumCompte()));
+			// liste des Type d'opération réalisables
 			model.addAttribute("typeOperations",
 					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 		}
@@ -184,7 +185,7 @@ public class CompteController {
 
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
-			
+
 			model.addAttribute("typeComPte", "Compte Courant");
 			model.addAttribute("typeOperations",
 					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
@@ -245,7 +246,7 @@ public class CompteController {
 
 			// Initialiser formulaire Enregistrement Opération
 			model.addAttribute("operation", new Operation(compteEnregistre));
-			
+
 			model.addAttribute("typeComPte", "Comtpe Bloqué");
 
 		}
@@ -258,7 +259,7 @@ public class CompteController {
 	@PostMapping("/operation")
 	@Transactional
 	public String ajoutNouvelleOperation(@Valid Operation operation, boolean sms, String numCompte,
-			BindingResult bindingResult, RedirectAttributes attributes, Model model) {
+			String numCompteDestinaire, BindingResult bindingResult, RedirectAttributes attributes, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "compte/detail";
@@ -316,6 +317,12 @@ public class CompteController {
 				// Enregsitrement compte mis à jour
 				Compte compteEnregistre = compteService.saveCompte(compte);
 				model.addAttribute("compte", compteEnregistre);
+
+				// ENREGISTRER VIREMENT sur compte destinaire
+				if (operation.getTypeOperation().equals(OperationType.VIREMENT) && numCompteDestinaire != null) {
+					compteService.executionVirementSurCompteDestinataire(numCompteDestinaire,
+							compteEnregistre.getNumCompte(), operationEnregsitree.getMontantHT());
+				}
 
 				if (operationEnregsitree != null && compteEnregistre != null) {
 					attributes.addFlashAttribute("successMessage",

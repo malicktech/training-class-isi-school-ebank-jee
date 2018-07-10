@@ -95,7 +95,7 @@
 			<!-- --------------------------------------------------------------------------------------------- -->
 			<!-- -----------------------------   BOX INFO GENERALE    ------------------------------------ -->
 			<!-- --------------------------------------------------------------------------------------------- -->
-			<div class="col-md-4 order-md-2 mb-4" th:if="${compte}">
+			<div class="col-md-3 order-md-1 mb-4" th:if="${compte}">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-muted">Informations generales</span>
 					<!-- <span class="badge badge-secondary badge-pill">3</span> -->
@@ -136,7 +136,7 @@
 			<!-- --------------------------------------------------------------------------------------------- -->
 			<!-- -----------------------------   LISTE OPERATIONS    ------------------------------------ -->
 			<!-- --------------------------------------------------------------------------------------------- -->
-			<div class="col-md-8 order-md-1">
+			<div class="col-md-9 order-md-2">
 
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-muted">Liste des operations</span>
@@ -156,22 +156,25 @@
 									<th>Taxe SMS</th>
 									<th>Montant TTC</th>
 									<th>Status</th>
-									<th></th>
+									<!-- <th></th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="op : ${operations}">
 									<td th:text="${op.id}"></td>
 									<td th:text="${#dates.format(op.date , 'dd-MM-yyyy')}"></td>
-									<td th:text="${op.typeOperation}"></td>
+									<td><span th:text="${op.typeOperation}"></span> <br /> <span
+										th:if="${op.numCompteEmeteurVirement}"
+										th:text="'compte émeteur : + '${op.numCompteEmeteurVirement}"></span>
+									</td>
 									<td th:text="${op.typeTransaction}"></td>
 									<td th:text="${op.montantHT}"></td>
 									<td th:text="${op.taxeOperation}"></td>
 									<td th:text="${op.taxeSms}"></td>
 									<td th:text="${op.montantTTC}"></td>
 									<td th:text="${op.statusOperation}"></td>
-									<td><a th:href="@{#}" class="btn"><span
-											data-feather="eye"></span></a></td>
+									<!-- <td><a th:href="@{#}" class="btn"><span
+											data-feather="eye"></span></a></td> -->
 								</tr>
 							</tbody>
 						</table>

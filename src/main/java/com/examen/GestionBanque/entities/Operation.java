@@ -65,6 +65,9 @@ public class Operation implements Serializable {
 	@JoinColumn(name = "numero_compte")
 	private Compte compte;
 
+	@Column(name = "num_compte_emeteur_virement")
+	private String numCompteEmeteurVirement;
+
 	@ManyToOne
 	@JoinColumn(name = "code_employe")
 	private Employe employe;
@@ -73,7 +76,7 @@ public class Operation implements Serializable {
 
 	public Operation() {
 	}
-	
+
 	public Operation(Compte compte) {
 		this.compte = compte;
 	}
@@ -176,12 +179,19 @@ public class Operation implements Serializable {
 		this.statusOperation = statusOperation;
 	}
 
+	public String getNumCompteEmeteurVirement() {
+		return numCompteEmeteurVirement;
+	}
+
+	public void setNumCompteEmeteurVirement(String numCompteEmeteurVirement) {
+		this.numCompteEmeteurVirement = numCompteEmeteurVirement;
+	}
+
 	@Override
 	public String toString() {
 		return "Operation [id=" + id + ", description=" + description + ", date=" + date + ", montantHT=" + montantHT
 				+ ", montanTTC=" + montantTTC + ", taxeOperation=" + taxeOperation + ", taxeSms=" + taxeSms
-				+ ", typeOperation=" + typeOperation + ", typeTransaction="
-				+ typeTransaction + "]";
+				+ ", typeOperation=" + typeOperation + ", typeTransaction=" + typeTransaction + "]";
 	}
 
 }
