@@ -4,6 +4,8 @@
 
 <head>
 <title>Layout</title>
+<link rel="stylesheet" href="/webjars/font-awesome/css/fontawesome.css">
+
 </head>
 
 <body>
@@ -34,7 +36,7 @@
 		<!-- -----------------------------   FORM OPERATION    ------------------------------------------- -->
 		<!-- --------------------------------------------------------------------------------------------- -->
 		<div class="row" sec:authorize="hasRole('ROLE_RESPONSABLE_COMPTE')">
-			<div class="col-md-8 order-md-2 mb-4" th:if="${compte}">
+			<div class="col-md-12" th:if="${compte}">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-muted">Enregistrer une nouvelle operation</span>
 					<!-- <span class="badge badge-secondary badge-pill">3</span> -->
@@ -57,7 +59,19 @@
 							</div>
 							<input type="number" class="form-control" th:field="*{montantHT}"
 								id="inlineFormInputGroupUsername2" placeholder="Montant"
-								required min=1>
+								required min="1">
+						</div>
+
+						<!-- compte destinataire si l'opération est un virement -->
+						<div class="input-group mb-2 mr-sm-2"
+							id="input-group-numCompteDestinataire">
+							<select class="form-control" type="text"
+								th:name="numCompteDestinaire" id="numCompteDestinaire">
+								<option value="">Compte destinataire...</option>
+								<option th:each="c:${comptesDestinataires}"
+									th:text="'Compte N°' + ${c.numCompte}"
+									th:value="${c.numCompte}"></option>
+								<select />
 						</div>
 
 						<div class="form-check mb-2 mr-sm-2">
@@ -130,7 +144,7 @@
 				<div class="row class="card"">
 
 					<div class="table-responsive">
-						<table class="table table-striped table-sm">
+						<table class="table table-striped table-sm" id="mydatatable">
 							<thead>
 								<tr>
 									<th>Num</th>
@@ -170,5 +184,7 @@
 		</div>
 
 	</div>
+
+
 </body>
 </html>

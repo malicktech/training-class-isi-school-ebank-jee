@@ -127,7 +127,10 @@ public class CompteController {
 
 			// Initialiser formulaire Enregsitrement Opération
 			model.addAttribute("operation", new Operation(compte.get()));
-
+			// liste des compte pour virement 
+			log.error("comptesDestinataires = " + compteRepository.findByNumCompteIsNot(compte.get().getNumCompte()).get(0).toString());
+			model.addAttribute("comptesDestinataires", compteRepository.findByNumCompteIsNot(compte.get().getNumCompte()));
+			
 			model.addAttribute("typeOperations",
 					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
 		}
@@ -215,6 +218,7 @@ public class CompteController {
 			model.addAttribute("typeComPte", "Compte Epargne");
 
 		}
+		// TODO come back to detail and bypass typeCompte attribute
 		return "compte/liste";
 	}
 
