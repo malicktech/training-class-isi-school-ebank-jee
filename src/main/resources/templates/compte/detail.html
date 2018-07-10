@@ -62,14 +62,14 @@
 								required min="1">
 						</div>
 
-						<!-- compte destinataire si l'opération est un virement -->
+						<!-- compte destinataire si l'opï¿½ration est un virement -->
 						<div class="input-group mb-2 mr-sm-2"
 							id="input-group-numCompteDestinataire">
 							<select class="form-control" type="text"
 								th:name="numCompteDestinaire" id="numCompteDestinaire">
 								<option value="">Compte destinataire...</option>
 								<option th:each="c:${comptesDestinataires}"
-									th:text="'Compte N°' + ${c.numCompte}"
+									th:text="'Compte Nï¿½' + ${c.numCompte}"
 									th:value="${c.numCompte}"></option>
 								<select />
 						</div>
@@ -149,9 +149,10 @@
 									<th>Num</th>
 									<th>Date</th>
 									<th>Operation</th>
+									<th>Compte emetteur</th>
 									<th>Transaction</th>
 									<th>Montant HT</th>
-									<th>Taxe Opération</th>
+									<th>Taxe Opï¿½ration</th>
 									<th>Taxe SMS</th>
 									<th>Montant TTC</th>
 									<th>Status</th>
