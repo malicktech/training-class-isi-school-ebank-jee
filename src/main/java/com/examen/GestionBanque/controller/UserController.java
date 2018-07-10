@@ -1,5 +1,6 @@
 package com.examen.GestionBanque.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ import com.examen.GestionBanque.entities.Client;
 import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.enums.EmployeType;
+import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.service.UserService;
 
 @Controller
@@ -113,6 +115,8 @@ public class UserController {
 	@GetMapping("/employe/ajout")
 	public String getAjoutEmployet(Model model) {
 		User user = new User();
+		model.addAttribute("typeEmployes",
+				Arrays.asList(EmployeType.CAISSIERE, EmployeType.RESPONSABLE_COMPTE));
 		user.setEmploye(new Employe());
 		model.addAttribute("user", user);
 		return "employe/ajout";

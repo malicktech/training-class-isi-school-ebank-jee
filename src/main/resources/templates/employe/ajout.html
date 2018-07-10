@@ -50,7 +50,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="control-label">Type d'employé</label> <select
 							id="segmentoSel" class="form-control" th:field="*{employe.type}"
 							required>
@@ -58,7 +58,14 @@
 								th:each="e : ${T(com.examen.GestionBanque.enums.EmployeType).values()}"
 								th:value="${e}" th:text="${e}"></option>
 						</select>
-					</div>
+					</div> -->
+					
+					<select class="custom-select mb-2 mr-sm-2"
+							th:field="*{type}" required>
+							<option value="">Type d'employe...</option>
+							<option th:each="ep : ${typeEmployes}" th:value="${ep}"
+								th:text="${ep}"></option>
+						</select>
 
 					<div>Identifiant de connexion</div>
 					<div class="form-group">
