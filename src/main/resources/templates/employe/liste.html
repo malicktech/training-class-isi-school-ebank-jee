@@ -12,7 +12,7 @@
 
 		<h1 class="h2">Liste Clients</h1>
 
-		<a th:href="@{ajout}" class="btn btn-secondary my-2" sec:authorize="hasAnyRole('ROLE_ADMIN')">Ajouter
+		<a th:href="@{ajout}" class="btn btn-primary my-2" sec:authorize="hasAnyRole('ROLE_ADMIN')">Ajouter
 			Employe</a>
 
 		<div class="row">
@@ -26,7 +26,7 @@
 						<th>CODE</th>
 						<th>POSTE</th>
 						<th>ACTIF</th>
-						<th></th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,7 +39,7 @@
 						<td th:text="${e.poste}"></td>
 						<td th:text="${e.user.actif}"></td>
 						<td><a class="btn disabled "
-							th:href="@{'/user/employe/detail/' + ${u.id}}"><span
+							th:href="@{'/user/employe/detail/' + ${e.id}}"><span
 								data-feather="eye"></span></a></td>
 					</tr>
 				</tbody>
