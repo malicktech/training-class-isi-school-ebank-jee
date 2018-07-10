@@ -149,6 +149,7 @@
 									<th>Num</th>
 									<th>Date</th>
 									<th>Operation</th>
+									<th>Compte emetteur</th>
 									<th>Transaction</th>
 									<th>Montant HT</th>
 									<th>Taxe Opération</th>
@@ -164,7 +165,7 @@
 									<td th:text="${#dates.format(op.date , 'dd-MM-yyyy')}"></td>
 									<td><span th:text="${op.typeOperation}"></span> <br /> <span
 										th:if="${op.numCompteEmeteurVirement}"
-										th:text="'compte émeteur : + '${op.numCompteEmeteurVirement}"></span>
+										th:text="'compte émeteur : +' ${op.numCompteEmeteurVirement}"></span>
 									</td>
 									<td th:text="${op.typeTransaction}"></td>
 									<td th:text="${op.montantHT}"></td>
