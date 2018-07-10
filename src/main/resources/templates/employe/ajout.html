@@ -61,7 +61,7 @@
 					</div> -->
 					
 					<select class="custom-select mb-2 mr-sm-2"
-							th:field="*{type}" required>
+							th:field="*{employe.type}" required>
 							<option value="">Type d'employe...</option>
 							<option th:each="ep : ${typeEmployes}" th:value="${ep}"
 								th:text="${ep}"></option>
