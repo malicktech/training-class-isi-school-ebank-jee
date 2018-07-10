@@ -120,7 +120,7 @@
 						<div>
 							<h6 class="my-0">Client</h6>
 							<small class="text-muted">Proprietaire du compte</small>
-						</div> <span class="text-muted" th:text="${compte.client?.code}"></span>
+						</div> <span class="text-muted" th:text="${compte.client?.code} (compte.client?.nom)"></span>
 					</li>
 					<li class="list-group-item d-flex justify-content-between bg-light">
 						<div class="text-success">
@@ -132,7 +132,6 @@
 							de compte </span> <strong th:text="${typeComPte}"></strong></li>
 				</ul>
 			</div>
-
 			<!-- --------------------------------------------------------------------------------------------- -->
 			<!-- -----------------------------   LISTE OPERATIONS    ------------------------------------ -->
 			<!-- --------------------------------------------------------------------------------------------- -->
