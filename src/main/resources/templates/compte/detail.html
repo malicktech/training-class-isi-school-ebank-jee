@@ -35,7 +35,7 @@
 		<!-- --------------------------------------------------------------------------------------------- -->
 		<!-- -----------------------------   FORM OPERATION    ------------------------------------------- -->
 		<!-- --------------------------------------------------------------------------------------------- -->
-		<div class="row" sec:authorize="hasRole('ROLE_RESPONSABLE_COMPTE')">
+		<div class="row" sec:authorize="hasRole('ROLE_CAISSIERE')">
 			<div class="col-md-12" th:if="${compte}">
 				<h4 class="d-flex justify-content-between align-items-center mb-3">
 					<span class="text-muted">Enregistrer une nouvelle operation</span>
@@ -44,7 +44,7 @@
 				<form autocomplete="off" th:action="@{/compte/operation}"
 					th:object="${operation}" method="post"
 					class="needs-validation form-inline" novalidate>
-					<div class="row">
+					<div class="row" sec:authorize="hasAnyRole('ROLE_CAISSIERE')">
 
 						<select class="custom-select mb-2 mr-sm-2"
 							th:field="*{typeOperation}" required>
