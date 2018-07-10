@@ -8,9 +8,9 @@
 			<div class="container">
 				<div>
 					&copy; bankmega.com <span sec:authorize="isAuthenticated()"
-						style="display: inline-block;"> | Utilisateur connect&eacute; : <span
-						sec:authentication="name"></span> | Roles : <span
-						sec:authentication="principal.authorities"></span> | <a
+						style="display: inline-block;"> | Utilisateur
+						connect&eacute; : <span sec:authentication="name"></span> | Roles
+						: <span sec:authentication="principal.authorities"></span> | <a
 						th:href="@{/logout}">D&eacute;connexion</a>
 					</span>
 				</div>
@@ -21,6 +21,13 @@
 		<script src="/webjars/popper.js/popper.min.js"></script>
 		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 		<script src="/js/feather.min.js"></script>
+
+
+		<!-- https://datatables.net/examples/styling/bootstrap4 -->
+		<script src="/webjars/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="/webjars/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+		<script src="/js/script.js"></script>
 
 	</th:block>
 </body>
