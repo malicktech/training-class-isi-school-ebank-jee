@@ -13,7 +13,7 @@ INSERT INTO user(id, actif, email, prenom, nom, mot_de_passe)
   (3, 1, 'diop-malick@hotmail.fr', 'Client', 'DEUX', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
   (4, 1, 'mdiop.sne@gmail.com', 'Malick', 'DIOP', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
   (5, 1, 'responsable_compte@test.com', 'Citizen', 'FOUR', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe'),
-  (6, 1, 'caissier1@test.com', 'Son altesse royale', 'La marsquise', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe');
+  (6, 1, 'caissier1@test.com', 'Son altesse royale Royale Mon derrière', 'La marsquise', '$2a$10$b8jR.blm5dQt1HGHr0DVm.3xGP3zkzbcVtDg/PKz0UK9/tg8f6bVe');
   
 INSERT INTO user_role(user_id, role_name) 
   VALUES
@@ -35,11 +35,11 @@ INSERT INTO client(id, code, adresse, employeur, num_cin, profession, raison_soc
   	(2, 'C1', 'Cité des enseignants', 'Dia S', 'CIN0000001',' Dev/CQ', 'DG Commercial', 800000,'776256295'),
   	(3, 'C2', 'Liberté 6', 'Snecommerce', 'CIN0000002','Avocat', 'RSE C1', 100000,'776149662' );
     
-INSERT INTO employe(id, code, poste) 
+INSERT INTO employe(id, code, poste, type) 
   VALUES 
-    (4, 'E01', 'Responsable compte 1'),
-    (5, 'E02', 'Responsable compte 2'),
-    (6, 'E03', 'Caissière 1');
+    (4, 'E01', 'Responsable compte 1', 'RESPONSABLE_COMPTE'),
+    (5, 'E02', 'Responsable compte 2', 'RESPONSABLE_COMPTE'),
+    (6, 'E03', 'Caissière 1', 'CAISSIERE');
 
     
 INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)
