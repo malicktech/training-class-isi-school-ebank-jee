@@ -39,6 +39,7 @@ import com.examen.GestionBanque.entities.CompteCourant;
 import com.examen.GestionBanque.entities.CompteEpargne;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.entities.User;
+import com.examen.GestionBanque.enums.EmployeType;
 import com.examen.GestionBanque.enums.OperationStatus;
 import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.enums.TransactionType;
@@ -159,7 +160,7 @@ public class CompteController {
 			model.addAttribute("compte", compte);
 		}
 		model.addAttribute("typeCompte", typeComte);
-		model.addAttribute("employes", employeRepository.findAll());
+		model.addAttribute("employes", employeRepository.findByType(EmployeType.RESPONSABLE_COMPTE));
 		model.addAttribute("clients", clientRepository.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";

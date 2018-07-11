@@ -35,7 +35,10 @@
 						<td th:text="${user.email}"></td>
 						<td th:text="${user.client?.code}"></td>
 						<td th:text="${user.employe?.code}"></td>
-						<td th:text="${user.actif}"></td>
+						<td><span th:class="badge"
+							th:classappend="${user.actif} ? badge-success : badge-danger"
+							th:text="${user.actif}"></span></td>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -47,10 +47,16 @@
 					<div class="form-group">
 						<label class="control-label">Responsable de compte</label> <select
 							class="form-control" type="text" th:name="idEmploye">
+<<<<<<< HEAD
 							<option value="">Choisir parmis les responsables</option>
 							<option th:each="e:${employes}"
 								th:text="${e.user.prenom} + ' ' + ${e.user.nom}  "
 								th:value="${e.user.id}"></option>
+=======
+							<option value="">Choisir un employe</option>
+							<option th:each="e:${employes}" th:text="${e.code} + ' - ' + ${e.user.nom} + ' ' + ${e.user.prenom}"
+								th:value="${e.id}"></option>
+>>>>>>> master
 							<select />
 					</div>
 			</div>
