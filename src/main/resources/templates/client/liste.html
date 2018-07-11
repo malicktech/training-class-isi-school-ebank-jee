@@ -41,7 +41,10 @@
 						<td th:text="${u.user.email}"></td>
 						<td th:text="${u.code}"></td>
 						<td th:text="${u.user.employe?.code}"></td>
-						<td th:text="${u.user.actif}"></td>
+						<td><span th:class="badge"
+							th:classappend="${u.user.actif} ? badge-success : badge-danger"
+							th:text="${u.user.actif}"></span></td>
+						</td>
 						<td><a class="btn disabled "
 							th:href="@{'/user/client/detail/' + ${u.id}}"><span
 								data-feather="eye"></span></a></td>

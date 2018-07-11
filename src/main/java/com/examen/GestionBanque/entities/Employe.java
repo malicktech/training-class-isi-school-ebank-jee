@@ -29,10 +29,6 @@ public class Employe implements Serializable {
 	@Column(name = "code", length = 20, unique = true)
 	private String code;
 
-	@NotNull
-	@Column(name = "poste", length = 50)
-	private String poste;
-
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private EmployeType type;
@@ -68,14 +64,6 @@ public class Employe implements Serializable {
 		this.code = code;
 	}
 
-	public String getPoste() {
-		return poste;
-	}
-
-	public void setPoste(String poste) {
-		this.poste = poste;
-	}
-
 	public EmployeType getType() {
 		return type;
 	}
@@ -102,8 +90,7 @@ public class Employe implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employe [id=" + id + ", code=" + code + ", poste=" + poste + ", comptes=" + comptes + ", user=" + user
-				+ "]";
+		return "Employe [id=" + id + ", code=" + code + ", type=" + type + "]";
 	}
 
 }

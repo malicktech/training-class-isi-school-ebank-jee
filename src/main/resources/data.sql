@@ -35,11 +35,11 @@ INSERT INTO client(id, code, adresse, employeur, num_cin, profession, raison_soc
   	(2, 'C1', 'Cité des enseignants', 'Dia S', 'CIN0000001',' Dev/CQ', 'DG Commercial', 800000,'776256295'),
   	(3, 'C2', 'Liberté 6', 'Snecommerce', 'CIN0000002','Avocat', 'RSE C1', 100000,'776149662' );
     
-INSERT INTO employe(id, code, poste, type) 
+INSERT INTO employe(id, code, type) 
   VALUES 
-    (4, 'E01', 'Responsable compte 1', 'RESPONSABLE_COMPTE'),
-    (5, 'E02', 'Responsable compte 2', 'RESPONSABLE_COMPTE'),
-    (6, 'E03', 'Caissière 1', 'CAISSIERE');
+    (4, 'E01', 'RESPONSABLE_COMPTE'),
+    (5, 'E02', 'RESPONSABLE_COMPTE'),
+    (6, 'E03', 'CAISSIERE');
 
     
 INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)

@@ -23,7 +23,6 @@ import com.examen.GestionBanque.entities.Client;
 import com.examen.GestionBanque.entities.Employe;
 import com.examen.GestionBanque.entities.User;
 import com.examen.GestionBanque.enums.EmployeType;
-import com.examen.GestionBanque.enums.OperationType;
 import com.examen.GestionBanque.service.UserService;
 
 @Controller
@@ -139,8 +138,6 @@ public class UserController {
 			log.info(bindingResult.toString());
 			return "employe/ajout";
 		} else {
-			log.info(user.toString());
-			log.info(user.getEmploye().toString());
 			User employeEnregsitre;
 			if (user.getEmploye().getType().equals(EmployeType.CAISSIERE)) {
 				employeEnregsitre = userService.saveUser(user, RolesConstants.CAISSIERE);

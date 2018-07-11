@@ -1,7 +1,6 @@
 package com.examen.GestionBanque.enums;
 
-public enum EmployeType {
-	
+public enum EmployeType {	
 	CAISSIERE,
 	RESPONSABLE_COMPTE;	
 }
