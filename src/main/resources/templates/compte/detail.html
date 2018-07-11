@@ -44,7 +44,7 @@
 				<form autocomplete="off" th:action="@{/compte/operation}"
 					th:object="${operation}" method="post"
 					class="needs-validation form-inline" novalidate>
-					<div class="row" sec:authorize="hasAnyRole('ROLE_CAISSIERE')">
+					<div class="row">
 
 						<select class="custom-select mb-2 mr-sm-2"
 							th:field="*{typeOperation}" required>
