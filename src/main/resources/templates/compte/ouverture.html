@@ -22,9 +22,6 @@
 					th:object="${compte}" method="post" class="form-horizontal"
 					role="form">
 
-					<!-- <h2>Registration Form</h2> -->
-
-
 					<div class="form-group">
 						<label class="control-label">Le Client</label> <select
 							class="form-control" th:name="idClient">
@@ -49,48 +46,38 @@
 							class="form-control" type="text" th:name="idEmploye">
 
 							<option value="">Choisir parmis les responsables</option>
-							<option th:each="e:${employes}" th:text="${e.code} + ' - ' + ${e.user.nom} + ' ' + ${e.user.prenom}"
-								th:value="${e.id}"></option>
+							<option th:each="e:${employes}"
+								th:text="${e.code} + ' - ' + ${e.user.nom} + ' ' + ${e.user.prenom}"
+								th:value="${e.user.id}"></option>
 							<select />
 					</div>
-			</div>
-			<div class="form-group">
-				<div class="col-9">
-					<label>Numero Compte</label> <input type="text"
-						th:field="*{numCompte}" placeholder="Numero du compte"
-						class="form-control" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-9">
-					<label>Solde du Compte</label> <input type="text"
-						th:field="*{solde}" placeholder="Solde du Compte"
-						class="form-control" required>
-				</div>
-			</div>
-			<!--ajout frais d'ouverture et agios en foction du type de compte-->
 
+					<div class="form-group">
+						<div class="col-9">
+							<label>Numero Compte</label> <input type="text"
+								th:field="*{numCompte}" placeholder="Numero du compte"
+								class="form-control" required>
+						</div>
+					</div>
+					-->
+					<div class="form-group">
+						<div class="col-9">
+							<label>Solde du Compte</label> <input type="text"
+								th:field="*{solde}" placeholder="Solde du Compte"
+								class="form-control" required>
+						</div>
+					</div>
 
-			<div th:if="${typeCompte=='CE'}">
-				<label class="control-label">Agios :</label> <label
-					class="control-label" th:field="*{compte.agios}"></label>
+					<div class="form-group">
+						<div class="col-9">
+							<button type="submit" class="btn btn-primary btn-block">VALIDER
+								LA CREATION</button>
+						</div>
+					</div>
+
+				</form>
 			</div>
-			<div th:if="${typeCompte=='CB'}">
-				<label class="control-label">Frais d'ouverture :</label> <label
-					class="control-label" th:field="*{compte.frais-ouverture}"></label>
-			</div>
-
-
-			<div class="form-group">
-				<div class="col-9">
-					<button type="submit" class="btn btn-primary btn-block">VALIDER
-						LA CREATION</button>
-				</div>
-			</div>
-
-			</form>
 		</div>
-	</div>
 
 	</div>
 

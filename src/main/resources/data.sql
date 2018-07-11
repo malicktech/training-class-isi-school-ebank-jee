@@ -42,10 +42,10 @@ INSERT INTO employe(id, code, type)
     (6, 'E03', 'CAISSIERE');
 
     
-INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, frais_ouverture_cb, agios, frais_ouverture_ce, code_agence, code_client, code_employe)
+INSERT INTO compte( numero_compte, type_cpte, date_ouverture, etat, solde, code_agence, code_client, code_employe)
   VALUES 
-    ('CC1', 'CC', '2018-07-02 00:00:00', 1,  10, 0, 0, 0, 'A1', 2, 4),
-    ('CC2', 'CC', '2018-07-01 00:00:00', 1, 500, 0, 0, 0, 'A2', 3, 5);
+    ('CC1', 'CC', '2018-07-02 00:00:00', 1,  10, 'A1', 2, 4),
+    ('CC2', 'CC', '2018-07-01 00:00:00', 1, 500, 'A2', 3, 5);
     
 INSERT INTO operation(id, date, description, montant_ht, montant_ttc, taxe_operation, taxe_sms, type_operation, type_transaction, status_operation, numero_compte, code_employe)
     VALUES

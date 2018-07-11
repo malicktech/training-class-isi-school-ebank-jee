@@ -69,7 +69,7 @@ public class CompteController {
 
 	@Autowired
 	private EmployeRepository employeRepository;
-	
+
 	@Autowired
 	private ClientRepository clientRepository;
 
@@ -203,8 +203,13 @@ public class CompteController {
 			compte.setEmploye(userRepository.getOne(idEmploye).getEmploye());
 			compte.setClient(userRepository.getOne(idClient).getClient());
 
+			// ajout frais d'ouverture et agios en foction du type de compte
+
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
+
+			// Frais agios
+			compteService.AjoutFraisCompte(compteEnregistre.getNumCompte(), OperationType.AGIOS);
 
 			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
 		}
@@ -229,6 +234,9 @@ public class CompteController {
 
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
+
+			// Frais d'ouverture
+			compteService.AjoutFraisCompte(compteEnregistre.getNumCompte(), OperationType.FRAIS_OUVERTURE);
 
 			attributes.addFlashAttribute("successMessage",
 					"le compte numéro " + compteEnregistre.getNumCompte() + " a été créer avec succés");
@@ -265,11 +273,11 @@ public class CompteController {
 			}
 
 			// Taxes opération automatique
-			operation.setTaxeOperation(getTaxeOperation());
+			operation.setTaxeOperation(compteService.getTaxeOperation());
 
 			// Taxes sms Si l'option sms est choisi
 			if (sms == true) {
-				operation.setTaxeSms(getMontantTaxeSms());
+				operation.setTaxeSms(compteService.getMontantTaxeSms());
 			}
 
 			// Total TTC selon que c'est un crédit ou un débit
@@ -316,20 +324,6 @@ public class CompteController {
 
 		}
 		return "redirect:" + "/compte/detail/" + operation.getCompte().getNumCompte();
-	}
-
-	/**
-	 * Retourne le montant de la taxe si l'option sms est choisie
-	 */
-	private double getMontantTaxeSms() {
-		return 5;
-	}
-
-	/**
-	 * Retourne le montant taxé pour chaque opération
-	 */
-	private double getTaxeOperation() {
-		return 10;
 	}
 
 }

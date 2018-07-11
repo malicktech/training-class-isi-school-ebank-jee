@@ -60,7 +60,67 @@ public class CompteService {
 		// Mis à jour solde compte
 		compte.setSolde(compte.getSolde() + operation.getMontantTTC());
 		Compte compteEnregistre = compteRepository.save(compte);
-		
+
 		return compteEnregistre;
+	}
+
+	public Compte AjoutFraisCompte(String numCompte, OperationType type) {
+
+		// Récupération du compte destinarie
+		Compte compte = compteRepository.findById(numCompte).get();
+
+		// Enregsitrement de l'opération sur le compte pour l'ajout frais d'ouverture et
+		// agios en foction du type de compte
+		Operation operation = new Operation(compte);
+		operation.setDate(Instant.now());
+		operation.setMontantTTC(operation.getMontantHT());
+		operation.setTypeTransaction(TransactionType.DEBIT);
+		operation.setStatusOperation(OperationStatus.EXECUTEE);
+		operation.setCompte(compte);
+
+		if (type.equals(OperationType.AGIOS)) {
+			operation.setTypeOperation(OperationType.AGIOS);
+			operation.setMontantHT(getTaxeAgios());
+		}
+		if (type.equals(OperationType.FRAIS_OUVERTURE)) {
+			operation.setTypeOperation(OperationType.FRAIS_OUVERTURE);
+			operation.setMontantHT(getTaxeOuvertureCompte());
+		}
+
+		// Enregsitrement de l'opération
+		Operation operationEnregsitree = operationRepository.save(operation);
+		// Mis à jour solde compte
+		compte.setSolde(compte.getSolde() - operation.getMontantTTC());
+		Compte compteEnregistre = compteRepository.save(compte);
+
+		return compteEnregistre;
+	}
+
+	/**
+	 * Retourne le montant de la taxe si l'option sms est choisie
+	 */
+	public double getMontantTaxeSms() {
+		return 5;
+	}
+
+	/**
+	 * Retourne le montant taxé pour chaque opération
+	 */
+	public double getTaxeOperation() {
+		return 10;
+	}
+
+	/**
+	 * Retourne le montant taxé pour les frais ouverture
+	 */
+	public double getTaxeOuvertureCompte() {
+		return 8;
+	}
+
+	/**
+	 * Retourne le montant taxé pour les frais ouverture
+	 */
+	public double getTaxeAgios() {
+		return 6;
 	}
 }
