@@ -180,18 +180,9 @@ public class CompteController {
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
-			model.addAttribute("successMessage", "le compte a été créer avec succés");
-			model.addAttribute("compte", compteEnregistre);
-
-			// Initialiser formulaire Enregistrement Opération
-			model.addAttribute("operation", new Operation(compteEnregistre));
-
-			model.addAttribute("typeComPte", "Compte Courant");
-			model.addAttribute("typeOperations",
-					Arrays.asList(OperationType.DEPOT, OperationType.RETRAIT, OperationType.VIREMENT));
-
+			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
 		}
-		return "compte/liste";
+		return "redirect:" + "/compte/liste";
 	}
 
 	@PostMapping("/ouverture/CE")
@@ -210,17 +201,10 @@ public class CompteController {
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
-			model.addAttribute("successMessage", "le compte a été créer avec succés");
-			model.addAttribute("compte", compteEnregistre);
-
-			// Initialiser formulaire Enregistrement Opération
-			model.addAttribute("operation", new Operation(compteEnregistre));
-
-			model.addAttribute("typeComPte", "Compte Epargne");
-
+			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
 		}
 		// TODO come back to detail and bypass typeCompte attribute
-		return "compte/liste";
+		return "redirect:" + "/compte/liste";
 	}
 
 	@PostMapping("/ouverture/CB")
@@ -241,16 +225,10 @@ public class CompteController {
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
-			model.addAttribute("successMessage", "le compte a été créer avec succés");
-			model.addAttribute("compte", compteEnregistre);
-
-			// Initialiser formulaire Enregistrement Opération
-			model.addAttribute("operation", new Operation(compteEnregistre));
-
-			model.addAttribute("typeComPte", "Comtpe Bloqué");
-
+			attributes.addFlashAttribute("successMessage",
+					"le compte numéro " + compteEnregistre.getNumCompte() + " a été créer avec succés");
 		}
-		return "compte/liste";
+		return "redirect:" + "/compte/liste";
 	}
 
 	/**
