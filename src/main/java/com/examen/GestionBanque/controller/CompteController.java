@@ -185,7 +185,8 @@ public class CompteController {
 			compte.setDateCreation(new Date());
 			Compte compteEnregistre = compteService.saveCompte(compte);
 
-			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
+			attributes.addFlashAttribute("successMessage",
+					"le compte numéro " + compteEnregistre.getNumCompte() + " a été crée avec succés");
 		}
 		return "redirect:" + "/compte/liste";
 	}
@@ -206,7 +207,8 @@ public class CompteController {
 			// Frais agios
 			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.AGIOS);
 
-			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
+			attributes.addFlashAttribute("successMessage",
+					"le compte numéro " + compteEnregistre.getNumCompte() + " a été crée avec succés");
 		}
 		// TODO come back to detail and bypass typeCompte attribute
 		return "redirect:" + "/compte/liste";
@@ -231,7 +233,8 @@ public class CompteController {
 			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.FRAIS_OUVERTURE);
 
 			attributes.addFlashAttribute("successMessage",
-					"le compte numéro " + compteEnregistre.getNumCompte() + " a été créer avec succés");
+					"le compte numéro " + compteEnregistre.getNumCompte() + " a été crée avec succés");
+
 		}
 		return "redirect:" + "/compte/liste";
 	}
