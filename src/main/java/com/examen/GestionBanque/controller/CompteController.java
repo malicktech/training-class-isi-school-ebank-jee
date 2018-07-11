@@ -144,6 +144,35 @@ public class CompteController {
 		return "compte/detail";
 	}
 
+	@PostMapping("/etat")
+	public String changerEtat(String numCompteEtat, boolean etatCompte, RedirectAttributes attributes, Model model) {
+
+		log.error("numCompteEtat =" + numCompteEtat + "/ etatCompte = " + etatCompte);
+
+		// Récupération du compte
+		Compte compte = compteRepository.findById(numCompteEtat).get();
+		compte.setEtat(etatCompte);
+		compteRepository.save(compte);
+
+		return "redirect:" + "/compte/detail/" + numCompteEtat;
+	}
+	
+	@GetMapping("/releve")
+	public String afficherFormReleve(Model model) {
+		// Recupérer la liste de tous les comptes
+		model.addAttribute("comptes", compteRepository.findAll());
+
+		return "compte/formulaire-releve";
+	}
+
+	@PostMapping("/releve")
+	public String afficherDetailsReleve(String numCompteEtat, Instant dateDebut, Instant dateFin, Model model) {
+
+		// TODO : implémenter requetes
+
+		return "compte/detail-releve";
+	}
+
 	/**
 	 * Affiche le formulaire d'ouverture de compte
 	 */
@@ -205,7 +234,7 @@ public class CompteController {
 			compte.setClient(userRepository.getOne(idClient).getClient());
 
 			// Frais agios
-			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.AGIOS);
+			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.FRAIS_OUVERTURE);
 
 			attributes.addFlashAttribute("successMessage",
 					"le compte numéro " + compteEnregistre.getNumCompte() + " a été crée avec succés");

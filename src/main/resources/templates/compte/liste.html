@@ -44,7 +44,10 @@
 						<td th:text="${compte.numCompte}"></td>
 						<td th:text="${compte.solde}"></td>
 						<td th:text="${compte.dateCreation}"></td>
-						<td th:text="${compte.etat}"></td>
+						<td><span th:class="badge"
+							th:classappend="${compte.etat} ? badge-success : badge-danger"
+							th:text="${compte.etat}"></span></td>
+						</td>
 						<td th:text="${compte.client?.code}"></td>
 						<td th:text="${compte.employe?.code}"></td>
 						<td><a class="nav-link"
