@@ -1,6 +1,7 @@
 package com.examen.GestionBanque.service;
 
 import java.time.Instant;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -64,19 +65,15 @@ public class CompteService {
 		return compteEnregistre;
 	}
 
-	public Compte AjoutFraisCompte(String numCompte, OperationType type) {
+	public Compte saveCompteAvecFrais(Compte compte, OperationType type) {
 
-		// Récupération du compte destinarie
-		Compte compte = compteRepository.findById(numCompte).get();
+		compte.setDateCreation(new Date());
+		Compte compteEnregistre = compteRepository.save(compte);
 
 		// Enregsitrement de l'opération sur le compte pour l'ajout frais d'ouverture et
 		// agios en foction du type de compte
 		Operation operation = new Operation(compte);
 		operation.setDate(Instant.now());
-		operation.setMontantTTC(operation.getMontantHT());
-		operation.setTypeTransaction(TransactionType.DEBIT);
-		operation.setStatusOperation(OperationStatus.EXECUTEE);
-		operation.setCompte(compte);
 
 		if (type.equals(OperationType.AGIOS)) {
 			operation.setTypeOperation(OperationType.AGIOS);
@@ -87,13 +84,18 @@ public class CompteService {
 			operation.setMontantHT(getTaxeOuvertureCompte());
 		}
 
+		operation.setMontantTTC(operation.getMontantHT());
+		operation.setTypeTransaction(TransactionType.DEBIT);
+		operation.setStatusOperation(OperationStatus.EXECUTEE);
+		operation.setCompte(compteEnregistre);
+
 		// Enregsitrement de l'opération
 		Operation operationEnregsitree = operationRepository.save(operation);
-		// Mis à jour solde compte
-		compte.setSolde(compte.getSolde() - operation.getMontantTTC());
-		Compte compteEnregistre = compteRepository.save(compte);
 
-		return compteEnregistre;
+		// Mis à jour solde compte
+		log.error("solde = " + (compte.getSolde() - operation.getMontantTTC()));
+		compte.setSolde(compte.getSolde() - operation.getMontantTTC());
+		return compteRepository.save(compte);
 	}
 
 	/**

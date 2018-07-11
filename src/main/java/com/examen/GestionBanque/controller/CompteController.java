@@ -203,13 +203,8 @@ public class CompteController {
 			compte.setEmploye(userRepository.getOne(idEmploye).getEmploye());
 			compte.setClient(userRepository.getOne(idClient).getClient());
 
-			// ajout frais d'ouverture et agios en foction du type de compte
-
-			compte.setDateCreation(new Date());
-			Compte compteEnregistre = compteService.saveCompte(compte);
-
 			// Frais agios
-			compteService.AjoutFraisCompte(compteEnregistre.getNumCompte(), OperationType.AGIOS);
+			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.AGIOS);
 
 			attributes.addFlashAttribute("successMessage", "le compte a été créer avec succés");
 		}
@@ -232,11 +227,8 @@ public class CompteController {
 
 			compte.setEtat(false);
 
-			compte.setDateCreation(new Date());
-			Compte compteEnregistre = compteService.saveCompte(compte);
-
 			// Frais d'ouverture
-			compteService.AjoutFraisCompte(compteEnregistre.getNumCompte(), OperationType.FRAIS_OUVERTURE);
+			Compte compteEnregistre = compteService.saveCompteAvecFrais(compte, OperationType.FRAIS_OUVERTURE);
 
 			attributes.addFlashAttribute("successMessage",
 					"le compte numéro " + compteEnregistre.getNumCompte() + " a été créer avec succés");
