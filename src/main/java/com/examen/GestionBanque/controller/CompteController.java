@@ -190,7 +190,7 @@ public class CompteController {
 		}
 		model.addAttribute("typeCompte", typeComte);
 		model.addAttribute("employes", employeRepository.findByType(EmployeType.RESPONSABLE_COMPTE));
-		model.addAttribute("clients", clientRepository.findAll());
+		model.addAttribute("clients", typeComte.equals("CC") ? clientRepository.findBySalaireNotNull() : clientRepository.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
 	}
