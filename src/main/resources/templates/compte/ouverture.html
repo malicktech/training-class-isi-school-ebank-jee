@@ -38,8 +38,8 @@
 						<label class="control-label">Le Client</label> <select
 							class="form-control" th:name="idClient">
 							<option value="">Choisir un Client</option>
-							<option th:each="u:${users}" th:text="${u.prenom}"
-								th:value="${u.id}"></option>
+							<option th:each="c:${clients}" th:text="${c.user.prenom} + ' ' + ${c.user.nom}  "
+								th:value="${c.user.id}"></option>
 							<select />
 					</div>
 

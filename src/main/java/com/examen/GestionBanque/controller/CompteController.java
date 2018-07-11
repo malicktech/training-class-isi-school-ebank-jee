@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.examen.GestionBanque.configuration.security.RolesConstants;
 import com.examen.GestionBanque.configuration.security.SecurityUtils;
 import com.examen.GestionBanque.dao.AgenceRepository;
+import com.examen.GestionBanque.dao.ClientRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
 import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.dao.OperationRepository;
@@ -67,6 +68,9 @@ public class CompteController {
 
 	@Autowired
 	private EmployeRepository employeRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 
 	@Autowired
 	private OperationRepository operationRepository;
@@ -156,7 +160,7 @@ public class CompteController {
 		}
 		model.addAttribute("typeCompte", typeComte);
 		model.addAttribute("employes", employeRepository.findAll());
-		model.addAttribute("users", userService.findAll());
+		model.addAttribute("clients", clientRepository.findAll());
 		model.addAttribute("agences", agenceRepository.findAll());
 		return "compte/ouverture";
 	}
