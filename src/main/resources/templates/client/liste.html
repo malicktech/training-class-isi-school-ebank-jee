@@ -23,14 +23,14 @@
 			<table class="table table-striped table-bordered" id="mydatatable">
 				<thead>
 					<tr>
-						<th>id</th>
-						<th>Pr&eacute;nom</th>
-						<th>Nom</th>
-						<th>@Mail</th>
-						<th>Code Client</th>
-						<th>Code Employe</th>
+						<th>IDENTIFIANT</th>
+						<th>PRENOM</th>
+						<th>NOM</th>
+						<th>EMail</th>
+						<!-- <th>Code Client</th> -->
+						<th>CODE</th>
 						<th>Actif</th>
-						<th></th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,7 +40,7 @@
 						<td th:text="${u.user.nom}"></td>
 						<td th:text="${u.user.email}"></td>
 						<td th:text="${u.code}"></td>
-						<td th:text="${u.user.employe?.code}"></td>
+						<!-- <td th:text="${u.user.employe?.code}"></td> -->
 						<td><span th:class="badge"
 							th:classappend="${u.user.actif} ? badge-success : badge-danger"
 							th:text="${u.user.actif}"></span></td>
