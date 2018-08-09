@@ -10,11 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.examen.GestionBanque.dao.AgenceRepository;
 import com.examen.GestionBanque.dao.CompteRepository;
-import com.examen.GestionBanque.dao.EmployeRepository;
 import com.examen.GestionBanque.dao.OperationRepository;
-import com.examen.GestionBanque.dao.UserRepository;
 import com.examen.GestionBanque.entities.Compte;
 import com.examen.GestionBanque.entities.Operation;
 import com.examen.GestionBanque.enums.OperationStatus;

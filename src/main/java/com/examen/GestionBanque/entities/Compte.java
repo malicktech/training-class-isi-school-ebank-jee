@@ -53,9 +53,6 @@ public abstract class Compte implements Serializable {
 	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
 	private List<Operation> operations;
 
-	@OneToMany(mappedBy = "compte", fetch = FetchType.LAZY)
-	private List<HistoriqueTaxe> historiques;
-
 	/* Contructeurs */
 
 	public Compte() {
@@ -135,18 +132,10 @@ public abstract class Compte implements Serializable {
 		this.operations = operations;
 	}
 
-	public List<HistoriqueTaxe> getHistoriques() {
-		return historiques;
-	}
-
-	public void setHistoriques(List<HistoriqueTaxe> historiques) {
-		this.historiques = historiques;
-	}
-
 	@Override
 	public String toString() {
 		return "Compte [numCompte=" + numCompte + ", solde=" + solde + ", dateCreation=" + dateCreation + ", etat="
-				+ etat + ", operations=" + operations + ", historiques=" + historiques + "]";
+				+ etat + ", operations=" + operations + "]";
 	}
 
 }
